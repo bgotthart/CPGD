@@ -1,0 +1,10 @@
+// %W% %E%
+
+grant codeBase "file:${jnlpx.home}/lib/javaws.jar" {
+    permission java.security.AllPermission;
+};
+
+grant codeBase "file:${jnlpx.home}/lib/deploy.jar" {
+    permission java.security.AllPermission;
+};
+
