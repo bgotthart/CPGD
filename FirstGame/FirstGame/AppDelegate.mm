@@ -7,9 +7,9 @@
 //
 
 #import "cocos2d.h"
-#import <JavaVM/jni.h>
 #import "AppDelegate.h"
 #import "IntroLayer.h"
+
 
 @implementation AppController
 
@@ -20,7 +20,7 @@
 
 	//http://stackoverflow.com/questions/4972973/calling-a-java-class-function-from-cocoa-with-jni
 	//http://www.codeproject.com/Articles/22881/How-to-Call-Java-Functions-from-C-Using-JNI
-	
+	/*
 	JNIEnv *env;
 	JavaVM *jvm;
 	int res;
@@ -35,9 +35,9 @@
 	
 	res = JNI_CreateJavaVM(&jvm, (void**)&env, &vm_args);
 	
-	
-	if(res < 0){
-		NSLog(@"Error: %i", res);
+	*/
+	//if(res < 0){
+	//	NSLog(@"Error: %i", res);
 	/*ERROR CODE*/
 	/* 0 success */
 	/* -1 unknown error */
@@ -46,13 +46,11 @@
 	/* -4 not enough memory */
 	/* -5 VM already created */
 	/* -6 invalid arguments */
-		return NO;
-	}
+		//return NO;
+	//}
+
 	
 	//jclass myClass = JNIEnv->FindClass(&env, "foo/bar");
-
-	//return that game doesn't start
-	return YES;
 	
 	
 	

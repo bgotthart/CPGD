@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
-#import <JavaVM/jni.h>
 
 @interface AppController : NSObject <UIApplicationDelegate, CCDirectorDelegate>
 {

@@ -192,9 +192,15 @@
 {
 	if((self = [super initWithColor:ccc4(255,255,255,255)])){
 		CGSize winSize = [CCDirector sharedDirector].winSize;
+		
+		Player *p = new Player(50,50);
+		
+		//NSLog(@"%i",p->getPositionX());
 		_player = [CCSprite spriteWithFile:@"player2.png"];
 		
-		_player.position = ccp(_player.contentSize.width/2, winSize.height/2);
+		
+		//_player.position = ccp(_player.contentSize.width/2, winSize.height/2);
+		_player.position = ccp(p->getPositionX(),p->getPositionY());
 		[self addChild:_player];
 	}
 	

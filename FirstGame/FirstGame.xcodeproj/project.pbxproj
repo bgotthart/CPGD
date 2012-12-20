@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D9C793C1677669F00ACF144 /* JavaVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C793B1677669F00ACF144 /* JavaVM.framework */; };
-		0D9C79451677672000ACF144 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C793E1677672000ACF144 /* AppDelegate.m */; };
-		0D9C79461677672000ACF144 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C79401677672000ACF144 /* GameOverLayer.m */; };
-		0D9C79471677672000ACF144 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C79421677672000ACF144 /* HelloWorldLayer.m */; };
-		0D9C79481677672000ACF144 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C79441677672000ACF144 /* IntroLayer.m */; };
+		0D7CCC0A1683658F003A1889 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D7CCC081683658F003A1889 /* player.cpp */; };
+		0D9C79451677672000ACF144 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C793E1677672000ACF144 /* AppDelegate.mm */; };
+		0D9C79461677672000ACF144 /* GameOverLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C79401677672000ACF144 /* GameOverLayer.mm */; };
+		0D9C79471677672000ACF144 /* HelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C79421677672000ACF144 /* HelloWorldLayer.mm */; };
+		0D9C79481677672000ACF144 /* IntroLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C79441677672000ACF144 /* IntroLayer.mm */; };
 		0DE7AD201676451A00BAEA59 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE7AD1F1676451A00BAEA59 /* QuartzCore.framework */; };
 		0DE7AD221676451A00BAEA59 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE7AD211676451A00BAEA59 /* OpenGLES.framework */; };
 		0DE7AD241676451A00BAEA59 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE7AD231676451A00BAEA59 /* OpenAL.framework */; };
@@ -150,15 +150,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0D9C793B1677669F00ACF144 /* JavaVM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JavaVM.framework; sourceTree = "<group>"; };
+		0D7CCC081683658F003A1889 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = ../../GameLogic/player.cpp; sourceTree = "<group>"; };
+		0D7CCC091683658F003A1889 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = ../../GameLogic/player.h; sourceTree = "<group>"; };
 		0D9C793D1677672000ACF144 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		0D9C793E1677672000ACF144 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0D9C793E1677672000ACF144 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		0D9C793F1677672000ACF144 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
-		0D9C79401677672000ACF144 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
+		0D9C79401677672000ACF144 /* GameOverLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameOverLayer.mm; sourceTree = "<group>"; };
 		0D9C79411677672000ACF144 /* HelloWorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		0D9C79421677672000ACF144 /* HelloWorldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
+		0D9C79421677672000ACF144 /* HelloWorldLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HelloWorldLayer.mm; sourceTree = "<group>"; };
 		0D9C79431677672000ACF144 /* IntroLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
-		0D9C79441677672000ACF144 /* IntroLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		0D9C79441677672000ACF144 /* IntroLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroLayer.mm; sourceTree = "<group>"; };
 		0DE7AD1B1676451A00BAEA59 /* FirstGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirstGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DE7AD1F1676451A00BAEA59 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0DE7AD211676451A00BAEA59 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -443,7 +444,6 @@
 				0DE7AD2C1676451B00BAEA59 /* Foundation.framework in Frameworks */,
 				0DE7AD2E1676451B00BAEA59 /* CoreGraphics.framework in Frameworks */,
 				0DE7AD301676451B00BAEA59 /* GameKit.framework in Frameworks */,
-				0D9C793C1677669F00ACF144 /* JavaVM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,7 +470,6 @@
 		0DE7AD1E1676451A00BAEA59 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0D9C793B1677669F00ACF144 /* JavaVM.framework */,
 				0DE7AD1F1676451A00BAEA59 /* QuartzCore.framework */,
 				0DE7AD211676451A00BAEA59 /* OpenGLES.framework */,
 				0DE7AD231676451A00BAEA59 /* OpenAL.framework */,
@@ -488,13 +487,15 @@
 			isa = PBXGroup;
 			children = (
 				0D9C793D1677672000ACF144 /* AppDelegate.h */,
-				0D9C793E1677672000ACF144 /* AppDelegate.m */,
+				0D9C793E1677672000ACF144 /* AppDelegate.mm */,
 				0D9C793F1677672000ACF144 /* GameOverLayer.h */,
-				0D9C79401677672000ACF144 /* GameOverLayer.m */,
+				0D9C79401677672000ACF144 /* GameOverLayer.mm */,
 				0D9C79411677672000ACF144 /* HelloWorldLayer.h */,
-				0D9C79421677672000ACF144 /* HelloWorldLayer.m */,
+				0D9C79421677672000ACF144 /* HelloWorldLayer.mm */,
 				0D9C79431677672000ACF144 /* IntroLayer.h */,
-				0D9C79441677672000ACF144 /* IntroLayer.m */,
+				0D9C79441677672000ACF144 /* IntroLayer.mm */,
+				0D7CCC081683658F003A1889 /* player.cpp */,
+				0D7CCC091683658F003A1889 /* player.h */,
 				0DE7AD321676451B00BAEA59 /* Resources */,
 				0DE7AD4C1676451B00BAEA59 /* libs */,
 				0DE7AEA51676451F00BAEA59 /* Supporting Files */,
@@ -1079,10 +1080,11 @@
 				0DE7AEA11676451F00BAEA59 /* vec3.c in Sources */,
 				0DE7AEA31676451F00BAEA59 /* vec4.c in Sources */,
 				0DE7AEA81676451F00BAEA59 /* main.m in Sources */,
-				0D9C79451677672000ACF144 /* AppDelegate.m in Sources */,
-				0D9C79461677672000ACF144 /* GameOverLayer.m in Sources */,
-				0D9C79471677672000ACF144 /* HelloWorldLayer.m in Sources */,
-				0D9C79481677672000ACF144 /* IntroLayer.m in Sources */,
+				0D9C79451677672000ACF144 /* AppDelegate.mm in Sources */,
+				0D9C79461677672000ACF144 /* GameOverLayer.mm in Sources */,
+				0D9C79471677672000ACF144 /* HelloWorldLayer.mm in Sources */,
+				0D9C79481677672000ACF144 /* IntroLayer.mm in Sources */,
+				0D7CCC0A1683658F003A1889 /* player.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1137,8 +1139,8 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/XAMPP/xamppfiles/htdocs/iPhone Apps/Games/FirstGame\"",
-					"\"$(SYSTEM_APPS_DIR)/XAMPP/xamppfiles/htdocs/iPhone Apps/Games/CPGD/FirstGame\"",
+					"\"$(SYSTEM_APPS_DIR)/XAMPP/xamppfiles/htdocs/IM/FirstGame\"",
+					"\"$(SYSTEM_APPS_DIR)/XAMPP/xamppfiles/htdocs/IM/CPGD/FirstGame\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1162,8 +1164,8 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/XAMPP/xamppfiles/htdocs/iPhone Apps/Games/FirstGame\"",
-					"\"$(SYSTEM_APPS_DIR)/XAMPP/xamppfiles/htdocs/iPhone Apps/Games/CPGD/FirstGame\"",
+					"\"$(SYSTEM_APPS_DIR)/XAMPP/xamppfiles/htdocs/IM/FirstGame\"",
+					"\"$(SYSTEM_APPS_DIR)/XAMPP/xamppfiles/htdocs/IM/CPGD/FirstGame\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FirstGame/Prefix.pch;
