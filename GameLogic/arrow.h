@@ -7,6 +7,7 @@ class Arrow{
 		int y;
 		int velX;
 		int velY;
+		//float gravity;
 	
 	public:
 		Arrow(int, int);
