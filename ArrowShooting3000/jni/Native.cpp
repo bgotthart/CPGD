@@ -1,8 +1,14 @@
 #include <string.h>
 #include <jni.h>
-#include "../../GameLogic/player.h"
+
 #include "com_cpgd_arrowshooting3000_PlayerProxy.h"
 #include "com_cpgd_arrowshooting3000_ArrowProxy.h"
+#include "com_cpgd_arrowshooting3000_GroundTargetProxy.h"
+
+#include "../../GameLogic/player.h"
+#include "../../GameLogic/arrow.h"
+#include "../../GameLogic/groundTarget.h"
+
 
 // ##################### Player ###############################
 JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_PlayerProxy_playerProxy
@@ -25,28 +31,6 @@ JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_PlayerProxy_getPositionY
 	Player* p = (Player*) d;
 	return p->getPositionY();
 }
-
-// ######### TMP -> AUSLAGERN!!! #########
-class Arrow {
-private:
-	int positionX;
-	int positionY;
-	float velocityX;
-	float velocityY;
-
-public:
-	Arrow(int x, int y) {positionX = x;	positionY = y; velocityX = 0; velocityY = 0;}
-	int getPositionX() { return positionX; }
-	int getPositionY() { return positionY; }
-	void shootArrow(int mouseX, int mouseY, float strength) {
-		velocityX = (mouseX - positionX)/100 * strength;
-		velocityY = (mouseY - positionY)/100 * strength;
-	}
-	void update() {
-		positionX += velocityX;
-		positionY += velocityY;
-	}
-};
 
 
 // ##################### Arrow ###############################
@@ -71,6 +55,13 @@ JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_getPositionY
 	return arrow->getPositionY();
 }
 
+JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_getRotation
+  (JNIEnv * env, jobject o, jlong obj)
+{
+	Arrow* arrow = (Arrow*) obj;
+	return arrow->getRotation();
+}
+
 JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_shootArrow
   (JNIEnv * env, jobject o, jint mouseX, jint mouseY, jfloat strength, jlong obj)
 {
@@ -85,4 +76,35 @@ JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_update
 	Arrow* arrow = (Arrow*) obj;
 	arrow->update();
 	return (long) arrow;
+}
+
+
+// ##################### Ground Target ###############################
+JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_GroundTargetProxy_groundTargetProxy
+  (JNIEnv * env, jobject o, jint x, jint y)
+{
+	Target* tmp = new GroundTarget(x, y);
+	return (long) tmp;
+}
+
+JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_GroundTargetProxy_getPositionX
+  (JNIEnv * env, jobject o, jlong obj)
+{
+	Target* target = (Target*) obj;
+	return target->getPositionX();
+}
+
+JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_GroundTargetProxy_getPositionY
+  (JNIEnv * env, jobject o, jlong obj)
+{
+	Target* target = (Target*) obj;
+	return target->getPositionY();
+}
+
+JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_GroundTargetProxy_update
+  (JNIEnv * env, jobject o, jlong obj)
+{
+	Target* target = (Target*) obj;
+	target->update();
+	return (long) target;
 }

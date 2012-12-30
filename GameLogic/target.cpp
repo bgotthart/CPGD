@@ -1,17 +1,21 @@
 #include "target.h"
 
 Target::Target(int x, int y){
-	this->x = x;
-	this->y = y;
+	this->position = new Vector(x, y);
 }
 
 int Target::getPositionX(){
-	return x;
+	return position->x;
 }
 
 int Target::getPositionY(){
-	return y;
+	return position->y;
 }
 
-int Target::colidesWith(int arrowX, arrowY){}
-void Target::update(){}
+int Target::colidesWith(int arrowX, int arrowY){
+
+}
+
+void Target::update(){
+
+}

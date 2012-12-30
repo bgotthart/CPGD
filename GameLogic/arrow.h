@@ -1,13 +1,14 @@
 #ifndef ARROW_H
 #define ARROW_H
 
+#include "vector.h"
+
 class Arrow{
 	private:
-		int x;
-		int y;
-		int velX;
-		int velY;
-		//float gravity;
+		Vector* position;
+		Vector* velocity;
+		float gravity;
+		float rotation;
 	
 	public:
 		Arrow(int, int);
@@ -15,6 +16,7 @@ class Arrow{
 		int getPositionY();
 		void shootArrow(int, int, float);
 	    void update();
+	    float getRotation();
 };
 
 #endif

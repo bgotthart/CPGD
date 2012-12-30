@@ -1,11 +1,11 @@
 #include "flyingTarget.h"
 
-FlyingTarget::FlyingTarget(int x, int y){
-	this->x = x;
-	this->y = y;
-	this->velX = 0;
-	this->velY = 0;
+FlyingTarget::FlyingTarget(int x, int y) : Target(x, y)
+{
+	this->velocity = new Vector();
 }
 
 
-void FlyingTarget::update(){}
+void FlyingTarget::update(){
+
+}

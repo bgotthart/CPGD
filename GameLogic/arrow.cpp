@@ -1,29 +1,37 @@
 #include "arrow.h"
+#include <math.h>
 
 Arrow::Arrow(int x, int y){
-	this->x = x;
-	this->y = y;
-	this->velX = 0;
-	this->velY = 0;
-	//this->gravity = 1.0f;
+	this->position = new Vector(x, y);
+	this->velocity = new Vector();
+	this->gravity = 0.1f;
 }
 
 int Arrow::getPositionX(){
-	return x;
+	return this->position->x;
 }
 
 int Arrow::getPositionY(){
-	return y;
+	return this->position->y;
+}
+
+float Arrow::getRotation() {
+	return this->rotation;
 }
 
 void Arrow::shootArrow(int mouseX, int mouseY, float strength){
-	this->velX = (mouseX - this->x)/100 * strength;
-	this->velY = (mouseY - this->y)/100 * strength;
+	this->velocity->x = mouseX - this->position->x;
+	this->velocity->y = mouseY - this->position->y;
+
+	this->velocity->normalize();
+	this->velocity->multiply(strength);
 }
 
 void Arrow::update(){
-	this->x += this->velX;
-	this->y += this->velY;
-	
-	//this->velY += this->gravity;
+	this->position->add(velocity);
+	this->velocity->y += this->gravity;
+
+	float cosAlpha = (-this->velocity->x / this->velocity->getLength());
+	this->rotation = acos(cosAlpha);
+	if (this->velocity->y > 0) this->rotation = 2* 3.14 - this->rotation;
 }

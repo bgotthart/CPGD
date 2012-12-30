@@ -6,6 +6,9 @@ LOCAL_MODULE    := Native
 ### Add all source file names to be included in lib separated by a whitespace
 LOCAL_SRC_FILES := Native.cpp
 LOCAL_SRC_FILES += ../../GameLogic/player.cpp
-#LOCAL_C_INCLUDES = ../../GameLogic
+LOCAL_SRC_FILES += ../../GameLogic/arrow.cpp
+LOCAL_SRC_FILES += ../../GameLogic/vector.cpp
+LOCAL_SRC_FILES += ../../GameLogic/target.cpp
+LOCAL_SRC_FILES += ../../GameLogic/groundTarget.cpp
 
 include $(BUILD_SHARED_LIBRARY)

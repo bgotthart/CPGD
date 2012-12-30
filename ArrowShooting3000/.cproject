@@ -3,7 +3,9 @@
 	<storageModule moduleId="org.eclipse.cdt.core.settings">
 		<cconfiguration id="com.android.toolchain.gcc.1582381822">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.android.toolchain.gcc.1582381822" moduleId="org.eclipse.cdt.core.settings" name="Default">
-				<externalSettings/>
+				<externalSettings>
+					<externalSetting/>
+				</externalSettings>
 				<extensions>
 					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
 					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
@@ -14,15 +16,11 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration buildProperties="" description="" id="com.android.toolchain.gcc.1582381822" name="Default" parent="org.eclipse.cdt.build.core.emptycfg">
+				<configuration artifactName="ArrowShooting3000" buildProperties="" description="" id="com.android.toolchain.gcc.1582381822" name="Default" parent="org.eclipse.cdt.build.core.emptycfg">
 					<folderInfo id="com.android.toolchain.gcc.1582381822.1545577477" name="/" resourcePath="">
 						<toolChain id="com.android.toolchain.gcc.727933680" name="com.android.toolchain.gcc" superClass="com.android.toolchain.gcc">
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.android.targetPlatform.1770495608" name="Android Platform" osList="all" superClass="com.android.targetPlatform"/>
-							<builder arguments="C:\Programme\Java\android-ndk-r8d\ndk-build" command="bash" id="com.android.builder.96474249" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="com.android.builder">
-								<outputEntries>
-									<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="outputPath" name="libs"/>
-								</outputEntries>
-							</builder>
+							<builder arguments="C:\Programme\Java\android-ndk-r8d\ndk-build" command="bash" id="com.android.builder.96474249" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="com.android.builder"/>
 							<tool id="cdt.managedbuild.tool.gnu.archiver.base.577900787" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
 							<tool id="com.android.tool.compiler.g++.699432843" name="Android G++" superClass="com.android.tool.compiler.g++">
 								<inputType id="com.android.tool.compiler.g++.input.516401208" superClass="com.android.tool.compiler.g++.input"/>
@@ -42,9 +40,6 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="jni"/>
-					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
@@ -63,4 +58,10 @@
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile"/>
 		</scannerConfigBuildInfo>
 	</storageModule>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Default">
+			<resource resourceType="PROJECT" workspacePath="/ArrowShooting3000"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

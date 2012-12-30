@@ -9,3 +9,6 @@
 
 #include "groundTarget.h"
 
+GroundTarget::GroundTarget(int x, int y) : Target(x, y)
+{
+}

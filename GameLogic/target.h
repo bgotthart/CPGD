@@ -1,10 +1,11 @@
 #ifndef TARGET_H
-#ifndef TARGET_H
+#define TARGET_H
+
+#include "vector.h"
 
 class Target{
 private:
-	int x;
-	int y;
+	Vector* position;
 	
 public:
 	Target(int, int);
