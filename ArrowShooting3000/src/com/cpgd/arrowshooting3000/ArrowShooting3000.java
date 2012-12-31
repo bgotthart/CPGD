@@ -37,15 +37,18 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 	private ITextureRegion mBow;
 	private ITextureRegion mArrow;
 	private ITextureRegion mTarget;
+	private ITextureRegion mFlyingTarget;
 	
 	//Proxies
 	private PlayerProxy playerProxy;
 	private List<ArrowProxy> arrowProxies;
-	private List<GroundTargetProxy> groundTargetProxies;
+	private List<TargetProxy> targetProxies;
 	
 	//Timer
 	private float groundTargetTimer;
 	private float groundTargetSpawnTime;
+	private float flyingTargetTimer;
+	private float flyingTargetSpawnTime;
 	
 	//Touch control
 	private boolean isTouching;
@@ -80,15 +83,23 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 		            return getAssets().open("target.png");
 		        }
 		    });
+		    ITexture flyingTarget = new BitmapTexture(this.getTextureManager(), new IInputStreamOpener() {
+		        @Override
+		        public InputStream open() throws IOException {
+		            return getAssets().open("target_with_wings.png");
+		        }
+		    });
 		    
 		    // 2 - Load bitmap textures into VRAM
 		    bow.load();
 		    arrow.load();
 		    target.load();
+		    flyingTarget.load();
 		    // 3 - Set up texture regions
 		    this.mBow = TextureRegionFactory.extractFromTexture(bow);
 		    this.mArrow = TextureRegionFactory.extractFromTexture(arrow);
 		    this.mTarget = TextureRegionFactory.extractFromTexture(target);
+		    this.mFlyingTarget = TextureRegionFactory.extractFromTexture(flyingTarget);
 		} catch (IOException e) {
 		    Debug.e(e);
 		}
@@ -96,10 +107,11 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 		//Proxies
 		playerProxy = new PlayerProxy((int)(CAMERA_WIDTH - this.mBow.getWidth()), (int)(CAMERA_HEIGHT - this.mBow.getHeight()));
 		arrowProxies = new ArrayList<ArrowProxy>();
-		groundTargetProxies = new ArrayList<GroundTargetProxy>();
+		targetProxies = new ArrayList<TargetProxy>();
 		
 		//Timer
 		groundTargetSpawnTime = 3;
+		flyingTargetSpawnTime = 8;
 	}
 
 	@Override
@@ -119,21 +131,50 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
             public void reset() {}   
             
             public void onUpdate(float pSecondsElapsed) {
-            	for(ArrowProxy ap : arrowProxies) {
+            	//Arrow update
+            	for(int j = 0; j < arrowProxies.size(); j++) {
+            		ArrowProxy ap = arrowProxies.get(j);
             		ap.update();
+            		
+            		//Collision detection
+                	for(int i = 0; i < targetProxies.size(); i++) {
+                		TargetProxy gtp = targetProxies.get(i);
+                		if(gtp.collidesWith((int)(ap.getPositionX() + ap.getSprite().getWidth()/2), (int)(ap.getPositionY() + ap.getSprite().getHeight()/2)) == 1) {
+                			scene.detachChild(gtp.getSprite());
+                			scene.detachChild(ap.getSprite());
+                			
+                			targetProxies.remove(i);
+                			arrowProxies.remove(j);
+                			
+                			break;
+                		}
+                	}
             	}
             	
-            	for(GroundTargetProxy gtp : groundTargetProxies) {
+            	//Target update
+            	for(TargetProxy gtp : targetProxies) {
             		gtp.update();
             	}
             	
+            	
+            	
+            	//Target Spawn
             	groundTargetTimer += pSecondsElapsed;
             	if(groundTargetTimer >= groundTargetSpawnTime) {
             		groundTargetTimer -= groundTargetSpawnTime;
-            		GroundTargetProxy gtp = new GroundTargetProxy((int)(10 + Math.random()* 190), (int)(10 + Math.random()* 390));
-            		gtp.setSprite(new Sprite(gtp.getPositionX(), gtp.getPositionY(), mTarget, getVertexBufferObjectManager()));
+            		Sprite spr = new Sprite((int)(10 + Math.random()* 90), (int)(210 + Math.random()* 190), mTarget, getVertexBufferObjectManager());
+            		TargetProxy gtp = new TargetProxy(spr);
             		scene.attachChild(gtp.getSprite());
-            		groundTargetProxies.add(gtp);
+            		targetProxies.add(gtp);
+            	}
+            	
+            	flyingTargetTimer += pSecondsElapsed;
+            	if(flyingTargetTimer >= flyingTargetSpawnTime) {
+            		flyingTargetTimer -= flyingTargetSpawnTime;
+            		Sprite spr = new Sprite((int)(-150), (int)(10 + Math.random()* 190), mFlyingTarget, getVertexBufferObjectManager());
+            		TargetProxy gtp = new FlyingTargetProxy(spr);
+            		scene.attachChild(gtp.getSprite());
+            		targetProxies.add(gtp);
             	}
             	
             	if(isTouching) touchingTime += pSecondsElapsed;

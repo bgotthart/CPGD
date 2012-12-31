@@ -5,10 +5,14 @@
 
 class Target{
 private:
+	int width;
+	int height;
+	
+protected:
 	Vector* position;
 	
 public:
-	Target(int, int);
+	Target(int, int, int, int);
 	int getPositionX();
 	int getPositionY();
 	int colidesWith(int, int);

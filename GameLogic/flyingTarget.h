@@ -8,7 +8,7 @@ class FlyingTarget : public Target {
 	private:
 		Vector* velocity;
 	public:
-		FlyingTarget(int, int);
+		FlyingTarget(int, int, int, int);
 		void update();
 };
 

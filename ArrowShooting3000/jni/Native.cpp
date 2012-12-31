@@ -3,11 +3,13 @@
 
 #include "com_cpgd_arrowshooting3000_PlayerProxy.h"
 #include "com_cpgd_arrowshooting3000_ArrowProxy.h"
-#include "com_cpgd_arrowshooting3000_GroundTargetProxy.h"
+#include "com_cpgd_arrowshooting3000_TargetProxy.h"
+#include "com_cpgd_arrowshooting3000_FlyingTargetProxy.h"
 
 #include "../../GameLogic/player.h"
 #include "../../GameLogic/arrow.h"
-#include "../../GameLogic/groundTarget.h"
+#include "../../GameLogic/target.h"
+#include "../../GameLogic/flyingTarget.h"
 
 
 // ##################### Player ###############################
@@ -79,32 +81,56 @@ JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_update
 }
 
 
-// ##################### Ground Target ###############################
-JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_GroundTargetProxy_groundTargetProxy
-  (JNIEnv * env, jobject o, jint x, jint y)
+// ##################### Target ###############################
+JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_TargetProxy_targetProxy
+  (JNIEnv * env, jobject o, jint x, jint y, jint width, jint height)
 {
-	Target* tmp = new GroundTarget(x, y);
+	Target* tmp = new Target(x, y, width, height);
 	return (long) tmp;
 }
 
-JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_GroundTargetProxy_getPositionX
+JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_TargetProxy_getPositionX
   (JNIEnv * env, jobject o, jlong obj)
 {
 	Target* target = (Target*) obj;
 	return target->getPositionX();
 }
 
-JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_GroundTargetProxy_getPositionY
+JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_TargetProxy_getPositionY
   (JNIEnv * env, jobject o, jlong obj)
 {
 	Target* target = (Target*) obj;
 	return target->getPositionY();
 }
 
-JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_GroundTargetProxy_update
+JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_TargetProxy_update
   (JNIEnv * env, jobject o, jlong obj)
 {
 	Target* target = (Target*) obj;
+	target->update();
+	return (long) target;
+}
+
+JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_TargetProxy_collidesWith
+  (JNIEnv * env, jobject o, jint arrowX, jint arrowY, jlong obj)
+{
+	Target* target = (Target*) obj;
+	return target->colidesWith(arrowX, arrowY);
+}
+
+
+// ##################### FlyingTarget ###############################
+JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_FlyingTargetProxy_flyingTargetProxy
+  (JNIEnv * env, jobject o, jint x, jint y, jint width, jint height)
+{
+	Target* tmp = new FlyingTarget(x, y, width, height);
+	return (long) tmp;
+}
+
+JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_FlyingTargetProxy_update
+  (JNIEnv * env, jobject o, jlong obj)
+{
+	FlyingTarget* target = (FlyingTarget*) obj;
 	target->update();
 	return (long) target;
 }
