@@ -15,7 +15,11 @@
 #import "PhysicsSprite.h"
 
 #import "ArrowsObjC.h"
+#import "FlyingTargetObjC.h"
+
 #import "TargetObjC.h"
+#import "terrain.h"
+#import "flyingTarget.h"
 
 enum {
 	kTagParentNode = 1,
@@ -34,8 +38,16 @@ enum {
 Player *player;
 NSMutableArray *arrowsArray;
 NSMutableArray *targetsArray;
+Terrain *terrain;
+
 bool has_touched = false;
- 
+float touching_time;
+
+float groundTargetTimer;
+float groundTargetSpawnTime;
+float flyingTargetTimer;
+float flyingTargetSpawnTime;
+
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -50,56 +62,94 @@ bool has_touched = false;
 	// return the scene
 	return scene;
 }
--(void) generateRandomPositionForTarget:(CCSprite*)targetSprite{
-	// Determine where to spawn the monster along the Y axis
-	CGSize winSize = [CCDirector sharedDirector].winSize;
-	int minY = targetSprite.contentSize.height / 2;
-	int maxY = winSize.height - targetSprite.contentSize.height/2;
-	int rangeY = maxY - minY;
-	int actualY = (arc4random() % rangeY) + minY;
-	
-	int minX = targetSprite.contentSize.width / 2;
-	int maxX = winSize.width - targetSprite.contentSize.width/2;
-	int rangeX = maxX - minX;
-	int actualX = (arc4random() % rangeX) + minX;
-	
-	targetSprite.position = ccp(actualX, actualY);
+-(id) init
+{
+	if( (self=[super init])) {
+		
+		// enable events
+		
+		self.isTouchEnabled = YES;
+		self.isAccelerometerEnabled = YES;
+		CGSize winSize = [CCDirector sharedDirector].winSize;
+		terrain = new Terrain(0, winSize.width, winSize.height);
+		
+		
+		// init physics
+		//[self initPhysics];
+		
+		// create reset button
+		//[self createMenu];
+		
+		//Set up sprite
+		_bowSprite = [CCSprite spriteWithFile:@"bow.png"];
+		player = new Player(terrain->width - _bowSprite.contentSize.width/2, terrain->height/2);
+		_bowSprite.position = ccp(player->getPositionX(),player->getPositionY());
+		arrowsArray = [[NSMutableArray alloc] init];
+		targetsArray = [[NSMutableArray alloc] init];
 
+		[self addChild:_bowSprite];
+		
+		//Timer
+		groundTargetSpawnTime = 3;
+		flyingTargetSpawnTime = 8;
+		
+		[self addGroundTarget];
+		[self addFlyingTarget];
+		
+		[self addGroundTarget];
+		[self addFlyingTarget];
+		
+		[self addGroundTarget];
+		[self addFlyingTarget];
+		
+		[self addGroundTarget];
+		[self addGroundTarget];
+		[self addGroundTarget];
+		
+		[self scheduleUpdate];
+	}
+	return self;
 }
+
 -(void) generateRandomMoveForTarget:(CCSprite*)targetSprite{
 	
 }
 -(void) addGroundTarget{
 	CCSprite *targetSprite = [CCSprite spriteWithFile:@"target.png"];
 	
-	[self generateRandomPositionForTarget:targetSprite];
+	Vector *vector = terrain->GetRandomTargetPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
+	Target *target = new Target(vector->x, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
 	
-	Target *target = new GroundTarget(targetSprite.position.x,targetSprite.position.y);
-		
+	TargetObjC *targetObjC = [TargetObjC alloc];
+	[targetObjC setTargetData:target :targetSprite];
+
+	targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
+
 	[self addChild:targetSprite];
+	[targetsArray addObject:targetObjC];
+
 	
 }
 -(void)addFlyingTarget{
 	CCSprite *targetSprite = [CCSprite spriteWithFile:@"target_with_wings.png"];
-	CGSize winSize = [CCDirector sharedDirector].winSize;
-	int minY = targetSprite.contentSize.height / 2;
-	int maxY = winSize.height - targetSprite.contentSize.height/2;
-	int rangeY = maxY - minY;
-	int actualY = (arc4random() % rangeY) + minY;
+
+	Vector *vector = terrain->GetRandomFlyingStartPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
 	
-	Target *target = new FlyingTarget(winSize.width + targetSprite.contentSize.width/2, actualY, targetSprite.contentSize.width, targetSprite.contentSize.height);
-	TargetObjC *targetObjC = [TargetObjC alloc];
+	FlyingTarget *target = new FlyingTarget(-targetSprite.contentSize.width/2, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
+	FlyingTargetObjC *targetObjC = [FlyingTargetObjC alloc];
 	[targetObjC setTargetData:target :targetSprite];
+
 	targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
 	
 	// Determine speed of the monster
-	int minDuration = 2.0; //2.0;
-	int maxDuration = 4.0; //4.0;
+	int minDuration = 7.0; //2.0;
+	int maxDuration = 10.0; //4.0;
 	int rangeDuration = maxDuration - minDuration;
 	int actualDuration = (arc4random() % rangeDuration) + minDuration;
 	
 	// Create the actions
-	CCMoveTo * actionMove = [CCMoveTo actionWithDuration:actualDuration position:ccp(-targetSprite.contentSize.width/2, targetSprite.position.y)];
+	
+	CCMoveTo * actionMove = [CCMoveTo actionWithDuration:actualDuration position:ccp((terrain->width + targetSprite.contentSize.width/2), targetSprite.position.y)];
 	CCCallBlockN * actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
 		[targetsArray removeObject:node];
 		[node removeFromParentAndCleanup:YES];
@@ -114,63 +164,7 @@ bool has_touched = false;
 	[targetsArray addObject:targetObjC];
 
 }
--(id) init
-{
-	if( (self=[super init])) {
-		
-		// enable events
-		
-		self.isTouchEnabled = YES;
-		self.isAccelerometerEnabled = YES;
-		CGSize winSize = [CCDirector sharedDirector].winSize;
-		
-		// init physics
-		//[self initPhysics];
-		
-		// create reset button
-		//[self createMenu];
-		
-		//Set up sprite
-		
-		_bowSprite = [CCSprite spriteWithFile:@"bow.png"];
 
-		player = new Player(winSize.width - _bowSprite.contentSize.width/2, winSize.height/2);
-		//_arrowSprite = [CCSprite spriteWithFile:@"arrow.png"];
-		//_arrowSprite.position = ccp(player->getPositionX(),player->getPositionY());
-		//[self addChild:_arrowSprite];
-	
-		_bowSprite.position = ccp(player->getPositionX(),player->getPositionY());
-		
-		arrowsArray = [[NSMutableArray alloc] init];
-		
-		[self addChild:_bowSprite];
-		
-		[self addGroundTarget];
-		[self addFlyingTarget];
-		[self scheduleUpdate];
-	}
-	return self;
-}
-
-/*
--(void) draw
-{
-	//
-	// IMPORTANT:
-	// This is only for debug purposes
-	// It is recommend to disable it
-	//
-	[super draw];
-	
-	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
-	
-	kmGLPushMatrix();
-	
-	world->DrawDebugData();	
-	
-	kmGLPopMatrix();
-}
-*/
 
 -(void) update: (ccTime) dt
 {
@@ -180,8 +174,8 @@ bool has_touched = false;
 	//You need to make an informed choice, the following URL is useful
 	//http://gafferongames.com/game-physics/fix-your-timestep/
 	
-	int32 velocityIterations = 8;
-	int32 positionIterations = 1;
+	//int32 velocityIterations = 8;
+	//int32 positionIterations = 1;
 	
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
@@ -190,61 +184,70 @@ bool has_touched = false;
 
 	for (int i = 0; i < [arrowsArray count]; i++) {
 		
-		ArrowsObjC *curr = [arrowsArray objectAtIndex:i];
-		[curr update];
+		ArrowsObjC *currArrowObjC = [arrowsArray objectAtIndex:i];
+		CCSprite *currArrowSprite = currArrowObjC.sprite;
+	
+		[currArrowObjC update];
+	
+		for(int j = 0; j < [targetsArray count]; j++) {
+			TargetObjC *currTargetObj = [targetsArray objectAtIndex:j];
+			CCSprite *currTargetSprite = currTargetObj.sprite;
+
+//			if(currTargetObj.target->colidesWith(currArrowSprite.position.x + currArrowSprite.contentSize.width/2, currArrowSprite.position.y + currArrowSprite.contentSize.height/2)){
+			//if([currTargetObj collidesWith:((int)currArrowSprite.position.x + (int)currArrowSprite.contentSize.width/2) :((int)currArrowSprite.position.y + (int)currArrowSprite.contentSize.height/2)]){
+			if(CGRectIntersectsRect(currArrowSprite.boundingBox, currTargetSprite.boundingBox)){
+				
+				if([currTargetObj isKindOfClass:[FlyingTargetObjC class]]){
+					[self addFlyingTarget];
+				}
+				
+
+				[targetsArray removeObject:currTargetObj];
+				[self removeChild:currTargetObj.sprite cleanup:YES];
+				
+			}
 		
+		}		
 	}
 	
-	//todo touch question: time
+	
+	
+	if(has_touched){
+		touching_time += dt;
+	}
 }
 
 // Touch first detected
 -(void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+	if (!has_touched) touching_time = 0.0;
 	has_touched = true;
-}
-// Touches moved
--(void) ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-	if(!has_touched){
-		return;
-	}
-	UITouch *touch = [ touches anyObject];
-	
-	CGPoint new_location = [touch locationInView: [touch view]];
-	new_location = [[CCDirector sharedDirector] convertToGL:new_location];
-	
-	//arrow->update();
-	
 	
 }
+
 // User took finger off screen
 - (void)ccTouchesEnded:(NSSet*)touches withEvent:(UIEvent*)event{
 	UITouch *touch = [ touches anyObject];
 	
 	CGPoint new_location = [touch locationInView: [touch view]];
 	new_location = [[CCDirector sharedDirector] convertToGL:new_location];
-	
+
 	Arrow *newArrow = new Arrow(_bowSprite.position.x, _bowSprite.position.y);
-	
-	ArrowsObjC *arrowObj = [[ArrowsObjC alloc] init];
-	[arrowsArray addObject:arrowObj];
+
+	ArrowsObjC *arrowObjC = [[ArrowsObjC alloc] init];
+	[arrowsArray addObject:arrowObjC];
 	
 	CCSprite *arrowSprite = [CCSprite spriteWithFile:@"arrow.png"];
-	arrowSprite.position = ccp(newArrow->getPositionX(),newArrow->getPositionY());
+	arrowSprite.position = ccp(newArrow->getPositionX(), newArrow->getPositionY());
 	
 	[self addChild:arrowSprite];
-	[arrowObj setArrowData:newArrow:arrowSprite];
+	[arrowObjC setArrowData:newArrow:arrowSprite];
+		
+	[arrowObjC shootArrow:(int)new_location.x :(int)new_location.y :touching_time*10.0];
 
-	
-	newArrow->shootArrow((int)new_location.x, (int)new_location.y, 10.0);
-
-	//[arrowObj dealloc];
 	has_touched = false;
 
 }
-// Touch was somehow interrupted
-- (void)ccTouchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
-	
-}
+
 
 
 
@@ -262,9 +265,7 @@ bool has_touched = false;
 
 -(void) initPhysics
 {
-	
-	CGSize s = [[CCDirector sharedDirector] winSize];
-	
+		
 	b2Vec2 gravity;
 	gravity.Set(0.0f, -10.0f);
 	world = new b2World(gravity);
@@ -301,19 +302,19 @@ bool has_touched = false;
 	
 	// bottom
 	
-	groundBox.Set(b2Vec2(0,0), b2Vec2(s.width/PTM_RATIO,0));
+	groundBox.Set(b2Vec2(0,0), b2Vec2(terrain->width/PTM_RATIO,0));
 	groundBody->CreateFixture(&groundBox,0);
 	
 	// top
-	groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO));
+	groundBox.Set(b2Vec2(0,terrain->height/PTM_RATIO), b2Vec2(terrain->width/PTM_RATIO,terrain->height/PTM_RATIO));
 	groundBody->CreateFixture(&groundBox,0);
 	
 	// left
-	groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(0,0));
+	groundBox.Set(b2Vec2(0,terrain->height/PTM_RATIO), b2Vec2(0,0));
 	groundBody->CreateFixture(&groundBox,0);
 	
 	// right
-	groundBox.Set(b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,0));
+	groundBox.Set(b2Vec2(terrain->width/PTM_RATIO,terrain->height/PTM_RATIO), b2Vec2(terrain->width/PTM_RATIO,0));
 	groundBody->CreateFixture(&groundBox,0);
 }
 #pragma mark GameKit delegate

@@ -2,11 +2,14 @@
 #include <math.h>
 #include <time.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 Terrain::Terrain(int x, int width, int height)
 {
 	this->width = width;
 	this->height = height;
+	srand (time(NULL));
+
 }
 void Terrain::GenerateTerrain()
 {
@@ -14,7 +17,6 @@ void Terrain::GenerateTerrain()
 }
 Vector* Terrain::GetRandomTargetPosition(float targetWidth, float targetHeight)
 {
-	srand(time(0));
 	int minY = targetHeight / 2;
 	int maxY = this->height - targetHeight/2;
 	int rangeY = maxY - minY;
@@ -30,7 +32,6 @@ Vector* Terrain::GetRandomTargetPosition(float targetWidth, float targetHeight)
 Vector* Terrain::GetRandomFlyingStartPosition(float targetWidth, float targetHeight)
 {
 	//TODO adapt flying path
-	srand(time(0));
 	int minY = targetHeight / 2;
 	int maxY = this->height - targetHeight/2;
 	int rangeY = maxY - minY;

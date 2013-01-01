@@ -19,7 +19,8 @@ int Target::colidesWith(int arrowX, int arrowY){
 		 this->position->y < arrowY && arrowY < this->position->y + this->height) {
 		return 1;
 	}
-	return 0;}
+	return 0;
+}
 
 void Target::update(){
 

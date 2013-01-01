@@ -12,8 +12,9 @@
 
 @interface ArrowsObjC : NSObject
 
-@property Arrow* object;
+@property Arrow* arrowC;
 @property (assign) CCSprite *sprite;
--(void)setArrowData:(Arrow*)object:(CCSprite*)sprite;
+-(void)setArrowData:(Arrow*)arrowC:(CCSprite*)sprite;
 -(void)update;
+-(void)shootArrow:(int)x :(int)y :(float)strength;
 @end

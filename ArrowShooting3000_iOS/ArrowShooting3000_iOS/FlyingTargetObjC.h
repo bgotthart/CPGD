@@ -10,11 +10,11 @@
 #import "target.h"
 #import "flyingTarget.h"
 #import "cocos2d.h"
+#import "TargetObjC.h"
+@interface FlyingTargetObjC : TargetObjC
 
-@interface TargetObjC : NSObject
-
-@property Target* target;
+@property FlyingTarget* target;
 @property (assign) CCSprite *sprite;
--(void)setTargetData:(Target*)object:(CCSprite*)sprite;
+-(void)setTargetData:(FlyingTarget*)object:(CCSprite*)sprite;
 -(bool)collidesWith:(int) arrowX :(int) arrowY;
 @end

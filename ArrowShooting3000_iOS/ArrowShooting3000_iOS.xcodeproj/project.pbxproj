@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D203FC3169388CC000F5C5A /* FlyingTargetObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D203FC2169388CC000F5C5A /* FlyingTargetObjC.mm */; };
 		0D2C86761691CF6C0089F73D /* TargetObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D2C86751691CF6C0089F73D /* TargetObjC.mm */; };
 		0D3BCFA6168DF76B00C8283D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D3BCFA5168DF76B00C8283D /* QuartzCore.framework */; };
 		0D3BCFA8168DF76B00C8283D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D3BCFA7168DF76B00C8283D /* OpenGLES.framework */; };
@@ -191,7 +192,6 @@
 		0D3BD1FA168DF83200C8283D /* taut_bow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D3BD1F3168DF83200C8283D /* taut_bow.png */; };
 		0D4289861690D16500457DE6 /* arrow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D4289781690D16500457DE6 /* arrow.cpp */; };
 		0D4289871690D16500457DE6 /* flyingTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D42897A1690D16500457DE6 /* flyingTarget.cpp */; };
-		0D4289881690D16500457DE6 /* groundTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D42897C1690D16500457DE6 /* groundTarget.cpp */; };
 		0D4289891690D16500457DE6 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D42897E1690D16500457DE6 /* player.cpp */; };
 		0D42898A1690D16500457DE6 /* target.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D4289801690D16500457DE6 /* target.cpp */; };
 		0D42898B1690D16500457DE6 /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D4289821690D16500457DE6 /* terrain.cpp */; };
@@ -200,6 +200,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D203FC1169388CC000F5C5A /* FlyingTargetObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlyingTargetObjC.h; sourceTree = "<group>"; };
+		0D203FC2169388CC000F5C5A /* FlyingTargetObjC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FlyingTargetObjC.mm; sourceTree = "<group>"; };
 		0D2C86741691CF6C0089F73D /* TargetObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetObjC.h; sourceTree = "<group>"; };
 		0D2C86751691CF6C0089F73D /* TargetObjC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TargetObjC.mm; sourceTree = "<group>"; };
 		0D3BCFA1168DF76B00C8283D /* ArrowShooting3000_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArrowShooting3000_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -574,8 +576,6 @@
 		0D4289791690D16500457DE6 /* arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = arrow.h; path = ../../GameLogic/arrow.h; sourceTree = "<group>"; };
 		0D42897A1690D16500457DE6 /* flyingTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = flyingTarget.cpp; path = ../../GameLogic/flyingTarget.cpp; sourceTree = "<group>"; };
 		0D42897B1690D16500457DE6 /* flyingTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = flyingTarget.h; path = ../../GameLogic/flyingTarget.h; sourceTree = "<group>"; };
-		0D42897C1690D16500457DE6 /* groundTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = groundTarget.cpp; path = ../../GameLogic/groundTarget.cpp; sourceTree = "<group>"; };
-		0D42897D1690D16500457DE6 /* groundTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = groundTarget.h; path = ../../GameLogic/groundTarget.h; sourceTree = "<group>"; };
 		0D42897E1690D16500457DE6 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = ../../GameLogic/player.cpp; sourceTree = "<group>"; };
 		0D42897F1690D16500457DE6 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = ../../GameLogic/player.h; sourceTree = "<group>"; };
 		0D4289801690D16500457DE6 /* target.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = target.cpp; path = ../../GameLogic/target.cpp; sourceTree = "<group>"; };
@@ -696,8 +696,6 @@
 				0D4289791690D16500457DE6 /* arrow.h */,
 				0D42897A1690D16500457DE6 /* flyingTarget.cpp */,
 				0D42897B1690D16500457DE6 /* flyingTarget.h */,
-				0D42897C1690D16500457DE6 /* groundTarget.cpp */,
-				0D42897D1690D16500457DE6 /* groundTarget.h */,
 				0D42897E1690D16500457DE6 /* player.cpp */,
 				0D42897F1690D16500457DE6 /* player.h */,
 				0D4289801690D16500457DE6 /* target.cpp */,
@@ -710,6 +708,8 @@
 				0D4289941690DC0E00457DE6 /* ArrowsObjC.mm */,
 				0D2C86741691CF6C0089F73D /* TargetObjC.h */,
 				0D2C86751691CF6C0089F73D /* TargetObjC.mm */,
+				0D203FC1169388CC000F5C5A /* FlyingTargetObjC.h */,
+				0D203FC2169388CC000F5C5A /* FlyingTargetObjC.mm */,
 				0D3BD0E9168DF77000C8283D /* LICENSE_cocos2d.txt */,
 				0D3BD0F8168DF77000C8283D /* LICENSE_CocosDenshion.txt */,
 				0D3BD12A168DF77000C8283D /* LICENSE_Kazmath.txt */,
@@ -1443,12 +1443,12 @@
 				0D3BD1D0168DF77300C8283D /* PhysicsSprite.mm in Sources */,
 				0D4289861690D16500457DE6 /* arrow.cpp in Sources */,
 				0D4289871690D16500457DE6 /* flyingTarget.cpp in Sources */,
-				0D4289881690D16500457DE6 /* groundTarget.cpp in Sources */,
 				0D4289891690D16500457DE6 /* player.cpp in Sources */,
 				0D42898A1690D16500457DE6 /* target.cpp in Sources */,
 				0D42898B1690D16500457DE6 /* terrain.cpp in Sources */,
 				0D42898C1690D16500457DE6 /* vector.cpp in Sources */,
 				0D2C86761691CF6C0089F73D /* TargetObjC.mm in Sources */,
+				0D203FC3169388CC000F5C5A /* FlyingTargetObjC.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,22 +6,21 @@
 //
 //
 
-#import "TargetObjC.h"
+#import "FlyingTargetObjC.h"
 
-@implementation TargetObjC
+@implementation FlyingTargetObjC
 @synthesize target = _target;
 @synthesize sprite = _sprite;
 
--(void)setTargetData:(Target *)object :(CCSprite *)sprite{
+-(void)setTargetData:(FlyingTarget *)object :(CCSprite *)sprite{
 	self.target = object;
 	self.sprite = sprite;
 }
-/*
+
 -(void)update{
 	self.target->update();
 	self.sprite.position = ccp((self.target)->getPositionX(), (self.target)->getPositionY());
 }
- */
 -(bool)collidesWith:(int) arrowX :(int) arrowY
 {
 
