@@ -16,11 +16,10 @@ int Target::getPositionY(){
 
 int Target::colidesWith(int arrowX, int arrowY){
 	if(this->position->x < arrowX && arrowX < this->position->x + this->width &&
-		(320-this->position->y) < arrowY && arrowY < (320 -this->position->y) + this->height) {
+		 this->position->y < arrowY && arrowY < this->position->y + this->height) {
 		return 1;
 	}
-	return 0;
-}
+	return 0;}
 
 void Target::update(){
 
