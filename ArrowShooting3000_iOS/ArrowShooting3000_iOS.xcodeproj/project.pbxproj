@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D2C86761691CF6C0089F73D /* TargetObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D2C86751691CF6C0089F73D /* TargetObjC.mm */; };
 		0D3BCFA6168DF76B00C8283D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D3BCFA5168DF76B00C8283D /* QuartzCore.framework */; };
 		0D3BCFA8168DF76B00C8283D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D3BCFA7168DF76B00C8283D /* OpenGLES.framework */; };
 		0D3BCFAA168DF76B00C8283D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D3BCFA9168DF76B00C8283D /* OpenAL.framework */; };
@@ -199,6 +200,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D2C86741691CF6C0089F73D /* TargetObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetObjC.h; sourceTree = "<group>"; };
+		0D2C86751691CF6C0089F73D /* TargetObjC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TargetObjC.mm; sourceTree = "<group>"; };
 		0D3BCFA1168DF76B00C8283D /* ArrowShooting3000_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArrowShooting3000_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D3BCFA5168DF76B00C8283D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0D3BCFA7168DF76B00C8283D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -705,6 +708,8 @@
 				0D4289851690D16500457DE6 /* vector.h */,
 				0D4289931690DC0E00457DE6 /* ArrowsObjC.h */,
 				0D4289941690DC0E00457DE6 /* ArrowsObjC.mm */,
+				0D2C86741691CF6C0089F73D /* TargetObjC.h */,
+				0D2C86751691CF6C0089F73D /* TargetObjC.mm */,
 				0D3BD0E9168DF77000C8283D /* LICENSE_cocos2d.txt */,
 				0D3BD0F8168DF77000C8283D /* LICENSE_CocosDenshion.txt */,
 				0D3BD12A168DF77000C8283D /* LICENSE_Kazmath.txt */,
@@ -1443,6 +1448,7 @@
 				0D42898A1690D16500457DE6 /* target.cpp in Sources */,
 				0D42898B1690D16500457DE6 /* terrain.cpp in Sources */,
 				0D42898C1690D16500457DE6 /* vector.cpp in Sources */,
+				0D2C86761691CF6C0089F73D /* TargetObjC.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

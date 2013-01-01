@@ -15,6 +15,7 @@
 #import "PhysicsSprite.h"
 
 #import "ArrowsObjC.h"
+#import "TargetObjC.h"
 
 enum {
 	kTagParentNode = 1,
@@ -32,6 +33,7 @@ enum {
 @implementation HelloWorldLayer
 Player *player;
 NSMutableArray *arrowsArray;
+NSMutableArray *targetsArray;
 bool has_touched = false;
  
 +(CCScene *) scene
@@ -48,10 +50,72 @@ bool has_touched = false;
 	// return the scene
 	return scene;
 }
+-(void) generateRandomPositionForTarget:(CCSprite*)targetSprite{
+	// Determine where to spawn the monster along the Y axis
+	CGSize winSize = [CCDirector sharedDirector].winSize;
+	int minY = targetSprite.contentSize.height / 2;
+	int maxY = winSize.height - targetSprite.contentSize.height/2;
+	int rangeY = maxY - minY;
+	int actualY = (arc4random() % rangeY) + minY;
+	
+	int minX = targetSprite.contentSize.width / 2;
+	int maxX = winSize.width - targetSprite.contentSize.width/2;
+	int rangeX = maxX - minX;
+	int actualX = (arc4random() % rangeX) + minX;
+	
+	targetSprite.position = ccp(actualX, actualY);
 
+}
+-(void) generateRandomMoveForTarget:(CCSprite*)targetSprite{
+	
+}
+-(void) addGroundTarget{
+	CCSprite *targetSprite = [CCSprite spriteWithFile:@"target.png"];
+	
+	[self generateRandomPositionForTarget:targetSprite];
+	
+	Target *target = new GroundTarget(targetSprite.position.x,targetSprite.position.y);
+		
+	[self addChild:targetSprite];
+	
+}
+-(void)addFlyingTarget{
+	CCSprite *targetSprite = [CCSprite spriteWithFile:@"target_with_wings.png"];
+	CGSize winSize = [CCDirector sharedDirector].winSize;
+	int minY = targetSprite.contentSize.height / 2;
+	int maxY = winSize.height - targetSprite.contentSize.height/2;
+	int rangeY = maxY - minY;
+	int actualY = (arc4random() % rangeY) + minY;
+	
+	Target *target = new FlyingTarget(winSize.width + targetSprite.contentSize.width/2, actualY, targetSprite.contentSize.width, targetSprite.contentSize.height);
+	TargetObjC *targetObjC = [TargetObjC alloc];
+	[targetObjC setTargetData:target :targetSprite];
+	targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
+	
+	// Determine speed of the monster
+	int minDuration = 2.0; //2.0;
+	int maxDuration = 4.0; //4.0;
+	int rangeDuration = maxDuration - minDuration;
+	int actualDuration = (arc4random() % rangeDuration) + minDuration;
+	
+	// Create the actions
+	CCMoveTo * actionMove = [CCMoveTo actionWithDuration:actualDuration position:ccp(-targetSprite.contentSize.width/2, targetSprite.position.y)];
+	CCCallBlockN * actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+		[targetsArray removeObject:node];
+		[node removeFromParentAndCleanup:YES];
+		
+		//game over
+	}];
+	[targetSprite runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+	
+
+	[self addChild:targetSprite];
+
+	[targetsArray addObject:targetObjC];
+
+}
 -(id) init
 {
-	NSLog(@"%s", __PRETTY_FUNCTION__);
 	if( (self=[super init])) {
 		
 		// enable events
@@ -61,7 +125,7 @@ bool has_touched = false;
 		CGSize winSize = [CCDirector sharedDirector].winSize;
 		
 		// init physics
-		[self initPhysics];
+		//[self initPhysics];
 		
 		// create reset button
 		//[self createMenu];
@@ -80,12 +144,15 @@ bool has_touched = false;
 		arrowsArray = [[NSMutableArray alloc] init];
 		
 		[self addChild:_bowSprite];
+		
+		[self addGroundTarget];
+		[self addFlyingTarget];
 		[self scheduleUpdate];
 	}
 	return self;
 }
 
-
+/*
 -(void) draw
 {
 	//
@@ -103,7 +170,7 @@ bool has_touched = false;
 	
 	kmGLPopMatrix();
 }
-
+*/
 
 -(void) update: (ccTime) dt
 {
@@ -118,24 +185,14 @@ bool has_touched = false;
 	
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
-	world->Step(dt, velocityIterations, positionIterations);
+	
+	//world->Step(dt, velocityIterations, positionIterations);
 
 	for (int i = 0; i < [arrowsArray count]; i++) {
 		
 		ArrowsObjC *curr = [arrowsArray objectAtIndex:i];
-		Arrow* arrow = (Arrow*)curr.object;
-		arrow->update();
-		CCSprite* sprite = (CCSprite *)curr.sprite;
-		sprite.position = ccp(((Arrow*)curr.object)->getPositionX(), ((Arrow*)curr.object)->getPositionY());
-		sprite.rotation = (((Arrow*)curr.object)->getRotation())*M_PI / 180;
-//		CCSprite* sprite = [CCSprite spriteWithFile:@"arrow.png"];
+		[curr update];
 		
-//		sprite.position = ccp(arrow->getPositionX(), arrow->getPositionY());
-		
-		//[self addChild:sprite];
-    //Arrow* currArrow = ( Arrow*)[arrowsArray objectAtIndex:i];
-		
-		//currArrow->update();
 	}
 	
 	//todo touch question: time
@@ -178,7 +235,7 @@ bool has_touched = false;
 	[arrowObj setArrowData:newArrow:arrowSprite];
 
 	
-	newArrow->shootArrow((int)new_location.x, (int)new_location.y, 1.0);
+	newArrow->shootArrow((int)new_location.x, (int)new_location.y, 10.0);
 
 	//[arrowObj dealloc];
 	has_touched = false;

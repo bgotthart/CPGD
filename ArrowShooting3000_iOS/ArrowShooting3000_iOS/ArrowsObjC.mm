@@ -19,5 +19,11 @@
 	self.object=nil;
 	[super dealloc];
 }
-
+-(void)update{
+	Arrow* arrow = self.object;
+	arrow->update();
+	self.sprite.position = ccp((self.object)->getPositionX(), (self.object)->getPositionY());
+	self.sprite.rotation = ((self.object)->getRotation())*M_PI/180;
+	
+}
 @end

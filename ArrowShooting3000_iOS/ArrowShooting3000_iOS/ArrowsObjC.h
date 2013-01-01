@@ -15,4 +15,5 @@
 @property Arrow* object;
 @property (assign) CCSprite *sprite;
 -(void)setArrowData:(Arrow*)object:(CCSprite*)sprite;
+-(void)update;
 @end
