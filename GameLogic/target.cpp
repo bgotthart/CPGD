@@ -25,3 +25,10 @@ int Target::colidesWith(int arrowX, int arrowY){
 void Target::update(){
 
 }
+
+void Target::setPositionX(float x){
+	this->position->x = x;
+}
+void Target::setPositionY(float y){
+	this->position->y = y;
+}

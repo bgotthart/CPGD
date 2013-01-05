@@ -17,4 +17,5 @@
 @property (assign) CCSprite *sprite;
 -(void)setTargetData:(Target*)object:(CCSprite*)sprite;
 -(bool)collidesWith:(int) arrowX :(int) arrowY;
+-(void)update;
 @end

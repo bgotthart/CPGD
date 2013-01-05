@@ -95,7 +95,7 @@ float flyingTargetSpawnTime;
 		
 		[self addGroundTarget];
 		[self addFlyingTarget];
-		
+	/*
 		[self addGroundTarget];
 		[self addFlyingTarget];
 		
@@ -105,7 +105,7 @@ float flyingTargetSpawnTime;
 		[self addGroundTarget];
 		[self addGroundTarget];
 		[self addGroundTarget];
-		
+		*/
 		[self scheduleUpdate];
 	}
 	return self;
@@ -119,11 +119,11 @@ float flyingTargetSpawnTime;
 	
 	Vector *vector = terrain->GetRandomTargetPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
 	Target *target = new Target(vector->x, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
+	targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
 	
 	TargetObjC *targetObjC = [TargetObjC alloc];
 	[targetObjC setTargetData:target :targetSprite];
 
-	targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
 
 	[self addChild:targetSprite];
 	[targetsArray addObject:targetObjC];
@@ -135,11 +135,12 @@ float flyingTargetSpawnTime;
 
 	Vector *vector = terrain->GetRandomFlyingStartPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
 	
-	FlyingTarget *target = new FlyingTarget(-targetSprite.contentSize.width/2, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
+	FlyingTarget *target = new FlyingTarget(0, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
+	targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
+
 	FlyingTargetObjC *targetObjC = [FlyingTargetObjC alloc];
 	[targetObjC setTargetData:target :targetSprite];
 
-	targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
 	
 	// Determine speed of the monster
 	int minDuration = 7.0; //2.0;
@@ -148,16 +149,16 @@ float flyingTargetSpawnTime;
 	int actualDuration = (arc4random() % rangeDuration) + minDuration;
 	
 	// Create the actions
-	
+	/*
 	CCMoveTo * actionMove = [CCMoveTo actionWithDuration:actualDuration position:ccp((terrain->width + targetSprite.contentSize.width/2), targetSprite.position.y)];
 	CCCallBlockN * actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
 		[targetsArray removeObject:node];
 		[node removeFromParentAndCleanup:YES];
 		
-		//game over
 	}];
-	[targetSprite runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
 	
+	[targetSprite runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+	*/
 
 	[self addChild:targetSprite];
 
@@ -181,39 +182,82 @@ float flyingTargetSpawnTime;
 	// generally best to keep the time step and iterations fixed.
 	
 	//world->Step(dt, velocityIterations, positionIterations);
+	for(int j = 0; j < [targetsArray count]; j++) {
+		TargetObjC *currTargetObj = [targetsArray objectAtIndex:j];
 
+		[currTargetObj update];
+	}
+	
+	
+	NSMutableArray *deleteArrows = [[NSMutableArray alloc] init];
+	int countHitTarget = 0;
 	for (int i = 0; i < [arrowsArray count]; i++) {
 		
 		ArrowsObjC *currArrowObjC = [arrowsArray objectAtIndex:i];
 		CCSprite *currArrowSprite = currArrowObjC.sprite;
 	
+
+		if(currArrowSprite.position.x > terrain->width || currArrowSprite.position.y > terrain->height || currArrowSprite.position.x < 0 || currArrowSprite < 0){
+			//[arrowsArray removeObject:currArrowObjC];
+			//[self removeChild:currArrowSprite cleanup:YES];
+			//currArrowObjC = nil;
+			//break;
+			//[deleteArrows addObject:currArrowObjC];
+		
+		}else{
+			//[currArrowObjC update];
+		}
 		[currArrowObjC update];
+		
 	
+		NSMutableArray *deleteTargets = [[NSMutableArray alloc] init];
+
 		for(int j = 0; j < [targetsArray count]; j++) {
 			TargetObjC *currTargetObj = [targetsArray objectAtIndex:j];
-			CCSprite *currTargetSprite = currTargetObj.sprite;
+						
+			if([currTargetObj collidesWith:((int)(currArrowObjC.arrowC->getPositionX() + currArrowSprite.contentSize.width/2)) :((int)(currArrowObjC.arrowC->getPositionY() + currArrowSprite.contentSize.height/2))]){
+			//if (CGRectIntersectsRect(currArrowSprite.boundingBox, currTargetObj.sprite.boundingBox)) {
+			
 
-//			if(currTargetObj.target->colidesWith(currArrowSprite.position.x + currArrowSprite.contentSize.width/2, currArrowSprite.position.y + currArrowSprite.contentSize.height/2)){
-			//if([currTargetObj collidesWith:((int)currArrowSprite.position.x + (int)currArrowSprite.contentSize.width/2) :((int)currArrowSprite.position.y + (int)currArrowSprite.contentSize.height/2)]){
-			if(CGRectIntersectsRect(currArrowSprite.boundingBox, currTargetSprite.boundingBox)){
-				
-				if([currTargetObj isKindOfClass:[FlyingTargetObjC class]]){
-					[self addFlyingTarget];
-				}
-				
-
-				[targetsArray removeObject:currTargetObj];
-				[self removeChild:currTargetObj.sprite cleanup:YES];
-				
+				//[targetsArray removeObject:currTargetObj];
+				//[self removeChild:currTargetObj.sprite cleanup:YES];
+				//currTargetObj = nil;
+				[deleteTargets addObject:currTargetObj];
+				countHitTarget += 1;
 			}
 		
-		}		
+		}
+		
+		if([deleteTargets count] > 0){
+			for(int j = 0; j < [deleteTargets count]; j++) {
+				TargetObjC *targetToDelete = [deleteTargets objectAtIndex:j];
+				
+				[targetsArray removeObject:targetToDelete];
+				[self removeChild:targetToDelete.sprite cleanup:YES];
+			
+			}
+		}
 	}
 	
 	
 	
+	if([deleteArrows count] > 0 ){
+		for(int j = 0; j < [deleteArrows count]; j++) {
+			ArrowsObjC *arrowToDelete = [deleteArrows objectAtIndex:j];
+			[arrowsArray removeObject:arrowToDelete];
+			[self removeChild:arrowToDelete.sprite cleanup:YES];
+
+
+		}
+	}
 	if(has_touched){
 		touching_time += dt;
+	}
+	NSLog(@"%i", countHitTarget);
+	for(int i = 0; i<countHitTarget; i++){
+		
+		//[self addFlyingTarget];
+		[self addFlyingTarget];
 	}
 }
 
@@ -262,7 +306,7 @@ float flyingTargetSpawnTime;
 	[super dealloc];
 }
 
-
+/*
 -(void) initPhysics
 {
 		
@@ -330,5 +374,5 @@ float flyingTargetSpawnTime;
 	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
 }
-
+*/
 @end

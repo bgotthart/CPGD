@@ -9,6 +9,11 @@
 -(void)setArrowData:(Arrow*)object:(CCSprite*)sprite{
 	self.arrowC = object;
 	self.sprite = sprite;
+		
+	CGSize winSize = [CCDirector sharedDirector].winSize;
+
+	self.arrowC->setPositionY(winSize.height - self.arrowC->getPositionY());
+
 }
 	
 -(void)dealloc{
@@ -16,17 +21,21 @@
 	[super dealloc];
 }
 -(void)update{
+	
 	self.arrowC->update();
-	CGSize winSize = [CCDirector sharedDirector].winSize;
-	self.sprite.position = ccp(self.arrowC->getPositionX(), winSize.height- self.arrowC->getPositionY());
+	
 
+	CGSize winSize = [CCDirector sharedDirector].winSize;
+
+
+	self.sprite.position = ccp((int)self.arrowC->getPositionX() + self.sprite.contentSize.width/2, winSize.height - (self.arrowC->getPositionY()+(self.sprite.contentSize.height/2)));
 	self.sprite.rotation = (float)radiansToDegrees(self.arrowC->getRotation());
 }
 
 -(void) shootArrow:(int) mouseX :(int) mouseY :(float) strength{
 	CGSize winSize = [CCDirector sharedDirector].winSize;
 
-	self.arrowC->shootArrow(mouseX, winSize.height - mouseY , strength);
+	self.arrowC->shootArrow(mouseX, winSize.height -  mouseY , strength);
 	
 }
 @end

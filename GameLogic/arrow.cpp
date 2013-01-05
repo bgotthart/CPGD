@@ -2,10 +2,10 @@
 #include <math.h>
 #include <sys/time.h>
 
-Arrow::Arrow(int x, int y){
+Arrow::Arrow(int x, int y, float g){
 	this->position = new Vector(x, y);
 	this->velocity = new Vector();
-	this->gravity = 0.1f;
+	this->gravity = g;
 }
 
 int Arrow::getPositionX(){
@@ -44,4 +44,11 @@ void Arrow::update(){
 	float cosAlpha = (-this->velocity->x / this->velocity->getLength());
 	this->rotation = acos(cosAlpha);
 	if (this->velocity->y > 0) this->rotation = 2* 3.14 - this->rotation;
+}
+
+void Arrow::setPositionX(float x){
+	this->position->x = x;
+}
+void Arrow::setPositionY(float y){
+	this->position->y = y;
 }
