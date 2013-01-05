@@ -12,7 +12,7 @@ private:
 	int alphamap[0];
 	
 public:
-	Terrain(int, int, int);
+	Terrain(int, int);
 	void GenerateTerrain();
 	Vector* GetRandomTargetPosition(float, float);
 	Vector* GetRandomFlyingStartPosition(float, float);

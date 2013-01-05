@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-Terrain::Terrain(int x, int width, int height)
+Terrain::Terrain(int width, int height)
 {
 	this->width = width;
 	this->height = height;

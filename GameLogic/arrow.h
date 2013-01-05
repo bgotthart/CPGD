@@ -2,6 +2,7 @@
 #define ARROW_H
 
 #include "vector.h"
+#include <ctime>
 
 class Arrow{
 	private:
@@ -9,12 +10,14 @@ class Arrow{
 		Vector* velocity;
 		float gravity;
 		float rotation;
+		clock_t begin;
 	
 	public:
 		Arrow(int, int);
 		int getPositionX();
 		int getPositionY();
-		void shootArrow(int, int, float);
+		void startArrow();
+		void shootArrow(int, int);
 	    void update();
 	    float getRotation();
 };
