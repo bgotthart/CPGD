@@ -15,6 +15,8 @@ public:
 	Target(int, int, int, int);
 	int getPositionX();
 	int getPositionY();
+	void setPositionX(float);
+	void setPositionY(float);
 	int colidesWith(int, int);
 	void update();
 };

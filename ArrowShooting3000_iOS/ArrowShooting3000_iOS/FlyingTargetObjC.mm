@@ -15,11 +15,23 @@
 -(void)setTargetData:(FlyingTarget *)object :(CCSprite *)sprite{
 	self.target = object;
 	self.sprite = sprite;
+	
+	self.sprite.anchorPoint = ccp(0,1);
+	
+	CGSize winSize = [CCDirector sharedDirector].winSize;
+	
+	self.target->setPositionY(winSize.height - self.target->getPositionY());
+	
+
+	
 }
 
 -(void)update{
+	CGSize winSize = [CCDirector sharedDirector].winSize;
+
 	self.target->update();
-	self.sprite.position = ccp((self.target)->getPositionX(), (self.target)->getPositionY());
+	
+	self.sprite.position = ccp((self.target)->getPositionX(), winSize.height - (self.target)->getPositionY());
 }
 -(bool)collidesWith:(int) arrowX :(int) arrowY
 {
