@@ -1,5 +1,6 @@
-obj/local/armeabi/objs/Native/__/__/GameLogic/vector.o: \
- jni/../../GameLogic/vector.cpp jni/../../GameLogic/vector.h \
+obj/local/armeabi/objs/Native/__/__/GameLogic/terrain.o: \
+ jni/../../GameLogic/terrain.cpp jni/../../GameLogic/terrain.h \
+ jni/../../GameLogic/vector.h \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/math.h \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/sys/cdefs.h \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/sys/cdefs_elf.h \
@@ -20,7 +21,21 @@ obj/local/armeabi/objs/Native/__/__/GameLogic/vector.o: \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/linux/limits.h \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/machine/internal_types.h \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/machine/limits.h \
- /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/sys/syslimits.h
+ /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/sys/syslimits.h \
+ /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/time.h \
+ /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/sys/time.h \
+ /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/linux/time.h \
+ /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/asm/siginfo.h \
+ /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/asm-generic/siginfo.h \
+ /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/stdlib.h \
+ /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/string.h \
+ /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/malloc.h \
+ /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/alloca.h \
+ /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/strings.h \
+ /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/memory.h \
+ /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/stdio.h
+
+jni/../../GameLogic/terrain.h:
 
 jni/../../GameLogic/vector.h:
 
@@ -65,3 +80,27 @@ jni/../../GameLogic/vector.h:
 /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/machine/limits.h:
 
 /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/sys/syslimits.h:
+
+/cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/time.h:
+
+/cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/sys/time.h:
+
+/cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/linux/time.h:
+
+/cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/asm/siginfo.h:
+
+/cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/asm-generic/siginfo.h:
+
+/cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/stdlib.h:
+
+/cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/string.h:
+
+/cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/malloc.h:
+
+/cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/alloca.h:
+
+/cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/strings.h:
+
+/cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/memory.h:
+
+/cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/stdio.h:

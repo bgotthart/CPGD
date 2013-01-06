@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+<?fileVersion 4.0.0?>
+
+<cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
 	<storageModule moduleId="org.eclipse.cdt.core.settings">
 		<cconfiguration id="com.android.toolchain.gcc.1582381822">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.android.toolchain.gcc.1582381822" moduleId="org.eclipse.cdt.core.settings" name="Default">
@@ -20,7 +22,7 @@
 					<folderInfo id="com.android.toolchain.gcc.1582381822.1545577477" name="/" resourcePath="">
 						<toolChain id="com.android.toolchain.gcc.727933680" name="com.android.toolchain.gcc" superClass="com.android.toolchain.gcc">
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.android.targetPlatform.1770495608" name="Android Platform" osList="all" superClass="com.android.targetPlatform"/>
-							<builder arguments="C:\android-ndk-r8d\ndk-build" command="bash" id="com.android.builder.96474249" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="com.android.builder"/>
+							<builder arguments="C:\android-ndk-r8c\ndk-build" command="bash" id="com.android.builder.96474249" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="com.android.builder"/>
 							<tool id="cdt.managedbuild.tool.gnu.archiver.base.577900787" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
 							<tool id="com.android.tool.compiler.g++.699432843" name="Android G++" superClass="com.android.tool.compiler.g++">
 								<inputType id="com.android.tool.compiler.g++.input.516401208" superClass="com.android.tool.compiler.g++.input"/>

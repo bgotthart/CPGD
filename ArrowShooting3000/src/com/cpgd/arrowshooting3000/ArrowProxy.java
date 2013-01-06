@@ -1,6 +1,7 @@
 package com.cpgd.arrowshooting3000;
 
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.util.debug.Debug;
 
 public class ArrowProxy {
 
@@ -11,15 +12,20 @@ public class ArrowProxy {
 	private native int getPositionX(long l);
 	private native int getPositionY(long l);
 	private native float getRotation(long l);
-	private native long shootArrow(int mouseX, int mouseY, float strength, long objref);
+	private native long startArrow(long l);
+	private native long shootArrow(int mouseX, int mouseY, long objref);
 	private native long update(long objref);
 	
 	public ArrowProxy(int x, int y) {
 		objref = arrowProxy(x, y);
 	}
 	
-	public void shootArrow(int mouseX, int mouseY, float strength) {
-		objref = shootArrow(mouseX, mouseY, strength, objref);
+	public void startArrow() {
+		objref = startArrow(objref);
+	}
+	
+	public void shootArrow(int mouseX, int mouseY) {
+		objref = shootArrow(mouseX, mouseY, objref);
 	}
 	
 	public void update() {

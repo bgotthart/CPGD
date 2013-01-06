@@ -41,11 +41,19 @@ JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_getRotation
 
 /*
  * Class:     com_cpgd_arrowshooting3000_ArrowProxy
+ * Method:    startArrow
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_startArrow
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     com_cpgd_arrowshooting3000_ArrowProxy
  * Method:    shootArrow
  * Signature: (IIFJ)J
  */
 JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_shootArrow
-  (JNIEnv *, jobject, jint, jint, jfloat, jlong);
+  (JNIEnv *, jobject, jint, jint, jlong);
 
 /*
  * Class:     com_cpgd_arrowshooting3000_ArrowProxy
