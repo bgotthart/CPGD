@@ -5,7 +5,7 @@
 Arrow::Arrow(int x, int y){
 	this->position = new Vector(x, y);
 	this->velocity = new Vector();
-	this->gravity = g;
+	this->gravity = 0.1;
 }
 
 int Arrow::getPositionX(){
