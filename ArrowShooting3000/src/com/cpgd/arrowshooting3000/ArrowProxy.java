@@ -11,6 +11,7 @@ public class ArrowProxy {
 	private native long arrowProxy(int x, int y);
 	private native int getPositionX(long l);
 	private native int getPositionY(long l);
+	private native float getStrength(long l);
 	private native float getRotation(long l);
 	private native float getTouchRotation(float mouseX, float mouseY, long objref);
 	private native long startArrow(long l);
@@ -42,6 +43,10 @@ public class ArrowProxy {
 	
 	public int getPositionY() {
 		return getPositionY(objref);
+	}
+	
+	public float getStrength() {
+		return getStrength(objref);
 	}
 	
 	public float getRotation() {

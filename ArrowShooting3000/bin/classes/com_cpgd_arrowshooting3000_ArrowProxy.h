@@ -33,6 +33,14 @@ JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_getPositionY
 
 /*
  * Class:     com_cpgd_arrowshooting3000_ArrowProxy
+ * Method:    getStrength
+ * Signature: (J)F
+ */
+JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_getStrength
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     com_cpgd_arrowshooting3000_ArrowProxy
  * Method:    getRotation
  * Signature: (J)F
  */

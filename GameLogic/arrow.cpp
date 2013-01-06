@@ -12,8 +12,14 @@ int Arrow::getPositionX(){
 	return this->position->x;
 }
 
-int Arrow::getPositionY(){
+int Arrow::getPositionY() {
 	return this->position->y;
+}
+
+float Arrow::getStrength() {
+	clock_t end = clock();
+	double elapsed = double(end - begin) / CLOCKS_PER_SEC;
+	return (float) elapsed * 30;
 }
 
 float Arrow::getRotation() {

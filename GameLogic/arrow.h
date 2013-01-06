@@ -16,6 +16,7 @@ class Arrow{
 		Arrow(int, int);
 		int getPositionX();
 		int getPositionY();
+		float getStrength();
 		void setPositionX(float);
 		void setPositionY(float);
 		void startArrow();

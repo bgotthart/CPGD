@@ -6,12 +6,14 @@
 #include "com_cpgd_arrowshooting3000_TargetProxy.h"
 #include "com_cpgd_arrowshooting3000_FlyingTargetProxy.h"
 #include "com_cpgd_arrowshooting3000_TerrainProxy.h"
+#include "com_cpgd_arrowshooting3000_ArrowHudProxy.h"
 
 #include "../../GameLogic/player.h"
 #include "../../GameLogic/arrow.h"
 #include "../../GameLogic/target.h"
 #include "../../GameLogic/flyingTarget.h"
 #include "../../GameLogic/terrain.h"
+#include "../../GameLogic/arrowHud.h"
 
 
 // ##################### Player ###############################
@@ -57,6 +59,13 @@ JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_getPositionY
 {
 	Arrow* arrow = (Arrow*) obj;
 	return arrow->getPositionY();
+}
+
+JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_getStrength
+  (JNIEnv * env, jobject o, jlong obj)
+{
+	Arrow* arrow = (Arrow*) obj;
+	return arrow->getStrength();
 }
 
 JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_getRotation
@@ -189,4 +198,21 @@ JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_TerrainProxy_GetRandomF
 {
 	Terrain* terrain = (Terrain*) obj;
 	return terrain->GetRandomFlyingStartPosition(targetWidth, targetHeight)->y;
+}
+
+
+
+// ##################### ArrowHud ###############################
+JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowHudProxy_arrowHud
+  (JNIEnv * env, jobject o, jfloat spriteWidth)
+{
+	ArrowHud* arrowHud = new ArrowHud(spriteWidth);
+	return (long) arrowHud;
+}
+
+JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_ArrowHudProxy_getCurrentWidth
+  (JNIEnv * env, jobject o, jfloat strength, jlong obj)
+{
+	ArrowHud* arrowHud = (ArrowHud*) obj;
+	return arrowHud->getCurrentWidth(strength);
 }

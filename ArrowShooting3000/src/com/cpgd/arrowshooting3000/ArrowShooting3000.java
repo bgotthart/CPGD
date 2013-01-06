@@ -37,12 +37,15 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 	private ITextureRegion mArrow;
 	private ITextureRegion mTarget;
 	private ITextureRegion mFlyingTarget;
+	private ITextureRegion mHudBg;
+	private ITextureRegion mHudOverlay;
 	
 	//Proxies
 	private PlayerProxy playerProxy;
 	private List<ArrowProxy> arrowProxies;
 	private List<TargetProxy> targetProxies;
 	private TerrainProxy terrainProxy;
+	private ArrowHudProxy arrowHudProxy;
 	
 	private ArrowProxy tmpProxy;
 	
@@ -90,17 +93,33 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 		            return getAssets().open("target_with_wings.png");
 		        }
 		    });
+		    ITexture hudBg = new BitmapTexture(this.getTextureManager(), new IInputStreamOpener() {
+		        @Override
+		        public InputStream open() throws IOException {
+		            return getAssets().open("strength_level_red.png");
+		        }
+		    });
+		    ITexture hudOverlay = new BitmapTexture(this.getTextureManager(), new IInputStreamOpener() {
+		        @Override
+		        public InputStream open() throws IOException {
+		            return getAssets().open("strength_level_green.png");
+		        }
+		    });
 		    
 		    // 2 - Load bitmap textures into VRAM
 		    bow.load();
 		    arrow.load();
 		    target.load();
 		    flyingTarget.load();
+		    hudBg.load();
+		    hudOverlay.load();
 		    // 3 - Set up texture regions
 		    this.mBow = TextureRegionFactory.extractFromTexture(bow);
 		    this.mArrow = TextureRegionFactory.extractFromTexture(arrow);
 		    this.mTarget = TextureRegionFactory.extractFromTexture(target);
 		    this.mFlyingTarget = TextureRegionFactory.extractFromTexture(flyingTarget);
+		    this.mHudBg = TextureRegionFactory.extractFromTexture(hudBg);
+		    this.mHudOverlay = TextureRegionFactory.extractFromTexture(hudOverlay);
 		} catch (IOException e) {
 		    Debug.e(e);
 		}
@@ -185,6 +204,16 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
             }
         });
 		
+		//Create Hud
+		Sprite hudBgSprite = new Sprite(CAMERA_WIDTH - this.mHudBg.getWidth(), CAMERA_HEIGHT - this.mHudBg.getHeight(), this.mHudBg, getVertexBufferObjectManager());
+		Sprite hudOverlaySprite = new Sprite(CAMERA_WIDTH - this.mHudOverlay.getWidth(), CAMERA_HEIGHT - this.mHudOverlay.getHeight(), this.mHudOverlay, getVertexBufferObjectManager());
+		arrowHudProxy = new ArrowHudProxy(hudBgSprite.getWidth());
+		arrowHudProxy.setBgSprite(hudBgSprite);
+		arrowHudProxy.setOverlaySprite(hudOverlaySprite);
+		scene.attachChild(hudBgSprite);
+		scene.attachChild(hudOverlaySprite);
+				
+		
 		return scene;
 	}
 
@@ -204,8 +233,15 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
             	   tmpProxy.startArrow();
         	   }
         	   isTouching = true;
+        	   
+        	   
+        	   
         	   break;
            case MotionEvent.ACTION_MOVE:
+        	   float strength = tmpProxy.getStrength();
+        	   float width = arrowHudProxy.getCurrentWidth(strength);
+        	   arrowHudProxy.getOverlaySprite().setWidth(width);
+        	   
         	   tmpProxy.getSprite().setRotation((float)Math.toDegrees(tmpProxy.getTouchRotation(X, Y)));
         	   break;
            case MotionEvent.ACTION_UP:
@@ -214,6 +250,8 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
         	   arrowProxies.add(tmpProxy);
         	   
         	   isTouching = false;
+        	   
+        	   arrowHudProxy.getOverlaySprite().setWidth(0);
         	   
         	   break;
         }
