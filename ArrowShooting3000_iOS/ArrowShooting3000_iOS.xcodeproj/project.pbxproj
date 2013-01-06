@@ -197,6 +197,11 @@
 		0D42898B1690D16500457DE6 /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D4289821690D16500457DE6 /* terrain.cpp */; };
 		0D42898C1690D16500457DE6 /* vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D4289841690D16500457DE6 /* vector.cpp */; };
 		0D4289961690DE0900457DE6 /* ArrowsObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D4289941690DC0E00457DE6 /* ArrowsObjC.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0D7CFF531699E0A500E04A63 /* strength_level_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7CFF511699E0A500E04A63 /* strength_level_green.png */; };
+		0D7CFF541699E0A500E04A63 /* strength_level_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7CFF521699E0A500E04A63 /* strength_level_red.png */; };
+		0D7CFF571699E0F000E04A63 /* arrowHud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D7CFF551699E0F000E04A63 /* arrowHud.cpp */; };
+		0D7CFF581699E10400E04A63 /* arrowHud.h in Sources */ = {isa = PBXBuildFile; fileRef = 0D7CFF561699E0F000E04A63 /* arrowHud.h */; };
+		0D7CFF5A1699FF3B00E04A63 /* bow_animation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7CFF591699FF3B00E04A63 /* bow_animation.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -586,6 +591,11 @@
 		0D4289851690D16500457DE6 /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vector.h; path = ../../GameLogic/vector.h; sourceTree = "<group>"; };
 		0D4289931690DC0E00457DE6 /* ArrowsObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowsObjC.h; sourceTree = "<group>"; };
 		0D4289941690DC0E00457DE6 /* ArrowsObjC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ArrowsObjC.mm; sourceTree = "<group>"; };
+		0D7CFF511699E0A500E04A63 /* strength_level_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = strength_level_green.png; path = ../../images/strength_level_green.png; sourceTree = "<group>"; };
+		0D7CFF521699E0A500E04A63 /* strength_level_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = strength_level_red.png; path = ../../images/strength_level_red.png; sourceTree = "<group>"; };
+		0D7CFF551699E0F000E04A63 /* arrowHud.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = arrowHud.cpp; path = ../../GameLogic/arrowHud.cpp; sourceTree = "<group>"; };
+		0D7CFF561699E0F000E04A63 /* arrowHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = arrowHud.h; path = ../../GameLogic/arrowHud.h; sourceTree = "<group>"; };
+		0D7CFF591699FF3B00E04A63 /* bow_animation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bow_animation.png; path = ../../images/bow_animation.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -664,6 +674,8 @@
 		0D3BCFB8168DF76B00C8283D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0D7CFF511699E0A500E04A63 /* strength_level_green.png */,
+				0D7CFF521699E0A500E04A63 /* strength_level_red.png */,
 				0D3BCFB9168DF76B00C8283D /* Default.png */,
 				0D3BD1ED168DF83200C8283D /* arrow.png */,
 				0D3BD1EE168DF83200C8283D /* bow_with_arrow.png */,
@@ -685,6 +697,7 @@
 				0D3BCFCF168DF76B00C8283D /* Info.plist */,
 				0D3BCFD0168DF76C00C8283D /* iTunesArtwork */,
 				0D3BD1D1168DF77300C8283D /* blocks.png */,
+				0D7CFF591699FF3B00E04A63 /* bow_animation.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -692,6 +705,8 @@
 		0D3BCFD2168DF76C00C8283D /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				0D7CFF551699E0F000E04A63 /* arrowHud.cpp */,
+				0D7CFF561699E0F000E04A63 /* arrowHud.h */,
 				0D4289781690D16500457DE6 /* arrow.cpp */,
 				0D4289791690D16500457DE6 /* arrow.h */,
 				0D42897A1690D16500457DE6 /* flyingTarget.cpp */,
@@ -1279,6 +1294,9 @@
 				0D3BD1F8168DF83200C8283D /* target_with_wings.png in Resources */,
 				0D3BD1F9168DF83200C8283D /* target.png in Resources */,
 				0D3BD1FA168DF83200C8283D /* taut_bow.png in Resources */,
+				0D7CFF531699E0A500E04A63 /* strength_level_green.png in Resources */,
+				0D7CFF541699E0A500E04A63 /* strength_level_red.png in Resources */,
+				0D7CFF5A1699FF3B00E04A63 /* bow_animation.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1289,6 +1307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D7CFF581699E10400E04A63 /* arrowHud.h in Sources */,
 				0D4289961690DE0900457DE6 /* ArrowsObjC.mm in Sources */,
 				0D3BCFD6168DF76C00C8283D /* CCAction.m in Sources */,
 				0D3BCFD9168DF76C00C8283D /* CCActionCamera.m in Sources */,
@@ -1449,6 +1468,7 @@
 				0D42898C1690D16500457DE6 /* vector.cpp in Sources */,
 				0D2C86761691CF6C0089F73D /* TargetObjC.mm in Sources */,
 				0D203FC3169388CC000F5C5A /* FlyingTargetObjC.mm in Sources */,
+				0D7CFF571699E0F000E04A63 /* arrowHud.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

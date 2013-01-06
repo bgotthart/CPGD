@@ -13,6 +13,12 @@
 #import "cocos2d.h"
 //#import "Box2D.h"
 #import "GLES-Render.h"
+#import "TargetObjC.h"
+#import "terrain.h"
+#import "flyingTarget.h"
+#import "arrowHud.h"
+#import "player.h"
+
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
 //Box2D is optimized for objects of 1x1 metre therefore it makes sense
@@ -33,4 +39,10 @@
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
+@property() Player *player;
+@property() Terrain *terrain;
+
+@property(assign) CCSprite *greenSprite;
+@property(assign) CCSprite *redSprite;
+@property() ArrowHud *arrowHud;
 @end

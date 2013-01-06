@@ -16,5 +16,6 @@
 @property (assign) CCSprite *sprite;
 -(void)setArrowData:(Arrow*)arrowC:(CCSprite*)sprite;
 -(void)update;
--(void)shootArrow:(int)x :(int)y :(float)strength;
+-(void)shootArrow:(int)x :(int)y ;
+-(void)getTouchRotation:(float) mouseX :(float) mouseY;
 @end
