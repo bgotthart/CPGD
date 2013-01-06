@@ -20,6 +20,14 @@ float Arrow::getRotation() {
 	return this->rotation;
 }
 
+float Arrow::getTouchRotation(float mouseX, float mouseY) {
+	Vector* direction = new Vector(mouseX - this->position->x, mouseY - this->position->y);
+	float cosAlpha = (-direction->x / direction->getLength());
+	float rot = acos(cosAlpha);
+	if (direction->y > 0) rot = 2* 3.14 - rot;
+	return rot;
+}
+
 void Arrow::startArrow() {
 	begin = clock();
 }

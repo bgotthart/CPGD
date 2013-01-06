@@ -22,6 +22,7 @@ class Arrow{
 		void shootArrow(int, int);
 	    void update();
 	    float getRotation();
+	    float getTouchRotation(float, float);
 };
 
 #endif

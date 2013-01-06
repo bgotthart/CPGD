@@ -12,7 +12,6 @@ import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
-import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.ITexture;
@@ -55,9 +54,6 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 	
 	//Touch control
 	private boolean isTouching;
-	private float touchingTime;
-	
-	private Sprite testSprite;
 
 	@Override
 	public EngineOptions onCreateEngineOptions() {
@@ -186,15 +182,8 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
             		scene.attachChild(gtp.getSprite());
             		targetProxies.add(gtp);
             	}
-            	
-            	if(isTouching) touchingTime += pSecondsElapsed;
             }
         });
-		
-		testSprite = new Sprite(50, 50, this.mArrow, getVertexBufferObjectManager());
-		testSprite.setRotation(45);
-		testSprite.setPosition(0,0);
-		scene.attachChild(testSprite);
 		
 		return scene;
 	}
@@ -208,7 +197,6 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 
         switch (myEventAction) {
            case MotionEvent.ACTION_DOWN:
-        	   //if (!isTouching) touchingTime = 0;
         	   if (!isTouching) {
         		   tmpProxy = new ArrowProxy(playerProxy.getPositionX(), playerProxy.getPositionY());
         		   tmpProxy.setSprite(new Sprite(tmpProxy.getPositionX(), tmpProxy.getPositionY(), this.mArrow, getVertexBufferObjectManager()));
@@ -218,6 +206,7 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
         	   isTouching = true;
         	   break;
            case MotionEvent.ACTION_MOVE:
+        	   tmpProxy.getSprite().setRotation((float)Math.toDegrees(tmpProxy.getTouchRotation(X, Y)));
         	   break;
            case MotionEvent.ACTION_UP:
         	   
