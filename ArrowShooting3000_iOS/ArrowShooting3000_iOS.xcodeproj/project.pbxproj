@@ -181,7 +181,6 @@
 		0D3BD1C7168DF77300C8283D /* HelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D3BD1C6168DF77300C8283D /* HelloWorldLayer.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0D3BD1CA168DF77300C8283D /* IntroLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D3BD1C9168DF77300C8283D /* IntroLayer.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0D3BD1CD168DF77300C8283D /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D3BD1CC168DF77300C8283D /* GLES-Render.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		0D3BD1D0168DF77300C8283D /* PhysicsSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D3BD1CF168DF77300C8283D /* PhysicsSprite.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0D3BD1D2168DF77300C8283D /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D3BD1D1168DF77300C8283D /* blocks.png */; };
 		0D3BD1F4168DF83200C8283D /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D3BD1ED168DF83200C8283D /* arrow.png */; };
 		0D3BD1F5168DF83200C8283D /* bow_with_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D3BD1EE168DF83200C8283D /* bow_with_arrow.png */; };
@@ -202,6 +201,11 @@
 		0D7CFF571699E0F000E04A63 /* arrowHud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D7CFF551699E0F000E04A63 /* arrowHud.cpp */; };
 		0D7CFF581699E10400E04A63 /* arrowHud.h in Sources */ = {isa = PBXBuildFile; fileRef = 0D7CFF561699E0F000E04A63 /* arrowHud.h */; };
 		0D7CFF5A1699FF3B00E04A63 /* bow_animation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7CFF591699FF3B00E04A63 /* bow_animation.png */; };
+		0D7CFF96169A15E400E04A63 /* bow_animation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7CFF95169A15E400E04A63 /* bow_animation.png */; };
+		0D7CFF9F169A189B00E04A63 /* AnimBear.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D7CFF9D169A189B00E04A63 /* AnimBear.plist */; };
+		0D7CFFA0169A189B00E04A63 /* AnimBear.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7CFF9E169A189B00E04A63 /* AnimBear.png */; };
+		0D7CFFCC169A1E3300E04A63 /* bow_animation_default.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D7CFFCA169A1E3300E04A63 /* bow_animation_default.plist */; };
+		0D7CFFCD169A1E3300E04A63 /* bow_animation_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7CFFCB169A1E3300E04A63 /* bow_animation_default.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -567,8 +571,6 @@
 		0D3BD1C9168DF77300C8283D /* IntroLayer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroLayer.mm; sourceTree = "<group>"; };
 		0D3BD1CB168DF77300C8283D /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		0D3BD1CC168DF77300C8283D /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
-		0D3BD1CE168DF77300C8283D /* PhysicsSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsSprite.h; sourceTree = "<group>"; };
-		0D3BD1CF168DF77300C8283D /* PhysicsSprite.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PhysicsSprite.mm; sourceTree = "<group>"; };
 		0D3BD1D1168DF77300C8283D /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
 		0D3BD1ED168DF83200C8283D /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow.png; path = ../../images/arrow.png; sourceTree = "<group>"; };
 		0D3BD1EE168DF83200C8283D /* bow_with_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bow_with_arrow.png; path = ../../images/bow_with_arrow.png; sourceTree = "<group>"; };
@@ -596,6 +598,14 @@
 		0D7CFF551699E0F000E04A63 /* arrowHud.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = arrowHud.cpp; path = ../../GameLogic/arrowHud.cpp; sourceTree = "<group>"; };
 		0D7CFF561699E0F000E04A63 /* arrowHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = arrowHud.h; path = ../../GameLogic/arrowHud.h; sourceTree = "<group>"; };
 		0D7CFF591699FF3B00E04A63 /* bow_animation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bow_animation.png; path = ../../images/bow_animation.png; sourceTree = "<group>"; };
+		0D7CFF95169A15E400E04A63 /* bow_animation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bow_animation.png; sourceTree = "<group>"; };
+		0D7CFF9D169A189B00E04A63 /* AnimBear.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AnimBear.plist; path = Resources/AnimBear.plist; sourceTree = "<group>"; };
+		0D7CFF9E169A189B00E04A63 /* AnimBear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AnimBear.png; path = Resources/AnimBear.png; sourceTree = "<group>"; };
+		0D7CFFBA169A1BCC00E04A63 /* cocos2d-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "cocos2d-Prefix.pch"; sourceTree = "<group>"; };
+		0D7CFFBB169A1BCC00E04A63 /* cocos2d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cocos2d.h; sourceTree = "<group>"; };
+		0D7CFFBD169A1BCC00E04A63 /* cocos2d.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cocos2d.m; sourceTree = "<group>"; };
+		0D7CFFCA169A1E3300E04A63 /* bow_animation_default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bow_animation_default.plist; path = Resources/bow_animation_default.plist; sourceTree = "<group>"; };
+		0D7CFFCB169A1E3300E04A63 /* bow_animation_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bow_animation_default.png; path = Resources/bow_animation_default.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -622,6 +632,7 @@
 			isa = PBXGroup;
 			children = (
 				0D3BCFB7168DF76B00C8283D /* ArrowShooting3000_iOS */,
+				0D7CFFB8169A1BCC00E04A63 /* cocos2d */,
 				0D3BCFA4168DF76B00C8283D /* Frameworks */,
 				0D3BCFA2168DF76B00C8283D /* Products */,
 			);
@@ -662,8 +673,6 @@
 				0D3BD1C9168DF77300C8283D /* IntroLayer.mm */,
 				0D3BD1CB168DF77300C8283D /* GLES-Render.h */,
 				0D3BD1CC168DF77300C8283D /* GLES-Render.mm */,
-				0D3BD1CE168DF77300C8283D /* PhysicsSprite.h */,
-				0D3BD1CF168DF77300C8283D /* PhysicsSprite.mm */,
 				0D3BCFB8168DF76B00C8283D /* Resources */,
 				0D3BCFD2168DF76C00C8283D /* libs */,
 				0D3BD1BE168DF77200C8283D /* Supporting Files */,
@@ -674,8 +683,13 @@
 		0D3BCFB8168DF76B00C8283D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0D7CFFCA169A1E3300E04A63 /* bow_animation_default.plist */,
+				0D7CFFCB169A1E3300E04A63 /* bow_animation_default.png */,
+				0D7CFF95169A15E400E04A63 /* bow_animation.png */,
 				0D7CFF511699E0A500E04A63 /* strength_level_green.png */,
 				0D7CFF521699E0A500E04A63 /* strength_level_red.png */,
+				0D7CFF9D169A189B00E04A63 /* AnimBear.plist */,
+				0D7CFF9E169A189B00E04A63 /* AnimBear.png */,
 				0D3BCFB9168DF76B00C8283D /* Default.png */,
 				0D3BD1ED168DF83200C8283D /* arrow.png */,
 				0D3BD1EE168DF83200C8283D /* bow_with_arrow.png */,
@@ -1223,6 +1237,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0D7CFFB8169A1BCC00E04A63 /* cocos2d */ = {
+			isa = PBXGroup;
+			children = (
+				0D7CFFBB169A1BCC00E04A63 /* cocos2d.h */,
+				0D7CFFBD169A1BCC00E04A63 /* cocos2d.m */,
+				0D7CFFB9169A1BCC00E04A63 /* Supporting Files */,
+			);
+			path = cocos2d;
+			sourceTree = "<group>";
+		};
+		0D7CFFB9169A1BCC00E04A63 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0D7CFFBA169A1BCC00E04A63 /* cocos2d-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1297,6 +1329,11 @@
 				0D7CFF531699E0A500E04A63 /* strength_level_green.png in Resources */,
 				0D7CFF541699E0A500E04A63 /* strength_level_red.png in Resources */,
 				0D7CFF5A1699FF3B00E04A63 /* bow_animation.png in Resources */,
+				0D7CFF96169A15E400E04A63 /* bow_animation.png in Resources */,
+				0D7CFF9F169A189B00E04A63 /* AnimBear.plist in Resources */,
+				0D7CFFA0169A189B00E04A63 /* AnimBear.png in Resources */,
+				0D7CFFCC169A1E3300E04A63 /* bow_animation_default.plist in Resources */,
+				0D7CFFCD169A1E3300E04A63 /* bow_animation_default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1459,7 +1496,6 @@
 				0D3BD1C7168DF77300C8283D /* HelloWorldLayer.mm in Sources */,
 				0D3BD1CA168DF77300C8283D /* IntroLayer.mm in Sources */,
 				0D3BD1CD168DF77300C8283D /* GLES-Render.mm in Sources */,
-				0D3BD1D0168DF77300C8283D /* PhysicsSprite.mm in Sources */,
 				0D4289861690D16500457DE6 /* arrow.cpp in Sources */,
 				0D4289871690D16500457DE6 /* flyingTarget.cpp in Sources */,
 				0D4289891690D16500457DE6 /* player.cpp in Sources */,

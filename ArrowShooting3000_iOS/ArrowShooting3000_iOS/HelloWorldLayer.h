@@ -19,8 +19,6 @@
 #import "arrowHud.h"
 #import "player.h"
 
-#import "LIImageView.h"
-#import "LIAnimationManagerView.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
@@ -35,7 +33,10 @@
 	b2World* world;					// strong ref
 	GLESDebugDraw *m_debugDraw;		// strong ref
 	
-	CCSprite *_bowSprite;
+	CCSprite *_bow;
+	BOOL _moving;
+	CCSprite *_bear;
+	CCAction *_walkAction;
 
 }
 
@@ -48,4 +49,9 @@
 @property(assign) CCSprite *greenSprite;
 @property(assign) CCSprite *redSprite;
 @property() ArrowHud *arrowHud;
+@property (nonatomic, retain) CCSprite *bow;
+@property (nonatomic, retain) CCSprite *bear;
+@property (nonatomic, retain) CCAction *walkAction;
+
+
 @end

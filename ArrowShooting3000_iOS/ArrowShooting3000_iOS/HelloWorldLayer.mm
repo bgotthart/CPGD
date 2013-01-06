@@ -12,8 +12,6 @@
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
-#import "PhysicsSprite.h"
-
 #import "ArrowsObjC.h"
 #import "FlyingTargetObjC.h"
 
@@ -51,7 +49,6 @@ float flyingTargetTimer;
 float flyingTargetSpawnTime;
 
 
-
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -66,9 +63,17 @@ float flyingTargetSpawnTime;
 	// return the scene
 	return scene;
 }
+
+
+@synthesize bear = _bear;
+@synthesize walkAction = _walkAction;
+
+
 -(id) init
 {
 	if( (self=[super init])) {
+		
+		
 		
 		// enable events
 		
@@ -76,7 +81,28 @@ float flyingTargetSpawnTime;
 		self.isAccelerometerEnabled = YES;
 		CGSize winSize = [CCDirector sharedDirector].winSize;
 		self.self.terrain = new Terrain(winSize.width, winSize.height);
+		/*
+			
+		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"bow_animation_default.plist"];
 		
+		// Create a sprite sheet with the Happy Bear images
+		CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"bow_animation_default.png"];
+		[self addChild:spriteSheet];
+		
+		// Load up the frames of our animation
+		NSMutableArray *walkAnimFrames = [NSMutableArray array];
+		for(int i = 1; i <= 4; ++i) {
+			[walkAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"bow_%d.png", i]]];
+		}
+		CCAnimation *walkAnim = [CCAnimation animationWithFrames:walkAnimFrames delay:0.1f];
+		
+		// Create a sprite for our bear
+		self.bear = [CCSprite spriteWithSpriteFrameName:@"bow_1.png"];
+		_bear.position = ccp(winSize.width/2, winSize.height/2);
+		self.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:walkAnim restoreOriginalFrame:NO]];
+		//[_bear runAction:_walkAction];
+		[spriteSheet addChild:_bear];
+		*/
 		
 		// init physics
 		//[self initPhysics];
@@ -85,14 +111,17 @@ float flyingTargetSpawnTime;
 		//[self createMenu];
 		
 		//Set up sprite
-		_bowSprite = [CCSprite spriteWithFile:@"bow.png"];
-		self.player = new Player(self.terrain->width - _bowSprite.contentSize.width/2, self.terrain->height/2);
-		_bowSprite.position = ccp(self.player->getPositionX(),self.player->getPositionY());
+		
+		_bow = [CCSprite spriteWithFile:@"bow.png"];
+		self.player = new Player(self.terrain->width - _bow.contentSize.width/2, self.terrain->height/2);
+		_bow.position = ccp(self.player->getPositionX(),self.player->getPositionY());
+
+		[self addChild:_bow];
+		
+		
 		arrowsArray = [[NSMutableArray alloc] init];
 		targetsArray = [[NSMutableArray alloc] init];
 
-		[self addChild:_bowSprite];
-		
 		//Timer
 		groundTargetSpawnTime = 3;
 		flyingTargetSpawnTime = 8;
@@ -117,6 +146,9 @@ float flyingTargetSpawnTime;
 		self.arrowHud = new ArrowHud(self.greenSprite.contentSize.width);
 		
 		[self.greenSprite setScaleX:0];
+		
+		
+		
 	/*
 		[self addGroundTarget];
 		[self addFlyingTarget];
@@ -294,7 +326,7 @@ float flyingTargetSpawnTime;
 	
 	if(!has_touched){
 		
-		Arrow *newArrow = new Arrow(_bowSprite.position.x, _bowSprite.position.y);
+		Arrow *newArrow = new Arrow(_bow.position.x, _bow.position.y);
 		
 		arrowObjC = [[ArrowsObjC alloc] init];
 		
@@ -356,6 +388,9 @@ float flyingTargetSpawnTime;
 	delete m_debugDraw;
 	m_debugDraw = NULL;
 	
+	
+	self.bear = nil;
+	self.walkAction = nil;
 	[super dealloc];
 }
 
