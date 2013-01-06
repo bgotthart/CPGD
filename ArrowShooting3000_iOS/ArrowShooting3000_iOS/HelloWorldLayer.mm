@@ -17,9 +17,6 @@
 #import "ArrowsObjC.h"
 #import "FlyingTargetObjC.h"
 
-#import "TargetObjC.h"
-#import "terrain.h"
-#import "flyingTarget.h"
 
 enum {
 	kTagParentNode = 1,
@@ -35,10 +32,15 @@ enum {
 @end
 
 @implementation HelloWorldLayer
-Player *player;
+@synthesize arrowHud = _arrowHud;
+@synthesize greenSprite = _greenSprite;
+@synthesize redSprite = _redSprite;
+@synthesize player = _player;
+@synthesize terrain = terrain;
+
 NSMutableArray *arrowsArray;
 NSMutableArray *targetsArray;
-Terrain *terrain;
+ArrowsObjC *arrowObjC;
 
 bool has_touched = false;
 float touching_time;
@@ -47,6 +49,8 @@ float groundTargetTimer;
 float groundTargetSpawnTime;
 float flyingTargetTimer;
 float flyingTargetSpawnTime;
+
+
 
 +(CCScene *) scene
 {
@@ -71,7 +75,7 @@ float flyingTargetSpawnTime;
 		self.isTouchEnabled = YES;
 		self.isAccelerometerEnabled = YES;
 		CGSize winSize = [CCDirector sharedDirector].winSize;
-		terrain = new Terrain(0, winSize.width, winSize.height);
+		self.self.terrain = new Terrain(winSize.width, winSize.height);
 		
 		
 		// init physics
@@ -82,8 +86,8 @@ float flyingTargetSpawnTime;
 		
 		//Set up sprite
 		_bowSprite = [CCSprite spriteWithFile:@"bow.png"];
-		player = new Player(terrain->width - _bowSprite.contentSize.width/2, terrain->height/2);
-		_bowSprite.position = ccp(player->getPositionX(),player->getPositionY());
+		self.player = new Player(self.terrain->width - _bowSprite.contentSize.width/2, self.terrain->height/2);
+		_bowSprite.position = ccp(self.player->getPositionX(),self.player->getPositionY());
 		arrowsArray = [[NSMutableArray alloc] init];
 		targetsArray = [[NSMutableArray alloc] init];
 
@@ -95,6 +99,24 @@ float flyingTargetSpawnTime;
 		
 		[self addGroundTarget];
 		[self addFlyingTarget];
+		
+		self.greenSprite = [[CCSprite alloc] initWithFile:@"strength_level_green.png"];
+		self.redSprite = [[CCSprite alloc] initWithFile:@"strength_level_red.png"];
+
+		self.greenSprite.anchorPoint = ccp(0,1);
+		self.redSprite.anchorPoint = ccp(0,1);
+
+		self.greenSprite.position = ccp(self.terrain->width - self.greenSprite.contentSize.width - 20,self.greenSprite.contentSize.height);
+		
+		self.redSprite.position = ccp(self.terrain->width - self.redSprite.contentSize.width - 20, self.greenSprite.contentSize.height);
+		
+		[self addChild:self.redSprite];
+
+		[self addChild:self.greenSprite];
+		
+		self.arrowHud = new ArrowHud(self.greenSprite.contentSize.width);
+		
+		[self.greenSprite setScaleX:0];
 	/*
 		[self addGroundTarget];
 		[self addFlyingTarget];
@@ -117,7 +139,7 @@ float flyingTargetSpawnTime;
 -(void) addGroundTarget{
 	CCSprite *targetSprite = [CCSprite spriteWithFile:@"target.png"];
 	
-	Vector *vector = terrain->GetRandomTargetPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
+	Vector *vector = self.terrain->GetRandomTargetPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
 	Target *target = new Target(vector->x, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
 	targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
 	
@@ -133,7 +155,7 @@ float flyingTargetSpawnTime;
 -(void)addFlyingTarget{
 	CCSprite *targetSprite = [CCSprite spriteWithFile:@"target_with_wings.png"];
 
-	Vector *vector = terrain->GetRandomFlyingStartPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
+	Vector *vector = self.terrain->GetRandomFlyingStartPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
 	
 	FlyingTarget *target = new FlyingTarget(0, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
 	targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
@@ -150,7 +172,7 @@ float flyingTargetSpawnTime;
 	
 	// Create the actions
 	/*
-	CCMoveTo * actionMove = [CCMoveTo actionWithDuration:actualDuration position:ccp((terrain->width + targetSprite.contentSize.width/2), targetSprite.position.y)];
+	CCMoveTo * actionMove = [CCMoveTo actionWithDuration:actualDuration position:ccp((self.terrain->width + targetSprite.contentSize.width/2), targetSprite.position.y)];
 	CCCallBlockN * actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
 		[targetsArray removeObject:node];
 		[node removeFromParentAndCleanup:YES];
@@ -197,7 +219,7 @@ float flyingTargetSpawnTime;
 		CCSprite *currArrowSprite = currArrowObjC.sprite;
 	
 
-		if(currArrowSprite.position.x > terrain->width || currArrowSprite.position.y > terrain->height || currArrowSprite.position.x < 0 || currArrowSprite < 0){
+		if(currArrowSprite.position.x > self.terrain->width || currArrowSprite.position.y > self.terrain->height || currArrowSprite.position.x < 0 || currArrowSprite < 0){
 			//[arrowsArray removeObject:currArrowObjC];
 			//[self removeChild:currArrowSprite cleanup:YES];
 			//currArrowObjC = nil;
@@ -251,9 +273,14 @@ float flyingTargetSpawnTime;
 		}
 	}
 	if(has_touched){
-		touching_time += dt;
+		float scale = self.arrowHud->getCurrentScale(arrowObjC.arrowC->getStrength());
+				
+		
+	//	self.greenSprite.contentSize = CGSizeMake(10, strength);
+		[self.greenSprite setScaleX: scale];
+
+		
 	}
-	NSLog(@"%i", countHitTarget);
 	for(int i = 0; i<countHitTarget; i++){
 		
 		//[self addFlyingTarget];
@@ -263,32 +290,58 @@ float flyingTargetSpawnTime;
 
 // Touch first detected
 -(void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-	if (!has_touched) touching_time = 0.0;
+	//if (!has_touched) touching_time = 0.0;
+	
+	if(!has_touched){
+		
+		Arrow *newArrow = new Arrow(_bowSprite.position.x, _bowSprite.position.y);
+		
+		arrowObjC = [[ArrowsObjC alloc] init];
+		
+		CCSprite *arrowSprite = [CCSprite spriteWithFile:@"arrow.png"];
+		arrowSprite.position = ccp(newArrow->getPositionX(), newArrow->getPositionY());
+		
+		[self addChild:arrowSprite];
+		[arrowObjC setArrowData:newArrow:arrowSprite];
+
+		arrowObjC.arrowC->startArrow();
+
+	}
+	
 	has_touched = true;
 	
+	//arrow->addStrengthLevelView
+	
+	//CCSprite *levelSprite = [CCSprite alloc] init
+	
+
 }
 
-// User took finger off screen
-- (void)ccTouchesEnded:(NSSet*)touches withEvent:(UIEvent*)event{
+-(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
 	UITouch *touch = [ touches anyObject];
 	
 	CGPoint new_location = [touch locationInView: [touch view]];
 	new_location = [[CCDirector sharedDirector] convertToGL:new_location];
 
-	Arrow *newArrow = new Arrow(_bowSprite.position.x, _bowSprite.position.y);
+	[arrowObjC getTouchRotation:new_location.x :new_location.y ];
 
-	ArrowsObjC *arrowObjC = [[ArrowsObjC alloc] init];
-	[arrowsArray addObject:arrowObjC];
+}
+// User took finger off screen
+- (void)ccTouchesEnded:(NSSet*)touches withEvent:(UIEvent*)event{
 	
-	CCSprite *arrowSprite = [CCSprite spriteWithFile:@"arrow.png"];
-	arrowSprite.position = ccp(newArrow->getPositionX(), newArrow->getPositionY());
+	UITouch *touch = [ touches anyObject];
 	
-	[self addChild:arrowSprite];
-	[arrowObjC setArrowData:newArrow:arrowSprite];
+	CGPoint new_location = [touch locationInView: [touch view]];
+	new_location = [[CCDirector sharedDirector] convertToGL:new_location];
+
 		
-	[arrowObjC shootArrow:(int)new_location.x :(int)new_location.y :touching_time*10.0];
+	[arrowObjC shootArrow:(int)new_location.x :(int)new_location.y ];
+	
+	[arrowsArray addObject:arrowObjC];
 
 	has_touched = false;
+	
+	[self.greenSprite setScaleX:0];
 
 }
 
@@ -346,19 +399,19 @@ float flyingTargetSpawnTime;
 	
 	// bottom
 	
-	groundBox.Set(b2Vec2(0,0), b2Vec2(terrain->width/PTM_RATIO,0));
+	groundBox.Set(b2Vec2(0,0), b2Vec2(self.terrain->width/PTM_RATIO,0));
 	groundBody->CreateFixture(&groundBox,0);
 	
 	// top
-	groundBox.Set(b2Vec2(0,terrain->height/PTM_RATIO), b2Vec2(terrain->width/PTM_RATIO,terrain->height/PTM_RATIO));
+	groundBox.Set(b2Vec2(0,self.terrain->height/PTM_RATIO), b2Vec2(self.terrain->width/PTM_RATIO,self.terrain->height/PTM_RATIO));
 	groundBody->CreateFixture(&groundBox,0);
 	
 	// left
-	groundBox.Set(b2Vec2(0,terrain->height/PTM_RATIO), b2Vec2(0,0));
+	groundBox.Set(b2Vec2(0,self.terrain->height/PTM_RATIO), b2Vec2(0,0));
 	groundBody->CreateFixture(&groundBox,0);
 	
 	// right
-	groundBox.Set(b2Vec2(terrain->width/PTM_RATIO,terrain->height/PTM_RATIO), b2Vec2(terrain->width/PTM_RATIO,0));
+	groundBox.Set(b2Vec2(self.terrain->width/PTM_RATIO,self.terrain->height/PTM_RATIO), b2Vec2(self.terrain->width/PTM_RATIO,0));
 	groundBody->CreateFixture(&groundBox,0);
 }
 #pragma mark GameKit delegate
