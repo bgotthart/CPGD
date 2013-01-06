@@ -12,12 +12,17 @@ import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
+import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.ITexture;
+import org.andengine.opengl.texture.TextureOptions;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.bitmap.BitmapTexture;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.TextureRegionFactory;
+import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.adt.io.in.IInputStreamOpener;
 import org.andengine.util.debug.Debug;
@@ -40,6 +45,11 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 	private ITextureRegion mHudBg;
 	private ITextureRegion mHudOverlay;
 	
+	//Bow animation
+	private BitmapTextureAtlas texBow;
+	private TiledTextureRegion regBow;
+	private float arrowOffset = -55;
+	
 	//Proxies
 	private PlayerProxy playerProxy;
 	private List<ArrowProxy> arrowProxies;
@@ -47,13 +57,17 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 	private TerrainProxy terrainProxy;
 	private ArrowHudProxy arrowHudProxy;
 	
-	private ArrowProxy tmpProxy;
+	private ArrowProxy tmpArrowProxy;
 	
 	//Timer
 	private float groundTargetTimer;
 	private float groundTargetSpawnTime;
+	
 	private float flyingTargetTimer;
 	private float flyingTargetSpawnTime;
+	
+	private float arrowTimer;
+	private float arrowUpdateTime = 0.1f;
 	
 	//Touch control
 	private boolean isTouching;
@@ -113,6 +127,7 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 		    flyingTarget.load();
 		    hudBg.load();
 		    hudOverlay.load();
+		    
 		    // 3 - Set up texture regions
 		    this.mBow = TextureRegionFactory.extractFromTexture(bow);
 		    this.mArrow = TextureRegionFactory.extractFromTexture(arrow);
@@ -120,12 +135,17 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 		    this.mFlyingTarget = TextureRegionFactory.extractFromTexture(flyingTarget);
 		    this.mHudBg = TextureRegionFactory.extractFromTexture(hudBg);
 		    this.mHudOverlay = TextureRegionFactory.extractFromTexture(hudOverlay);
+		    
+		    //Bow animation
+		    texBow = new BitmapTextureAtlas(this.getTextureManager(), 400, 103, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		    regBow = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(texBow, this.getAssets(), "bow_animation.png", 0, 0, 4, 1);
+		    texBow.load();
 		} catch (IOException e) {
 		    Debug.e(e);
 		}
 		
 		//Proxies
-		playerProxy = new PlayerProxy((int)(CAMERA_WIDTH - this.mBow.getWidth()), (int)(CAMERA_HEIGHT - this.mBow.getHeight()));
+		playerProxy = new PlayerProxy((int)(CAMERA_WIDTH - regBow.getWidth()), (int)(CAMERA_HEIGHT - regBow.getHeight() - 50));
 		arrowProxies = new ArrayList<ArrowProxy>();
 		targetProxies = new ArrayList<TargetProxy>();
 		terrainProxy = new TerrainProxy(CAMERA_WIDTH, CAMERA_HEIGHT);
@@ -141,8 +161,8 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 		final Scene scene = new Scene();
 		//scene.setBackground(new Background(1, 1, 1));
 		// 2 - Add player
-		playerProxy.setSprite(new Sprite(playerProxy.getPositionX(), playerProxy.getPositionY(), this.mBow, getVertexBufferObjectManager()));
-		scene.attachChild(playerProxy.getSprite());
+		//playerProxy.setSprite(new Sprite(playerProxy.getPositionX(), playerProxy.getPositionY(), this.mBow, getVertexBufferObjectManager()));
+		//scene.attachChild(playerProxy.getSprite());
 		
 		//Register touchlistener
 		scene.setOnSceneTouchListener(this);
@@ -178,7 +198,7 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
             	}
             	
             	
-            	
+            	/*
             	//Target Spawn
             	groundTargetTimer += pSecondsElapsed;
             	if(groundTargetTimer >= groundTargetSpawnTime) {
@@ -200,28 +220,43 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
             		TargetProxy gtp = new FlyingTargetProxy(spr);
             		scene.attachChild(gtp.getSprite());
             		targetProxies.add(gtp);
-            	}
+            	}*/
             	
             	
-            	//HUD update
+            	
             	if(isTouching) {
-            		float strength = tmpProxy.getStrength();
+            		//HUD update
+            		float strength = tmpArrowProxy.getStrength();
             		float width = arrowHudProxy.getCurrentWidth(strength);
          	   		arrowHudProxy.getOverlaySprite().setWidth(width);
+         	   		
+         	   		
+         	   		//Arrow at bow
+         	   		arrowTimer += pSecondsElapsed;
+         	   		if(arrowTimer >= arrowUpdateTime) {
+         	   			arrowTimer -= arrowUpdateTime;
+         	   			//TODO
+         	   		}
+         	   		
             	}
             }
         });
 		
 		//Create Hud
-		Sprite hudBgSprite = new Sprite(CAMERA_WIDTH - this.mHudBg.getWidth(), CAMERA_HEIGHT - this.mHudBg.getHeight(), this.mHudBg, getVertexBufferObjectManager());
-		Sprite hudOverlaySprite = new Sprite(CAMERA_WIDTH - this.mHudOverlay.getWidth(), CAMERA_HEIGHT - this.mHudOverlay.getHeight(), this.mHudOverlay, getVertexBufferObjectManager());
+		Sprite hudBgSprite = new Sprite(CAMERA_WIDTH - this.mHudBg.getWidth() - 10, CAMERA_HEIGHT - this.mHudBg.getHeight(), this.mHudBg, getVertexBufferObjectManager());
+		Sprite hudOverlaySprite = new Sprite(CAMERA_WIDTH - this.mHudOverlay.getWidth() - 10, CAMERA_HEIGHT - this.mHudOverlay.getHeight(), this.mHudOverlay, getVertexBufferObjectManager());
 		hudOverlaySprite.setWidth(0);
 		arrowHudProxy = new ArrowHudProxy(hudBgSprite.getWidth());
 		arrowHudProxy.setBgSprite(hudBgSprite);
 		arrowHudProxy.setOverlaySprite(hudOverlaySprite);
 		scene.attachChild(hudBgSprite);
 		scene.attachChild(hudOverlaySprite);
-				
+		
+		
+		//Animated bow
+		AnimatedSprite bowAnimatedSprite = new AnimatedSprite(playerProxy.getPositionX(), playerProxy.getPositionY(), regBow, this.getVertexBufferObjectManager());
+		playerProxy.setAnimatedSprite(bowAnimatedSprite);
+		scene.attachChild(bowAnimatedSprite);
 		
 		return scene;
 	}
@@ -235,28 +270,43 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 
         switch (myEventAction) {
            case MotionEvent.ACTION_DOWN:
-        	   tmpProxy = new ArrowProxy(playerProxy.getPositionX(), playerProxy.getPositionY());
-        	   tmpProxy.setSprite(new Sprite(tmpProxy.getPositionX(), tmpProxy.getPositionY(), this.mArrow, getVertexBufferObjectManager()));
-        	   pScene.attachChild(tmpProxy.getSprite());
-        	   tmpProxy.startArrow();
-        	   tmpProxy.getSprite().setRotation((float)Math.toDegrees(tmpProxy.getTouchRotation(X, Y)));
+        	   tmpArrowProxy = new ArrowProxy((int) (playerProxy.getPositionX() + arrowOffset), (int) (playerProxy.getPositionY() + regBow.getHeight()/2 - mArrow.getHeight()/2));
+        	   tmpArrowProxy.setSprite(new Sprite(tmpArrowProxy.getPositionX(), tmpArrowProxy.getPositionY(), this.mArrow, getVertexBufferObjectManager()));
+        	   pScene.attachChild(tmpArrowProxy.getSprite());
+        	   tmpArrowProxy.startArrow();
+        	   
+        	   float angle = (float)Math.toDegrees(tmpArrowProxy.getTouchRotation(X, Y));
+        	   tmpArrowProxy.getSprite().setRotationCenter(mArrow.getWidth()/2 - arrowOffset, mArrow.getHeight()/2);
+        	   tmpArrowProxy.getSprite().setRotation(angle);
+        	   playerProxy.getAnimatedSprite().setRotation(angle);
+        	   
+        	   playerProxy.getAnimatedSprite().animate(100, false);
         	   
         	   isTouching = true;
         	   
         	   break;
            case MotionEvent.ACTION_MOVE:
         	   
-        	   tmpProxy.getSprite().setRotation((float)Math.toDegrees(tmpProxy.getTouchRotation(X, Y)));
+        	   float alpha = (float)Math.toDegrees(tmpArrowProxy.getTouchRotation(X, Y));
+        	   tmpArrowProxy.getSprite().setRotationCenter(mArrow.getWidth()/2 - arrowOffset, mArrow.getHeight()/2);
+        	   tmpArrowProxy.getSprite().setRotation(alpha);
+        	   playerProxy.getAnimatedSprite().setRotation(alpha);
         	   
         	   break;
            case MotionEvent.ACTION_UP:
         	   
-        	   tmpProxy.shootArrow((int)X, (int)Y);
-        	   arrowProxies.add(tmpProxy);
+        	   tmpArrowProxy.shootArrow((int)X, (int)Y);
+        	   arrowProxies.add(tmpArrowProxy);
         	   
         	   isTouching = false;
         	   
         	   arrowHudProxy.getOverlaySprite().setWidth(0);
+        	   
+        	   playerProxy.getAnimatedSprite().stopAnimation();
+        	   playerProxy.getAnimatedSprite().setCurrentTileIndex(0);
+        	   
+        	   arrowTimer = 0;
+        	   arrowOffset = -55;
         	   
         	   break;
         }
