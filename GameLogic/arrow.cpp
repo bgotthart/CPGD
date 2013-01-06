@@ -1,4 +1,5 @@
 #include "arrow.h"
+#include "config.h"
 #include <math.h>
 #include <sys/time.h>
 
@@ -42,7 +43,8 @@ void Arrow::shootArrow(int mouseX, int mouseY){
 
 	clock_t end = clock();
 	double elapsed = double(end - begin) / CLOCKS_PER_SEC;
-	float strength = (float) elapsed * 30;
+	float strength = (float) elapsed * STRENGTH_INCREASING_FACTOR;
+	strength = (strength > MAX_STRENGTH) ? MAX_STRENGTH : strength;
 
 	this->velocity->x = mouseX - this->position->x;
 	this->velocity->y = mouseY - this->position->y;

@@ -1,8 +1,9 @@
 #include "arrowHud.h"
+#include "config.h"
 
-ArrowHud::ArrowHud(float hudSpritewidth){
+ArrowHud::ArrowHud(float hudSpriteWidth){
 	this->hudSpriteWidth = hudSpriteWidth;
-	this->maxStrength = 1000.0f;
+	this->maxStrength = MAX_STRENGTH;
 }
 
 float ArrowHud::getCurrentWidth(float strength) {

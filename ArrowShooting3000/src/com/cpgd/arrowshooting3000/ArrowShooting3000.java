@@ -201,12 +201,21 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
             		scene.attachChild(gtp.getSprite());
             		targetProxies.add(gtp);
             	}
+            	
+            	
+            	//HUD update
+            	if(isTouching) {
+            		float strength = tmpProxy.getStrength();
+            		float width = arrowHudProxy.getCurrentWidth(strength);
+         	   		arrowHudProxy.getOverlaySprite().setWidth(width);
+            	}
             }
         });
 		
 		//Create Hud
 		Sprite hudBgSprite = new Sprite(CAMERA_WIDTH - this.mHudBg.getWidth(), CAMERA_HEIGHT - this.mHudBg.getHeight(), this.mHudBg, getVertexBufferObjectManager());
 		Sprite hudOverlaySprite = new Sprite(CAMERA_WIDTH - this.mHudOverlay.getWidth(), CAMERA_HEIGHT - this.mHudOverlay.getHeight(), this.mHudOverlay, getVertexBufferObjectManager());
+		hudOverlaySprite.setWidth(0);
 		arrowHudProxy = new ArrowHudProxy(hudBgSprite.getWidth());
 		arrowHudProxy.setBgSprite(hudBgSprite);
 		arrowHudProxy.setOverlaySprite(hudOverlaySprite);
@@ -226,23 +235,19 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 
         switch (myEventAction) {
            case MotionEvent.ACTION_DOWN:
-        	   if (!isTouching) {
-        		   tmpProxy = new ArrowProxy(playerProxy.getPositionX(), playerProxy.getPositionY());
-        		   tmpProxy.setSprite(new Sprite(tmpProxy.getPositionX(), tmpProxy.getPositionY(), this.mArrow, getVertexBufferObjectManager()));
-            	   pScene.attachChild(tmpProxy.getSprite());
-            	   tmpProxy.startArrow();
-        	   }
+        	   tmpProxy = new ArrowProxy(playerProxy.getPositionX(), playerProxy.getPositionY());
+        	   tmpProxy.setSprite(new Sprite(tmpProxy.getPositionX(), tmpProxy.getPositionY(), this.mArrow, getVertexBufferObjectManager()));
+        	   pScene.attachChild(tmpProxy.getSprite());
+        	   tmpProxy.startArrow();
+        	   tmpProxy.getSprite().setRotation((float)Math.toDegrees(tmpProxy.getTouchRotation(X, Y)));
+        	   
         	   isTouching = true;
-        	   
-        	   
         	   
         	   break;
            case MotionEvent.ACTION_MOVE:
-        	   float strength = tmpProxy.getStrength();
-        	   float width = arrowHudProxy.getCurrentWidth(strength);
-        	   arrowHudProxy.getOverlaySprite().setWidth(width);
         	   
         	   tmpProxy.getSprite().setRotation((float)Math.toDegrees(tmpProxy.getTouchRotation(X, Y)));
+        	   
         	   break;
            case MotionEvent.ACTION_UP:
         	   

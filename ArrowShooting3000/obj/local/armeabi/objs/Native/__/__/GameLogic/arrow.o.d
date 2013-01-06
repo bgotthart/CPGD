@@ -22,6 +22,7 @@ obj/local/armeabi/objs/Native/__/__/GameLogic/arrow.o: \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/linux/time.h \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/asm/siginfo.h \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/asm-generic/siginfo.h \
+ jni/../../GameLogic/config.h \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/math.h \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/limits.h \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/sys/limits.h \
@@ -75,6 +76,8 @@ jni/../../GameLogic/vector.h:
 /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/asm/siginfo.h:
 
 /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/asm-generic/siginfo.h:
+
+jni/../../GameLogic/config.h:
 
 /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/math.h:
 

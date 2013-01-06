@@ -9,6 +9,7 @@ class ArrowHud {
 	public:
 		ArrowHud(float);
 		float getCurrentWidth(float);
+		float getMaxStrength();
 };
 
 #endif
