@@ -31,9 +31,9 @@ obj/local/armeabi/objs/Native/Native.o: jni/Native.cpp \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/linux/time.h \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/asm/siginfo.h \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/asm-generic/siginfo.h \
- jni/../../GameLogic/target.h jni/../../GameLogic/flyingTarget.h \
- jni/../../GameLogic/target.h jni/../../GameLogic/terrain.h \
- jni/../../GameLogic/arrowHud.h
+ jni/../../GameLogic/target.h jni/../../GameLogic/score.h \
+ jni/../../GameLogic/flyingTarget.h jni/../../GameLogic/target.h \
+ jni/../../GameLogic/terrain.h jni/../../GameLogic/arrowHud.h
 
 /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/string.h:
 
@@ -102,6 +102,8 @@ jni/../../GameLogic/vector.h:
 /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/asm-generic/siginfo.h:
 
 jni/../../GameLogic/target.h:
+
+jni/../../GameLogic/score.h:
 
 jni/../../GameLogic/flyingTarget.h:
 

@@ -79,6 +79,22 @@ JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_shootArrow
 JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_update
   (JNIEnv *, jobject, jlong);
 
+/*
+ * Class:     com_cpgd_arrowshooting3000_ArrowProxy
+ * Method:    setPositionX
+ * Signature: (FJ)J
+ */
+JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_setPositionX
+  (JNIEnv *, jobject, jfloat, jlong);
+
+/*
+ * Class:     com_cpgd_arrowshooting3000_ArrowProxy
+ * Method:    setPositionY
+ * Signature: (FJ)J
+ */
+JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_setPositionY
+  (JNIEnv *, jobject, jfloat, jlong);
+
 #ifdef __cplusplus
 }
 #endif

@@ -12,6 +12,7 @@ LOCAL_SRC_FILES += ../../GameLogic/target.cpp
 LOCAL_SRC_FILES += ../../GameLogic/flyingTarget.cpp
 LOCAL_SRC_FILES += ../../GameLogic/terrain.cpp
 LOCAL_SRC_FILES += ../../GameLogic/arrowHud.cpp
+LOCAL_SRC_FILES += ../../GameLogic/score.cpp
 
 
 include $(BUILD_SHARED_LIBRARY)

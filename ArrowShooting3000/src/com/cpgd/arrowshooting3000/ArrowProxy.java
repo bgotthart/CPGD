@@ -17,6 +17,8 @@ public class ArrowProxy {
 	private native long startArrow(long l);
 	private native long shootArrow(int mouseX, int mouseY, long objref);
 	private native long update(long objref);
+	private native long setPositionX(float x, long objref);
+	private native long setPositionY(float y, long objref);
 	
 	public ArrowProxy(int x, int y) {
 		objref = arrowProxy(x, y);
@@ -63,6 +65,17 @@ public class ArrowProxy {
 	
 	public Sprite getSprite() {
 		return sprite;
+	}
+	
+	public void setPositionX(float x) {
+		objref = setPositionX(x, objref);
+		sprite.setPosition(x, getPositionY());
+
+	}
+	
+	public void setPositionY(float y) {
+		objref = setPositionY(y, objref);
+		sprite.setPosition(getPositionX(), y);
 	}
 	
 }
