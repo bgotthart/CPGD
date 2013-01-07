@@ -4,6 +4,7 @@ Target::Target(int x, int y, int width, int height){
 	this->position = new Vector(x, y);
 	this->width = width;
 	this->height = height;
+	this->score = Score::getInstance();
 }
 
 int Target::getPositionX(){
@@ -17,6 +18,7 @@ int Target::getPositionY(){
 int Target::colidesWith(int arrowX, int arrowY){
 	if(this->position->x < arrowX && arrowX < this->position->x + this->width &&
 		 this->position->y < arrowY && arrowY < this->position->y + this->height) {
+        score->addScore(10);
 		return 1;
 	}
 	return 0;

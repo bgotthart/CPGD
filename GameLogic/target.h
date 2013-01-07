@@ -2,6 +2,7 @@
 #define TARGET_H
 
 #include "vector.h"
+#include "score.h"
 
 class Target{
 private:
@@ -10,6 +11,7 @@ private:
 	
 protected:
 	Vector* position;
+	Score* score;
 	
 public:
 	Target(int, int, int, int);

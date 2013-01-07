@@ -11,3 +11,12 @@ void FlyingTarget::update()
 	Target::update();
 	this->position->x += 1;
 }
+
+int FlyingTarget::colidesWith(int arrowX, int arrowY){
+    
+        if(Target::colidesWith(arrowX, arrowY) == 1){
+               score->addScore(10);
+               return 1;
+        }
+        return 0;
+}

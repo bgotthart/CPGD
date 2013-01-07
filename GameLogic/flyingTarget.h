@@ -10,6 +10,7 @@ class FlyingTarget : public Target {
 	public:
 		FlyingTarget(int, int, int, int);
 		void update();
+		int colidesWith(int, int);
 	
 };
 
