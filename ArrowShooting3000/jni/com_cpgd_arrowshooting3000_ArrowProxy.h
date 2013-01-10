@@ -77,7 +77,7 @@ JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_shootArrow
  * Signature: (J)J
  */
 JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_update
-  (JNIEnv *, jobject, jlong);
+  (JNIEnv *, jobject, jfloat, jlong);
 
 /*
  * Class:     com_cpgd_arrowshooting3000_ArrowProxy

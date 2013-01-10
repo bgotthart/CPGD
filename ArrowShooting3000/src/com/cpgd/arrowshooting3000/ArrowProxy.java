@@ -16,7 +16,7 @@ public class ArrowProxy {
 	private native float getTouchRotation(float mouseX, float mouseY, long objref);
 	private native long startArrow(long l);
 	private native long shootArrow(int mouseX, int mouseY, long objref);
-	private native long update(long objref);
+	private native long update(float elapsedMSec, long objref);
 	private native long setPositionX(float x, long objref);
 	private native long setPositionY(float y, long objref);
 	
@@ -32,8 +32,8 @@ public class ArrowProxy {
 		objref = shootArrow(mouseX, mouseY, objref);
 	}
 	
-	public void update() {
-		objref = update(objref);
+	public void update(float elapsedMSec) {
+		objref = update(elapsedMSec, objref);
 		
 		sprite.setPosition(this.getPositionX(), this.getPositionY());
 		sprite.setRotation((float)Math.toDegrees(this.getRotation()));

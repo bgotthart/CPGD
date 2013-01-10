@@ -21,7 +21,7 @@ class Arrow{
 		void setPositionY(float);
 		void startArrow();
 		void shootArrow(int, int);
-	    void update();
+	    void update(float elapsedMSec);
 	    float getRotation();
 	    float getTouchRotation(float, float);
 };

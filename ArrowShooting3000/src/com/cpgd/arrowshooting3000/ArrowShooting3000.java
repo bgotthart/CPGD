@@ -127,7 +127,7 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
             	//Arrow update
             	for(int j = 0; j < arrowProxies.size(); j++) {
             		ArrowProxy ap = arrowProxies.get(j);
-            		ap.update();
+            		ap.update(pSecondsElapsed * 1000.0f);
             		
             		//Collision detection
                 	for(int i = 0; i < targetProxies.size(); i++) {
@@ -244,6 +244,7 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
            case MotionEvent.ACTION_UP:
         	   
         	   tmpArrowProxy.shootArrow((int)X, (int)Y);
+        	   Debug.e("" + tmpArrowProxy.getStrength());
         	   arrowProxies.add(tmpArrowProxy);
         	   
         	   isTouching = false;

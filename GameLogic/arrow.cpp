@@ -53,9 +53,11 @@ void Arrow::shootArrow(int mouseX, int mouseY){
 	this->velocity->multiply(strength);
 }
 
-void Arrow::update(){
+void Arrow::update(float elapsedMSec){
 	this->position->add(velocity);
-	this->velocity->y += this->gravity;
+	this->velocity->y += (this->gravity * (elapsedMSec/10.0f));
+	//this->velocity->x *= (elapsedMSec/17.0f);
+	//this->velocity->y *= (elapsedMSec/17.0f);
 
 	float cosAlpha = (-this->velocity->x / this->velocity->getLength());
 	this->rotation = acos(cosAlpha);

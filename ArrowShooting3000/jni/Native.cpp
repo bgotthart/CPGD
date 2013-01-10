@@ -7,6 +7,7 @@
 #include "com_cpgd_arrowshooting3000_FlyingTargetProxy.h"
 #include "com_cpgd_arrowshooting3000_TerrainProxy.h"
 #include "com_cpgd_arrowshooting3000_ArrowHudProxy.h"
+#include "com_cpgd_arrowshooting3000_ScoreProxy.h"
 
 #include "../../GameLogic/player.h"
 #include "../../GameLogic/arrow.h"
@@ -14,6 +15,7 @@
 #include "../../GameLogic/flyingTarget.h"
 #include "../../GameLogic/terrain.h"
 #include "../../GameLogic/arrowHud.h"
+#include "../../GameLogic/score.h"
 
 
 // ##################### Player ###############################
@@ -99,10 +101,10 @@ JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_shootArrow
 }
 
 JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_update
-  (JNIEnv * env, jobject o, jlong obj)
+  (JNIEnv * env, jobject o, jfloat elapsedMSec, jlong obj)
 {
 	Arrow* arrow = (Arrow*) obj;
-	arrow->update();
+	arrow->update(elapsedMSec);
 	return (long) arrow;
 }
 
@@ -231,4 +233,21 @@ JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_ArrowHudProxy_getCurren
 {
 	ArrowHud* arrowHud = (ArrowHud*) obj;
 	return arrowHud->getCurrentWidth(strength);
+}
+
+
+
+// ##################### Score ###############################
+JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ScoreProxy_score
+  (JNIEnv * env, jobject o)
+{
+	Score* score = Score::getInstance();
+	return (long) score;
+}
+
+JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_ScoreProxy_getScore
+  (JNIEnv * env, jobject o, jlong obj)
+{
+	Score* score = (Score*) obj;
+	return score->getScore();
 }

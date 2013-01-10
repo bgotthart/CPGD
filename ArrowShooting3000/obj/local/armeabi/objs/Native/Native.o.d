@@ -10,8 +10,8 @@ obj/local/armeabi/objs/Native/Native.o: jni/Native.cpp \
  jni/com_cpgd_arrowshooting3000_FlyingTargetProxy.h \
  jni/com_cpgd_arrowshooting3000_TerrainProxy.h \
  jni/com_cpgd_arrowshooting3000_ArrowHudProxy.h \
- jni/../../GameLogic/player.h jni/../../GameLogic/arrow.h \
- jni/../../GameLogic/vector.h \
+ jni/com_cpgd_arrowshooting3000_ScoreProxy.h jni/../../GameLogic/player.h \
+ jni/../../GameLogic/arrow.h jni/../../GameLogic/vector.h \
  /cygdrive/c/android-ndk-r8c/sources/cxx-stl/system/include/ctime \
  /cygdrive/c/android-ndk-r8c/sources/cxx-stl/system/include/cstddef \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/time.h \
@@ -33,7 +33,8 @@ obj/local/armeabi/objs/Native/Native.o: jni/Native.cpp \
  /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/asm-generic/siginfo.h \
  jni/../../GameLogic/target.h jni/../../GameLogic/score.h \
  jni/../../GameLogic/flyingTarget.h jni/../../GameLogic/target.h \
- jni/../../GameLogic/terrain.h jni/../../GameLogic/arrowHud.h
+ jni/../../GameLogic/terrain.h jni/../../GameLogic/arrowHud.h \
+ jni/../../GameLogic/score.h
 
 /cygdrive/c/android-ndk-r8c/platforms/android-14/arch-arm/usr/include/string.h:
 
@@ -56,6 +57,8 @@ jni/com_cpgd_arrowshooting3000_FlyingTargetProxy.h:
 jni/com_cpgd_arrowshooting3000_TerrainProxy.h:
 
 jni/com_cpgd_arrowshooting3000_ArrowHudProxy.h:
+
+jni/com_cpgd_arrowshooting3000_ScoreProxy.h:
 
 jni/../../GameLogic/player.h:
 
@@ -112,3 +115,5 @@ jni/../../GameLogic/target.h:
 jni/../../GameLogic/terrain.h:
 
 jni/../../GameLogic/arrowHud.h:
+
+jni/../../GameLogic/score.h:
