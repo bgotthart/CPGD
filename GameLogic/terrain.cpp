@@ -44,3 +44,7 @@ int Terrain::CollidesWith(int x, int y)
 {
 	return 0;
 }
+int Terrain::GetRandomValue(){
+	
+	return (rand() % 2);
+}

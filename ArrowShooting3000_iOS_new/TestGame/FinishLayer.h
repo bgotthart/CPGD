@@ -8,9 +8,9 @@
 
 #import "cocos2d.h"
 
-@interface GameOverLayer : CCLayerColor
+@interface FinishLayer : CCLayerColor
 
-+(CCScene *) sceneWithWon:(BOOL)won;
-- (id)initWithWon:(BOOL)won;
++(CCScene *) sceneWithFinish;
+- (id)initFinishScreen;
 
 @end

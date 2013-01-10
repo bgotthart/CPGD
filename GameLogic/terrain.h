@@ -17,6 +17,7 @@ public:
 	Vector* GetRandomTargetPosition(float, float);
 	Vector* GetRandomFlyingStartPosition(float, float);
 	int CollidesWith(int, int);
+	int GetRandomValue();
 };
 
 #endif
