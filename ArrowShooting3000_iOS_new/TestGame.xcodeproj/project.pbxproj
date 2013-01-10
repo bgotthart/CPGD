@@ -178,19 +178,10 @@
 		0D082B8A169B55EB00AD3993 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D082B89169B55EB00AD3993 /* AppDelegate.mm */; };
 		0D082B8D169B55EC00AD3993 /* ArrowShooting3000.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D082B8C169B55EC00AD3993 /* ArrowShooting3000.mm */; };
 		0D082B90169B55EC00AD3993 /* IntroLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D082B8F169B55EC00AD3993 /* IntroLayer.mm */; };
-		0D082B93169B55EC00AD3993 /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D082B92169B55EC00AD3993 /* GLES-Render.mm */; };
 		0D082B98169B55EC00AD3993 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D082B97169B55EC00AD3993 /* blocks.png */; };
 		0D082BA0169B563A00AD3993 /* ArrowsObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D082B9F169B563A00AD3993 /* ArrowsObjC.mm */; };
 		0D082BA3169B564200AD3993 /* FlyingTargetObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D082BA2169B564200AD3993 /* FlyingTargetObjC.mm */; };
 		0D082BA6169B564900AD3993 /* TargetObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D082BA5169B564900AD3993 /* TargetObjC.mm */; };
-		0D082BB8169B565500AD3993 /* arrow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D082BA7169B565500AD3993 /* arrow.cpp */; };
-		0D082BB9169B565500AD3993 /* arrowHud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D082BA9169B565500AD3993 /* arrowHud.cpp */; };
-		0D082BBA169B565500AD3993 /* flyingTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D082BAC169B565500AD3993 /* flyingTarget.cpp */; };
-		0D082BBB169B565500AD3993 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D082BAE169B565500AD3993 /* player.cpp */; };
-		0D082BBC169B565500AD3993 /* score.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D082BB0169B565500AD3993 /* score.cpp */; };
-		0D082BBD169B565500AD3993 /* target.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D082BB2169B565500AD3993 /* target.cpp */; };
-		0D082BBE169B565500AD3993 /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D082BB4169B565500AD3993 /* terrain.cpp */; };
-		0D082BBF169B565500AD3993 /* vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D082BB6169B565500AD3993 /* vector.cpp */; };
 		0D082BCC169B57C900AD3993 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D082BC4169B57C900AD3993 /* arrow.png */; };
 		0D082BCD169B57C900AD3993 /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D082BC5169B57C900AD3993 /* ground.png */; };
 		0D082BCE169B57C900AD3993 /* only_bow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D082BC6169B57C900AD3993 /* only_bow.png */; };
@@ -203,6 +194,16 @@
 		0D082BD7169B57D100AD3993 /* bow_animation_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D082BD5169B57D100AD3993 /* bow_animation_default.png */; };
 		0D082BDE169B5F0D00AD3993 /* AnimatedBowObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D082BDD169B5F0D00AD3993 /* AnimatedBowObjC.m */; };
 		0D65BFE9169F678C00BFFF09 /* FinishLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D65BFE8169F678C00BFFF09 /* FinishLayer.mm */; };
+		0D65BFEC169F796800BFFF09 /* target_with_wings_animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D65BFEA169F796800BFFF09 /* target_with_wings_animation.plist */; };
+		0D65BFED169F796800BFFF09 /* target_with_wings_animation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D65BFEB169F796800BFFF09 /* target_with_wings_animation.png */; };
+		0DA21B05169F7D1D00DFF423 /* arrow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DA21AF4169F7D1D00DFF423 /* arrow.cpp */; };
+		0DA21B06169F7D1D00DFF423 /* arrowHud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DA21AF6169F7D1D00DFF423 /* arrowHud.cpp */; };
+		0DA21B07169F7D1D00DFF423 /* flyingTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DA21AF9169F7D1D00DFF423 /* flyingTarget.cpp */; };
+		0DA21B08169F7D1D00DFF423 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DA21AFB169F7D1D00DFF423 /* player.cpp */; };
+		0DA21B09169F7D1D00DFF423 /* score.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DA21AFD169F7D1D00DFF423 /* score.cpp */; };
+		0DA21B0A169F7D1D00DFF423 /* target.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DA21AFF169F7D1D00DFF423 /* target.cpp */; };
+		0DA21B0B169F7D1D00DFF423 /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DA21B01169F7D1D00DFF423 /* terrain.cpp */; };
+		0DA21B0C169F7D1D00DFF423 /* vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DA21B03169F7D1D00DFF423 /* vector.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -562,8 +563,6 @@
 		0D082B8C169B55EC00AD3993 /* ArrowShooting3000.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ArrowShooting3000.mm; sourceTree = "<group>"; };
 		0D082B8E169B55EC00AD3993 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		0D082B8F169B55EC00AD3993 /* IntroLayer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroLayer.mm; sourceTree = "<group>"; };
-		0D082B91169B55EC00AD3993 /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
-		0D082B92169B55EC00AD3993 /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		0D082B97169B55EC00AD3993 /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
 		0D082B9E169B563A00AD3993 /* ArrowsObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowsObjC.h; sourceTree = "<group>"; };
 		0D082B9F169B563A00AD3993 /* ArrowsObjC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ArrowsObjC.mm; sourceTree = "<group>"; };
@@ -571,23 +570,6 @@
 		0D082BA2169B564200AD3993 /* FlyingTargetObjC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FlyingTargetObjC.mm; sourceTree = "<group>"; };
 		0D082BA4169B564900AD3993 /* TargetObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetObjC.h; sourceTree = "<group>"; };
 		0D082BA5169B564900AD3993 /* TargetObjC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TargetObjC.mm; sourceTree = "<group>"; };
-		0D082BA7169B565500AD3993 /* arrow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arrow.cpp; sourceTree = "<group>"; };
-		0D082BA8169B565500AD3993 /* arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arrow.h; sourceTree = "<group>"; };
-		0D082BA9169B565500AD3993 /* arrowHud.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arrowHud.cpp; sourceTree = "<group>"; };
-		0D082BAA169B565500AD3993 /* arrowHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arrowHud.h; sourceTree = "<group>"; };
-		0D082BAB169B565500AD3993 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
-		0D082BAC169B565500AD3993 /* flyingTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = flyingTarget.cpp; sourceTree = "<group>"; };
-		0D082BAD169B565500AD3993 /* flyingTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flyingTarget.h; sourceTree = "<group>"; };
-		0D082BAE169B565500AD3993 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
-		0D082BAF169B565500AD3993 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
-		0D082BB0169B565500AD3993 /* score.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = score.cpp; sourceTree = "<group>"; };
-		0D082BB1169B565500AD3993 /* score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = score.h; sourceTree = "<group>"; };
-		0D082BB2169B565500AD3993 /* target.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = target.cpp; sourceTree = "<group>"; };
-		0D082BB3169B565500AD3993 /* target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = target.h; sourceTree = "<group>"; };
-		0D082BB4169B565500AD3993 /* terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = terrain.cpp; sourceTree = "<group>"; };
-		0D082BB5169B565500AD3993 /* terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = terrain.h; sourceTree = "<group>"; };
-		0D082BB6169B565500AD3993 /* vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vector.cpp; sourceTree = "<group>"; };
-		0D082BB7169B565500AD3993 /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
 		0D082BC4169B57C900AD3993 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		0D082BC5169B57C900AD3993 /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground.png; sourceTree = "<group>"; };
 		0D082BC6169B57C900AD3993 /* only_bow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = only_bow.png; sourceTree = "<group>"; };
@@ -602,6 +584,25 @@
 		0D082BDD169B5F0D00AD3993 /* AnimatedBowObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedBowObjC.m; sourceTree = "<group>"; };
 		0D65BFE7169F678C00BFFF09 /* FinishLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishLayer.h; sourceTree = "<group>"; };
 		0D65BFE8169F678C00BFFF09 /* FinishLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FinishLayer.mm; sourceTree = "<group>"; };
+		0D65BFEA169F796800BFFF09 /* target_with_wings_animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = target_with_wings_animation.plist; sourceTree = "<group>"; };
+		0D65BFEB169F796800BFFF09 /* target_with_wings_animation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_with_wings_animation.png; sourceTree = "<group>"; };
+		0DA21AF4169F7D1D00DFF423 /* arrow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = arrow.cpp; path = ../../GameLogic/arrow.cpp; sourceTree = "<group>"; };
+		0DA21AF5169F7D1D00DFF423 /* arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = arrow.h; path = ../../GameLogic/arrow.h; sourceTree = "<group>"; };
+		0DA21AF6169F7D1D00DFF423 /* arrowHud.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = arrowHud.cpp; path = ../../GameLogic/arrowHud.cpp; sourceTree = "<group>"; };
+		0DA21AF7169F7D1D00DFF423 /* arrowHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = arrowHud.h; path = ../../GameLogic/arrowHud.h; sourceTree = "<group>"; };
+		0DA21AF8169F7D1D00DFF423 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = ../../GameLogic/config.h; sourceTree = "<group>"; };
+		0DA21AF9169F7D1D00DFF423 /* flyingTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = flyingTarget.cpp; path = ../../GameLogic/flyingTarget.cpp; sourceTree = "<group>"; };
+		0DA21AFA169F7D1D00DFF423 /* flyingTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = flyingTarget.h; path = ../../GameLogic/flyingTarget.h; sourceTree = "<group>"; };
+		0DA21AFB169F7D1D00DFF423 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = ../../GameLogic/player.cpp; sourceTree = "<group>"; };
+		0DA21AFC169F7D1D00DFF423 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = ../../GameLogic/player.h; sourceTree = "<group>"; };
+		0DA21AFD169F7D1D00DFF423 /* score.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = score.cpp; path = ../../GameLogic/score.cpp; sourceTree = "<group>"; };
+		0DA21AFE169F7D1D00DFF423 /* score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = score.h; path = ../../GameLogic/score.h; sourceTree = "<group>"; };
+		0DA21AFF169F7D1D00DFF423 /* target.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = target.cpp; path = ../../GameLogic/target.cpp; sourceTree = "<group>"; };
+		0DA21B00169F7D1D00DFF423 /* target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = target.h; path = ../../GameLogic/target.h; sourceTree = "<group>"; };
+		0DA21B01169F7D1D00DFF423 /* terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = terrain.cpp; path = ../../GameLogic/terrain.cpp; sourceTree = "<group>"; };
+		0DA21B02169F7D1D00DFF423 /* terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = terrain.h; path = ../../GameLogic/terrain.h; sourceTree = "<group>"; };
+		0DA21B03169F7D1D00DFF423 /* vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vector.cpp; path = ../../GameLogic/vector.cpp; sourceTree = "<group>"; };
+		0DA21B04169F7D1D00DFF423 /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vector.h; path = ../../GameLogic/vector.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -666,8 +667,6 @@
 				0D082B8C169B55EC00AD3993 /* ArrowShooting3000.mm */,
 				0D082B8E169B55EC00AD3993 /* IntroLayer.h */,
 				0D082B8F169B55EC00AD3993 /* IntroLayer.mm */,
-				0D082B91169B55EC00AD3993 /* GLES-Render.h */,
-				0D082B92169B55EC00AD3993 /* GLES-Render.mm */,
 				0D65BFE7169F678C00BFFF09 /* FinishLayer.h */,
 				0D65BFE8169F678C00BFFF09 /* FinishLayer.mm */,
 				0D08297E169B55E200AD3993 /* Resources */,
@@ -680,6 +679,8 @@
 		0D08297E169B55E200AD3993 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0D65BFEA169F796800BFFF09 /* target_with_wings_animation.plist */,
+				0D65BFEB169F796800BFFF09 /* target_with_wings_animation.png */,
 				0D082BD4169B57D100AD3993 /* bow_animation_default.plist */,
 				0D082BD5169B57D100AD3993 /* bow_animation_default.png */,
 				0D082BC4169B57C900AD3993 /* arrow.png */,
@@ -711,23 +712,23 @@
 		0D082998169B55E300AD3993 /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				0D082BA7169B565500AD3993 /* arrow.cpp */,
-				0D082BA8169B565500AD3993 /* arrow.h */,
-				0D082BA9169B565500AD3993 /* arrowHud.cpp */,
-				0D082BAA169B565500AD3993 /* arrowHud.h */,
-				0D082BAB169B565500AD3993 /* config.h */,
-				0D082BAC169B565500AD3993 /* flyingTarget.cpp */,
-				0D082BAD169B565500AD3993 /* flyingTarget.h */,
-				0D082BAE169B565500AD3993 /* player.cpp */,
-				0D082BAF169B565500AD3993 /* player.h */,
-				0D082BB0169B565500AD3993 /* score.cpp */,
-				0D082BB1169B565500AD3993 /* score.h */,
-				0D082BB2169B565500AD3993 /* target.cpp */,
-				0D082BB3169B565500AD3993 /* target.h */,
-				0D082BB4169B565500AD3993 /* terrain.cpp */,
-				0D082BB5169B565500AD3993 /* terrain.h */,
-				0D082BB6169B565500AD3993 /* vector.cpp */,
-				0D082BB7169B565500AD3993 /* vector.h */,
+				0DA21AF4169F7D1D00DFF423 /* arrow.cpp */,
+				0DA21AF5169F7D1D00DFF423 /* arrow.h */,
+				0DA21AF6169F7D1D00DFF423 /* arrowHud.cpp */,
+				0DA21AF7169F7D1D00DFF423 /* arrowHud.h */,
+				0DA21AF8169F7D1D00DFF423 /* config.h */,
+				0DA21AF9169F7D1D00DFF423 /* flyingTarget.cpp */,
+				0DA21AFA169F7D1D00DFF423 /* flyingTarget.h */,
+				0DA21AFB169F7D1D00DFF423 /* player.cpp */,
+				0DA21AFC169F7D1D00DFF423 /* player.h */,
+				0DA21AFD169F7D1D00DFF423 /* score.cpp */,
+				0DA21AFE169F7D1D00DFF423 /* score.h */,
+				0DA21AFF169F7D1D00DFF423 /* target.cpp */,
+				0DA21B00169F7D1D00DFF423 /* target.h */,
+				0DA21B01169F7D1D00DFF423 /* terrain.cpp */,
+				0DA21B02169F7D1D00DFF423 /* terrain.h */,
+				0DA21B03169F7D1D00DFF423 /* vector.cpp */,
+				0DA21B04169F7D1D00DFF423 /* vector.h */,
 				0D082B9E169B563A00AD3993 /* ArrowsObjC.h */,
 				0D082B9F169B563A00AD3993 /* ArrowsObjC.mm */,
 				0D082BA1169B564200AD3993 /* FlyingTargetObjC.h */,
@@ -1308,6 +1309,8 @@
 				0D082BD3169B57C900AD3993 /* taut_bow.png in Resources */,
 				0D082BD6169B57D100AD3993 /* bow_animation_default.plist in Resources */,
 				0D082BD7169B57D100AD3993 /* bow_animation_default.png in Resources */,
+				0D65BFEC169F796800BFFF09 /* target_with_wings_animation.plist in Resources */,
+				0D65BFED169F796800BFFF09 /* target_with_wings_animation.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1467,20 +1470,19 @@
 				0D082B8A169B55EB00AD3993 /* AppDelegate.mm in Sources */,
 				0D082B8D169B55EC00AD3993 /* ArrowShooting3000.mm in Sources */,
 				0D082B90169B55EC00AD3993 /* IntroLayer.mm in Sources */,
-				0D082B93169B55EC00AD3993 /* GLES-Render.mm in Sources */,
 				0D082BA0169B563A00AD3993 /* ArrowsObjC.mm in Sources */,
 				0D082BA3169B564200AD3993 /* FlyingTargetObjC.mm in Sources */,
 				0D082BA6169B564900AD3993 /* TargetObjC.mm in Sources */,
-				0D082BB8169B565500AD3993 /* arrow.cpp in Sources */,
-				0D082BB9169B565500AD3993 /* arrowHud.cpp in Sources */,
-				0D082BBA169B565500AD3993 /* flyingTarget.cpp in Sources */,
-				0D082BBB169B565500AD3993 /* player.cpp in Sources */,
-				0D082BBC169B565500AD3993 /* score.cpp in Sources */,
-				0D082BBD169B565500AD3993 /* target.cpp in Sources */,
-				0D082BBE169B565500AD3993 /* terrain.cpp in Sources */,
-				0D082BBF169B565500AD3993 /* vector.cpp in Sources */,
 				0D082BDE169B5F0D00AD3993 /* AnimatedBowObjC.m in Sources */,
 				0D65BFE9169F678C00BFFF09 /* FinishLayer.mm in Sources */,
+				0DA21B05169F7D1D00DFF423 /* arrow.cpp in Sources */,
+				0DA21B06169F7D1D00DFF423 /* arrowHud.cpp in Sources */,
+				0DA21B07169F7D1D00DFF423 /* flyingTarget.cpp in Sources */,
+				0DA21B08169F7D1D00DFF423 /* player.cpp in Sources */,
+				0DA21B09169F7D1D00DFF423 /* score.cpp in Sources */,
+				0DA21B0A169F7D1D00DFF423 /* target.cpp in Sources */,
+				0DA21B0B169F7D1D00DFF423 /* terrain.cpp in Sources */,
+				0DA21B0C169F7D1D00DFF423 /* vector.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

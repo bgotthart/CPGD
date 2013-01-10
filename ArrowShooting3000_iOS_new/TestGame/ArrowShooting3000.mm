@@ -109,6 +109,61 @@ CCAnimation *walkAnim;
 	[spriteSheet addChild:_bow];
 }
 
+-(void) addFlyingAnimation{
+	
+	/*
+	 CCSprite *targetSprite = [CCSprite spriteWithFile:@"target_with_wings.png"];
+	 
+	 Vector *vector = self.terrain->GetRandomFlyingStartPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
+	 
+	 FlyingTarget *target = new FlyingTarget(0, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
+	 targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
+	 
+	 FlyingTargetObjC *targetObjC = [FlyingTargetObjC alloc];
+	 [targetObjC setTargetData:target :targetSprite];
+	 
+	 
+	 // Determine speed of the monster
+	 int minDuration = 7.0; //2.0;
+	 int maxDuration = 10.0; //4.0;
+	 int rangeDuration = maxDuration - minDuration;
+	 int actualDuration = (arc4random() % rangeDuration) + minDuration;
+	 
+	 [self addChild:targetSprite];
+	 
+	 [targetsArray addObject:targetObjC];
+	 */
+	
+	
+	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"target_with_wings_animation.plist"];
+	
+	CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"target_with_wings_animation.png"];
+	[self addChild:spriteSheet];
+	
+	NSMutableArray *flyingAnimFrames = [NSMutableArray array];
+	for(int i = 1; i <= 6; ++i) {
+		[flyingAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"target_%d.png", i]]];
+	}
+	walkAnim = [CCAnimation animationWithFrames:flyingAnimFrames delay:0.05f];
+	
+	walkAnim.loops = 1;
+	
+	
+	CCSprite *targetSprite = [CCSprite spriteWithFile:@"target_1.png"];
+	Vector *vector = self.terrain->GetRandomFlyingStartPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
+	
+	FlyingTarget *target = new FlyingTarget(0, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
+	targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
+	
+	FlyingTargetObjC *targetObjC = [FlyingTargetObjC alloc];
+	[targetObjC setTargetData:target :targetSprite];
+	[targetsArray addObject:targetObjC];
+
+	
+	CCAnimation *flyingAction = [CCAnimate actionWithAnimation:walkAnim restoreOriginalFrame:NO];
+	
+	[spriteSheet addChild:targetSprite];
+}
 -(void)addElements{
 	
 	self.greenSprite = [[CCSprite alloc] initWithFile:@"strength_level_green.png"];
@@ -133,6 +188,8 @@ CCAnimation *walkAnim;
 			[self addGroundTarget];
 		else
 			[self addFlyingTarget];
+//			[self addFlyingAnimation];
+			//[self addFlyingTarget];
 	}
 	
 	
@@ -199,8 +256,11 @@ CCAnimation *walkAnim;
 	
 	for(int i = 0; i<countHitTarget; i++){
 		
-		//[self addFlyingTarget];
-		[self addFlyingTarget];
+		int random = terrain->GetRandomValue();
+		if(random == 0)
+			[self addGroundTarget];
+		else
+			[self addFlyingTarget];
 	}
 
 if(has_touched){
