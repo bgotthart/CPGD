@@ -7,12 +7,14 @@ class Terrain{
 public:
 	int width;
 	int height;
+	int playerX;
+	int playerY;
 
 private:
 	int alphamap[0];
 	
 public:
-	Terrain(int, int);
+	Terrain(int, int, int, int);
 	void GenerateTerrain();
 	Vector* GetRandomTargetPosition(float, float);
 	Vector* GetRandomFlyingStartPosition(float, float);
