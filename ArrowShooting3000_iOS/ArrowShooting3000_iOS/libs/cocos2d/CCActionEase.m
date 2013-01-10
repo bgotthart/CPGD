@@ -9,10 +9,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -52,10 +52,10 @@
 -(id) initWithAction: (CCActionInterval*) action
 {
 	NSAssert( action!=nil, @"Ease: arguments must be non-nil");
-
-	if( (self=[super initWithDuration: action.duration]) )
+  
+	if( (self=[super initWithDuration: action.duration]) ) {
 		other = [action retain];
-
+	}
 	return self;
 }
 
@@ -110,9 +110,9 @@
 
 -(id) initWithAction: (CCActionInterval*) action rate:(float)aRate
 {
-	if( (self=[super initWithAction:action ]) )
+	if( (self=[super initWithAction:action ]) ) {
 		self.rate = aRate;
-
+	}
 	return self;
 }
 
@@ -158,14 +158,16 @@
 //
 @implementation CCEaseInOut
 -(void) update: (ccTime) t
-{
+{	
+	int sign =1;
+	int r = (int) rate;
+	if (r % 2 == 0)
+		sign = -1;
 	t *= 2;
-	if (t < 1) {
+	if (t < 1) 
 		[other update: 0.5f * powf (t, rate)];
-    }
-	else {
-		[other update: 1.0f - 0.5f * powf(2-t, rate)];
-    }
+	else
+		[other update: sign*0.5f * (powf (t-2, rate) + sign*2)];	
 }
 
 // InOut and OutIn are symmetrical
@@ -187,7 +189,6 @@
 {
 	[other update: (t==0) ? 0 : powf(2, 10 * (t/1 - 1)) - 1 * 0.001f];
 }
-
 - (CCActionInterval*) reverse
 {
 	return [CCEaseExponentialOut actionWithAction: [other reverse]];
@@ -202,7 +203,6 @@
 {
 	[other update: (t==1) ? 1 : (-powf(2, -10 * t/1) + 1)];
 }
-
 - (CCActionInterval*) reverse
 {
 	return [CCEaseExponentialIn actionWithAction: [other reverse]];
@@ -220,7 +220,6 @@
 		t = 0.5f * powf(2, 10 * (t - 1));
 	else
 		t = 0.5f * (-powf(2, -10 * (t -1) ) + 2);
-
 	[other update:t];
 }
 @end
@@ -237,7 +236,6 @@
 {
 	[other update:-1*cosf(t * (float)M_PI_2) +1];
 }
-
 - (CCActionInterval*) reverse
 {
 	return [CCEaseSineOut actionWithAction: [other reverse]];
@@ -252,7 +250,6 @@
 {
 	[other update:sinf(t * (float)M_PI_2)];
 }
-
 - (CCActionInterval*) reverse
 {
 	return [CCEaseSineIn actionWithAction: [other reverse]];
@@ -277,7 +274,7 @@
 //
 @implementation CCEaseElastic
 
-@synthesize period = period_;
+@synthesize period=period_;
 
 +(id) actionWithAction: (CCActionInterval*) action
 {
@@ -296,9 +293,10 @@
 
 -(id) initWithAction: (CCActionInterval*) action period:(float)period
 {
-	if( (self=[super initWithAction:action]) )
+	if( (self=[super initWithAction:action]) ) {
 		period_ = period;
-
+	}
+	
 	return self;
 }
 
@@ -322,12 +320,12 @@
 
 @implementation CCEaseElasticIn
 -(void) update: (ccTime) t
-{
+{	
 	ccTime newT = 0;
-	if (t == 0 || t == 1)
+	if (t == 0 || t == 1) {
 		newT = t;
-
-	else {
+		
+	} else {
 		float s = period_ / 4;
 		t = t - 1;
 		newT = -powf(2, 10 * t) * sinf( (t-s) *M_PI_X_2 / period_);
@@ -348,11 +346,11 @@
 @implementation CCEaseElasticOut
 
 -(void) update: (ccTime) t
-{
+{	
 	ccTime newT = 0;
 	if (t == 0 || t == 1) {
 		newT = t;
-
+		
 	} else {
 		float s = period_ / 4;
 		newT = powf(2, -10 * t) * sinf( (t-s) *M_PI_X_2 / period_) + 1;
@@ -374,7 +372,7 @@
 -(void) update: (ccTime) t
 {
 	ccTime newT = 0;
-
+	
 	if( t == 0 || t == 1 )
 		newT = t;
 	else {
@@ -382,14 +380,15 @@
 		if(! period_ )
 			period_ = 0.3f * 1.5f;
 		ccTime s = period_ / 4;
-
+		
 		t = t -1;
-		if( t < 0 )
+		if( t < 0 ) {
 			newT = -0.5f * powf(2, 10 * t) * sinf((t - s) * M_PI_X_2 / period_);
-		else
+		} else {
 			newT = powf(2, -10 * t) * sinf((t - s) * M_PI_X_2 / period_) * 0.5f + 1;
+		}
 	}
-	[other update:newT];
+	[other update:newT];	
 }
 
 - (CCActionInterval*) reverse
@@ -433,7 +432,7 @@
 
 -(void) update: (ccTime) t
 {
-	ccTime newT = 1 - [self bounceTime:1-t];
+	ccTime newT = 1 - [self bounceTime:1-t];	
 	[other update:newT];
 }
 
@@ -448,7 +447,7 @@
 
 -(void) update: (ccTime) t
 {
-	ccTime newT = [self bounceTime:t];
+	ccTime newT = [self bounceTime:t];	
 	[other update:newT];
 }
 
@@ -469,7 +468,7 @@
 		newT = (1 - [self bounceTime:1-t] ) * 0.5f;
 	} else
 		newT = [self bounceTime:t * 2 - 1] * 0.5f + 0.5f;
-
+	
 	[other update:newT];
 }
 @end
@@ -501,7 +500,7 @@
 -(void) update: (ccTime) t
 {
 	ccTime overshoot = 1.70158f;
-
+	
 	t = t - 1;
 	[other update: t * t * ((overshoot + 1) * t + overshoot) + 1];
 }
@@ -520,11 +519,11 @@
 -(void) update: (ccTime) t
 {
 	ccTime overshoot = 1.70158f * 1.525f;
-
+	
 	t = t * 2;
-	if (t < 1)
+	if (t < 1) {
 		[other update: (t * t * ((overshoot + 1) * t - overshoot)) / 2];
-	else {
+	} else {
 		t = t - 2;
 		[other update: (t * t * ((overshoot + 1) * t + overshoot)) / 2 + 1];
 	}

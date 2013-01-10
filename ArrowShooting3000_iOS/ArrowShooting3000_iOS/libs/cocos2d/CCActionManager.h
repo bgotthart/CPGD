@@ -1,10 +1,8 @@
 /*
  * cocos2d for iPhone: http://www.cocos2d-iphone.org
  *
- * Copyright (c) 2009 Valentin Milea
- *
  * Copyright (c) 2008-2010 Ricardo Quesada
- * Copyright (c) 2011 Zynga Inc.
+ * Copyright (c) 2009 Valentin Milea
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -12,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,39 +26,45 @@
 
 
 #import "CCAction.h"
-#import "ccMacros.h"
 #import "Support/ccCArray.h"
 #import "Support/uthash.h"
 
 typedef struct _hashElement
 {
 	struct ccArray	*actions;
-	NSUInteger		actionIndex;
+	id				target;
+	unsigned int	actionIndex;
+	CCAction		*currentAction;
 	BOOL			currentActionSalvaged;
-	BOOL			paused;
+	BOOL			paused;	
 	UT_hash_handle	hh;
-
-	CC_ARC_UNSAFE_RETAINED	id				target;
-	CC_ARC_UNSAFE_RETAINED	CCAction		*currentAction;
 } tHashElement;
 
 
-/** CCActionManager the object that manages all the actions.
- Normally you won't need to use this API directly. 99% of the cases you will use the CCNode interface, which uses this object.
- But there are some cases where you might need to use this API dirctly:
+/** CCActionManager is a singleton that manages all the actions.
+ Normally you won't need to use this singleton directly. 99% of the cases you will use the CCNode interface,
+ which uses this singleton.
+ But there are some cases where you might need to use this singleton.
  Examples:
-	- When you want to run an action where the target is different from a CCNode.
+	- When you want to run an action where the target is different from a CCNode. 
 	- When you want to pause / resume the actions
-
+ 
  @since v0.8
  */
-@interface CCActionManager : NSObject
-{
+@interface CCActionManager : NSObject {
+
 	tHashElement	*targets;
 	tHashElement	*currentTarget;
 	BOOL			currentTargetSalvaged;
 }
 
+/** returns a shared instance of the CCActionManager */
++ (CCActionManager *)sharedManager;
+
+/** purges the shared action manager. It releases the retained instance.
+ @since v0.99.0
+ */
++(void)purgeSharedManager;
 
 // actions
 
@@ -82,17 +86,17 @@ typedef struct _hashElement
  */
 -(void) removeAction: (CCAction*) action;
 /** Removes an action given its tag and the target */
--(void) removeActionByTag:(NSInteger)tag target:(id)target;
+-(void) removeActionByTag:(int)tag target:(id)target;
 /** Gets an action given its tag an a target
  @return the Action the with the given tag
  */
--(CCAction*) getActionByTag:(NSInteger) tag target:(id)target;
+-(CCAction*) getActionByTag:(int) tag target:(id)target;
 /** Returns the numbers of actions that are running in a certain target
  * Composable actions are counted as 1 action. Example:
  *    If you are running 1 Sequence of 7 actions, it will return 1.
  *    If you are running 7 Sequences of 2 actions, it will return 7.
  */
--(NSUInteger) numberOfRunningActionsInTarget:(id)target;
+-(int) numberOfRunningActionsInTarget:(id)target;
 
 /** Pauses the target: all running actions and newly added actions will be paused.
  */
@@ -101,13 +105,14 @@ typedef struct _hashElement
  */
 -(void) resumeTarget:(id)target;
 
-/** Pauses all running actions, returning a list of targets whose actions were paused.
+/** Resumes the target. All queued actions will be resumed.
+ @deprecated Use resumeTarget: instead. Will be removed in v1.0.
  */
--(NSSet *) pauseAllRunningActions;
+-(void) resumeAllActionsForTarget:(id)target DEPRECATED_ATTRIBUTE;
+/** Pauses the target: all running actions and newly added actions will be paused.
+ */
+-(void) pauseAllActionsForTarget:(id)target DEPRECATED_ATTRIBUTE;
 
-/** Resume a set of targets (convenience function to reverse a pauseAllRunningActions call)
- */
--(void) resumeTargets:(NSSet *)targetsToResume;
 
 @end
 

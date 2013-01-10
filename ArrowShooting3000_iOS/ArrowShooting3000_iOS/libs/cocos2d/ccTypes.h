@@ -2,18 +2,17 @@
  * cocos2d for iPhone: http://www.cocos2d-iphone.org
  *
  * Copyright (c) 2008-2010 Ricardo Quesada
- * Copyright (c) 2011 Zynga Inc.
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,10 +28,10 @@
  cocos2d (cc) types
 */
 
+#import <Availability.h>
 #import <Foundation/Foundation.h>
-#import "ccMacros.h"
 
-#ifdef __CC_PLATFORM_IOS
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 #import <CoreGraphics/CGGeometry.h>	// CGPoint
 #endif
 
@@ -57,23 +56,23 @@ ccc3(const GLubyte r, const GLubyte g, const GLubyte b)
 }
 //ccColor3B predefined colors
 //! White color (255,255,255)
-static const ccColor3B ccWHITE = {255,255,255};
+static const ccColor3B ccWHITE={255,255,255};
 //! Yellow color (255,255,0)
-static const ccColor3B ccYELLOW = {255,255,0};
+static const ccColor3B ccYELLOW={255,255,0};
 //! Blue color (0,0,255)
-static const ccColor3B ccBLUE = {0,0,255};
+static const ccColor3B ccBLUE={0,0,255};
 //! Green Color (0,255,0)
-static const ccColor3B ccGREEN = {0,255,0};
+static const ccColor3B ccGREEN={0,255,0};
 //! Red Color (255,0,0,)
-static const ccColor3B ccRED = {255,0,0};
+static const ccColor3B ccRED={255,0,0};
 //! Magenta Color (255,0,255)
-static const ccColor3B ccMAGENTA = {255,0,255};
+static const ccColor3B ccMAGENTA={255,0,255};
 //! Black Color (0,0,0)
-static const ccColor3B ccBLACK = {0,0,0};
+static const ccColor3B ccBLACK={0,0,0};
 //! Orange Color (255,127,0)
-static const ccColor3B ccORANGE = {255,127,0};
+static const ccColor3B ccORANGE={255,127,0};
 //! Gray Color (166,166,166)
-static const ccColor3B ccGRAY = {166,166,166};
+static const ccColor3B ccGRAY={166,166,166};
 
 /** RGBA color composed of 4 bytes
 @since v0.8
@@ -97,19 +96,12 @@ ccc4(const GLubyte r, const GLubyte g, const GLubyte b, const GLubyte o)
 /** RGBA color composed of 4 floats
 @since v0.8
 */
-struct ccColor4F {
+typedef struct _ccColor4F {
 	GLfloat r;
 	GLfloat g;
 	GLfloat b;
 	GLfloat a;
-};
-typedef struct ccColor4F ccColor4F;
-
-//! helper that creates a ccColor4f type
-static inline ccColor4F ccc4f(const GLfloat r, const GLfloat g, const GLfloat b, const GLfloat a)
-{
-	return (ccColor4F){r, g, b, a};
-}
+} ccColor4F;
 
 /** Returns a ccColor4F from a ccColor3B. Alpha will be 1.
  @since v0.99.1
@@ -153,7 +145,7 @@ typedef struct _ccVertex3F
 	GLfloat y;
 	GLfloat z;
 } ccVertex3F;
-
+		
 /** A texcoord composed of 2 floats: u, y
  @since v0.8
  */
@@ -162,12 +154,12 @@ typedef struct _ccTex2F {
 	 GLfloat v;
 } ccTex2F;
 
-
+ 
 //! Point Sprite component
 typedef struct _ccPointSprite
 {
 	ccVertex2F	pos;		// 8 bytes
-	ccColor4B	color;		// 4 bytes
+	ccColor4F	colors;		// 16 bytes
 	GLfloat		size;		// 4 bytes
 } ccPointSprite;
 
@@ -203,17 +195,6 @@ ccg(const NSInteger x, const NSInteger y)
 	return v;
 }
 
-//! a Point with a vertex point, a tex coord point and a color 4B
-typedef struct _ccV2F_C4B_T2F
-{
-	//! vertices (2F)
-	ccVertex2F		vertices;
-	//! colors (4B)
-	ccColor4B		colors;
-	//! tex coords (2F)
-	ccTex2F			texCoords;
-} ccV2F_C4B_T2F;
-
 //! a Point with a vertex point, a tex coord point and a color 4F
 typedef struct _ccV2F_C4F_T2F
 {
@@ -224,30 +205,6 @@ typedef struct _ccV2F_C4F_T2F
 	//! tex coords (2F)
 	ccTex2F			texCoords;
 } ccV2F_C4F_T2F;
-
-//! a Point with a vertex point, a tex coord point and a color 4F
-typedef struct _ccV3F_C4F_T2F
-{
-	//! vertices (3F)
-	ccVertex3F		vertices;
-	//! colors (4F)
-	ccColor4F		colors;
-	//! tex coords (2F)
-	ccTex2F			texCoords;
-} ccV3F_C4F_T2F;
-
-//! 4 ccV3F_C4F_T2F
-typedef struct _ccV3F_C4F_T2F_Quad
-{
-	//! top left
-	ccV3F_C4F_T2F	tl;
-	//! bottom left
-	ccV3F_C4F_T2F	bl;
-	//! top right
-	ccV3F_C4F_T2F	tr;
-	//! bottom right
-	ccV3F_C4F_T2F	br;
-} ccV3F_C4F_T2F_Quad;
 
 //! a Point with a vertex point, a tex coord point and a color 4B
 typedef struct _ccV3F_C4B_T2F
@@ -263,19 +220,6 @@ typedef struct _ccV3F_C4B_T2F
 	// tex coords (2F)
 	ccTex2F			texCoords;			// 8 byts
 } ccV3F_C4B_T2F;
-
-//! 4 ccVertex2FTex2FColor4B Quad
-typedef struct _ccV2F_C4B_T2F_Quad
-{
-	//! bottom left
-	ccV2F_C4B_T2F	bl;
-	//! bottom right
-	ccV2F_C4B_T2F	br;
-	//! top left
-	ccV2F_C4B_T2F	tl;
-	//! top right
-	ccV2F_C4B_T2F	tr;
-} ccV2F_C4B_T2F_Quad;
 
 //! 4 ccVertex3FTex2FColor4B
 typedef struct _ccV3F_C4B_T2F_Quad
@@ -312,63 +256,7 @@ typedef struct _ccBlendFunc
 	GLenum dst;
 } ccBlendFunc;
 
-//! ccResolutionType
-typedef enum
-{
-	//! Unknonw resolution type
-	kCCResolutionUnknown,
-#ifdef __CC_PLATFORM_IOS
-	//! iPhone resolution type
-	kCCResolutioniPhone,
-	//! RetinaDisplay resolution type
-	kCCResolutioniPhoneRetinaDisplay,
-	//! iPad resolution type
-	kCCResolutioniPad,
-	//! iPad Retina Display resolution type
-	kCCResolutioniPadRetinaDisplay,
-	
-#elif defined(__CC_PLATFORM_MAC)
-	//! Mac resolution type
-	kCCResolutionMac,
-
-	//! Mac RetinaDisplay resolution type (???)
-	kCCResolutionMacRetinaDisplay,
-#endif // platform
-
-} ccResolutionType;
-
-// XXX: If any of these enums are edited and/or reordered, udpate CCTexture2D.m
-//! Vertical text alignment type
-typedef enum
-{
-    kCCVerticalTextAlignmentTop,
-    kCCVerticalTextAlignmentCenter,
-    kCCVerticalTextAlignmentBottom,
-} CCVerticalTextAlignment;
-
-// XXX: If any of these enums are edited and/or reordered, udpate CCTexture2D.m
-//! Horizontal text alignment type
-typedef enum
-{
-	kCCTextAlignmentLeft,
-	kCCTextAlignmentCenter,
-	kCCTextAlignmentRight,
-} CCTextAlignment;
-
-// XXX: If any of these enums are edited and/or reordered, udpate CCTexture2D.m
-//! Line break modes
-typedef enum {
-	kCCLineBreakModeWordWrap,
-	kCCLineBreakModeCharacterWrap,
-	kCCLineBreakModeClip,
-	kCCLineBreakModeHeadTruncation,
-	kCCLineBreakModeTailTruncation,
-	kCCLineBreakModeMiddleTruncation
-} CCLineBreakMode;
-
 //! delta time type
 //! if you want more resolution redefine it as a double
 typedef float ccTime;
 //typedef double ccTime;
-
-typedef float ccMat4[16];

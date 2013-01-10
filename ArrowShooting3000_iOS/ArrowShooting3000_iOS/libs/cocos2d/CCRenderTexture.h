@@ -9,10 +9,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,43 +24,43 @@
  */
 
 #import <Foundation/Foundation.h>
-
-#import "ccMacros.h"
 #import "CCNode.h"
 #import "CCSprite.h"
 #import "Support/OpenGL_Internal.h"
-#import "kazmath/mat4.h"
 
-#ifdef __CC_PLATFORM_IOS
+#import <Availability.h>
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 #import <UIKit/UIKit.h>
 #endif // iPHone
 
-typedef enum
+enum  
 {
-	kCCImageFormatJPEG = 0,
+	kCCImageFormatJPG = 0,
 	kCCImageFormatPNG = 1,
-} tCCImageFormat;
+	kCCImageFormatRawData =2
+};
 
 
 /**
  CCRenderTexture is a generic rendering target. To render things into it,
- simply construct a render target, call begin on it, call visit on any cocos2d
+ simply construct a render target, call begin on it, call visit on any cocos
  scenes or objects to render them, and call end. For convienience, render texture
- adds a sprite as its display child with the results, so you can simply add
- the render texture to your scene and treat it like any other CCNode.
+ adds a sprite as it's display child with the results, so you can simply add
+ the render texture to your scene and treat it like any other CocosNode.
  There are also functions for saving the render texture to disk in PNG or JPG format.
-
+ 
  @since v0.8.1
  */
-@interface CCRenderTexture : CCNode
+@interface CCRenderTexture : CCNode 
 {
 	GLuint				fbo_;
-  GLuint depthRenderBufffer_;
-  GLint				oldFBO_;
+	GLint				oldFBO_;
 	CCTexture2D*		texture_;
 	CCSprite*			sprite_;
-
+	
 	GLenum				pixelFormat_;
+	GLfloat				clearColor_[4];
+
 }
 
 /** The CCSprite being used.
@@ -69,9 +69,6 @@ typedef enum
 	- [[renderTexture sprite] setBlendFunc:(ccBlendFunc){GL_ONE, GL_ONE_MINUS_SRC_ALPHA}];
 */
 @property (nonatomic,readwrite, assign) CCSprite* sprite;
-
-/** initializes a RenderTexture object with width and height in Points and a pixel format( only RGB and RGBA formats are valid ) and depthStencil format*/
-+(id)renderTextureWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format depthStencilFormat:(GLuint)depthStencilFormat;
 
 /** creates a RenderTexture object with width and height in Points and a pixel format, only RGB and RGBA formats are valid */
 +(id)renderTextureWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format;
@@ -82,9 +79,6 @@ typedef enum
 /** initializes a RenderTexture object with width and height in Points and a pixel format, only RGB and RGBA formats are valid */
 -(id)initWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat) format;
 
-/** initializes a RenderTexture object with width and height in Points and a pixel format( only RGB and RGBA formats are valid ) and depthStencil format*/
-- (id)initWithWidth:(int)w height:(int)h pixelFormat:(CCTexture2DPixelFormat)format depthStencilFormat:(GLuint)depthStencilFormat;
-
 /** starts grabbing */
 -(void)begin;
 
@@ -92,48 +86,23 @@ typedef enum
  This is more efficient then calling -clear first and then -begin */
 -(void)beginWithClear:(float)r g:(float)g b:(float)b a:(float)a;
 
-/** starts rendering to the texture while clearing the texture first.
- This is more efficient then calling -clear first and then -begin */
-- (void)beginWithClear:(float)r g:(float)g b:(float)b a:(float)a depth:(float)depthValue;
-
-/** starts rendering to the texture while clearing the texture first.
- This is more efficient then calling -clear first and then -begin */
-- (void)beginWithClear:(float)r g:(float)g b:(float)b a:(float)a depth:(float)depthValue stencil:(int)stencilValue;
-
-
 /** ends grabbing */
 -(void)end;
 
 /** clears the texture with a color */
 -(void)clear:(float)r g:(float)g b:(float)b a:(float)a;
 
-/** clears the texture with a specified depth value */
-- (void)clearDepth:(float)depthValue;
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 
-/** clears the texture with a specified stencil value */
-- (void)clearStencil:(int)stencilValue;
+/** saves the texture into a file */
+-(BOOL)saveBuffer:(NSString*)name;
+/** saves the texture into a file. The format can be JPG or PNG */
+-(BOOL)saveBuffer:(NSString*)name format:(int)format;
+/* get buffer as UIImage, can only save a render buffer which has a RGBA8888 pixel format */
+-(NSData*)getUIImageAsDataFromBuffer:(int) format;
 
-/* creates a new CGImage from with the texture's data.
- Caller is responsible for releasing it by calling CGImageRelease().
- */
--(CGImageRef) newCGImage;
-
-/** saves the texture into a file using JPEG format. The file will be saved in the Documents folder.
- Returns YES if the operation is successful.
- */
--(BOOL)saveToFile:(NSString*)name;
-
-/** saves the texture into a file. The format could be JPG or PNG. The file will be saved in the Documents folder.
-  Returns YES if the operation is successful.
- */
--(BOOL)saveToFile:(NSString*)name format:(tCCImageFormat)format;
-
-#ifdef __CC_PLATFORM_IOS
-
-/* returns an autoreleased UIImage from the texture */
--(UIImage *) getUIImage;
-
-#endif // __CC_PLATFORM_IOS
+#endif // __IPHONE_OS_VERSION_MAX_ALLOWED
 
 @end
+
 

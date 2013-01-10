@@ -2,18 +2,17 @@
  * cocos2d for iPhone: http://www.cocos2d-iphone.org
  *
  * Copyright (c) 2008-2010 Ricardo Quesada
- * Copyright (c) 2011 Zynga Inc.
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-#import "ccMacros.h"
+
 #import "ccTypes.h"
 #import "CCTexture2D.h"
 
@@ -99,12 +98,9 @@
 #pragma mark CCLabelProtocol
 /** Common interface for Labels */
 @protocol CCLabelProtocol <NSObject>
-/** sets a new label using an NSString.
- The string will be copied.
- */
+/** sets a new label using an NSString */
 -(void) setString:(NSString*)label;
-/** returns the string that is rendered */
--(NSString*) string;
+
 @optional
 /** sets a new label using a CString.
  It is faster than setString since it doesn't require to alloc/retain/release an NString object.
@@ -114,19 +110,3 @@
 @end
 
 
-#pragma mark -
-#pragma mark CCDirectorDelegate
-/** CCDirector delegate */
-@protocol CCDirectorDelegate <NSObject>
-
-@optional
-/** Called by CCDirector when the porjection is updated, and "custom" projection is used */
--(void) updateProjection;
-
-#ifdef __CC_PLATFORM_IOS
-/** Returns a Boolean value indicating whether the CCDirector supports the specified orientation. Default value is YES (supports all possible orientations) */
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
-
-#endif // __CC_PLATFORM_IOS
-
-@end

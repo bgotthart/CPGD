@@ -1,17 +1,13 @@
-/*
+/* 
  public domain BASE64 code
-
+ 
  modified for cocos2d-iphone: http://www.cocos2d-iphone.org
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "base64.h"
-
 unsigned char alphabet[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-
-int _base64Decode( unsigned char *input, unsigned int input_len, unsigned char *output, unsigned int *output_len );
 
 int _base64Decode( unsigned char *input, unsigned int input_len, unsigned char *output, unsigned int *output_len )
 {
@@ -45,7 +41,7 @@ int _base64Decode( unsigned char *input, unsigned int input_len, unsigned char *
 			bits <<= 6;
 		}
     }
-
+	
 	if( c == '=' ) {
 		switch (char_count) {
 			case 1:
@@ -67,7 +63,7 @@ int _base64Decode( unsigned char *input, unsigned int input_len, unsigned char *
 			errors++;
 		}
     }
-
+	
 	*output_len = output_idx;
 	return errors;
 }
@@ -75,17 +71,17 @@ int _base64Decode( unsigned char *input, unsigned int input_len, unsigned char *
 int base64Decode(unsigned char *in, unsigned int inLength, unsigned char **out)
 {
 	unsigned int outLength = 0;
-
+	
 	//should be enough to store 6-bit buffers in 8-bit buffers
 	*out = malloc( inLength * 3.0f / 4.0f + 1 );
 	if( *out ) {
 		int ret = _base64Decode(in, inLength, *out, &outLength);
-
+		
 		if (ret > 0 )
 		{
 			printf("Base64Utils: error decoding");
 			free(*out);
-			*out = NULL;
+			*out = NULL;			
 			outLength = 0;
 		}
 	}
