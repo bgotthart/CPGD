@@ -27,7 +27,7 @@
 #define PTM_RATIO 32
 
 // HelloWorldLayer
-@interface ArrowShooting3000 : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
+@interface ArrowShooting3000 : CCLayer
 {
 	CCTexture2D *spriteTexture_;	// weak ref
 	b2World* world;					// strong ref

@@ -45,29 +45,21 @@
 	self.sprite.rotation = (float)radiansToDegrees(self.arrowC->getRotation());
 }
 
--(void) shootArrow:(int) mouseX :(int) mouseY{
+-(void) shootArrow:(int) mouseX :(int) mouseY :(int) bowCenterX :(int) bowCenterY {
 	CGSize winSize = [CCDirector sharedDirector].winSize;
 
-	self.arrowC->shootArrow(mouseX, winSize.height -  mouseY);
 	
-}
-/*
--(void)setPositionX:(float)x{
-	self.arrowC->setPositionX(x);
-	self.sprite.position = ccp(x, self.sprite.position.y);
+	self.arrowC->shootArrow(mouseX, winSize.height -  mouseY, bowCenterX, bowCenterY);
+	
 }
 
--(void)setPositionY:(float)y{
-	self.arrowC->setPositionY(y);
-	self.sprite.position = ccp(self.sprite.position.x, y);
-	
-}
- */
--(void)getTouchRotation:(float) mouseX :(float) mouseY :(int)arrowOffset{
+-(void)getTouchRotation:(float) mouseX :(float) mouseY :(int)arrowOffset :(int) bowCenterX :(int) bowCenterY {
 	
 	CGSize winSize = [CCDirector sharedDirector].winSize;
 	self.sprite.anchorPoint = ccp(((self.sprite.contentSize.width/2) - arrowOffset)/self.sprite.contentSize.width, 0.5);
-	self.sprite.rotation = (float)radiansToDegrees(self.arrowC->getTouchRotation(mouseX, winSize.height - mouseY));
+
+	
+	self.sprite.rotation = (float)radiansToDegrees(self.arrowC->getTouchRotation(mouseX, winSize.height - mouseY, bowCenterX, bowCenterY));
 
 }
 

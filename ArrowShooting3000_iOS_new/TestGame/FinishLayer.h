@@ -8,9 +8,8 @@
 
 #import "cocos2d.h"
 
-@interface FinishLayer : CCLayerColor
+@interface FinishLayer : CCLayer
 
-+(CCScene *) sceneWithFinish;
-- (id)initFinishScreen;
++(CCScene *) sceneWithFinish:(ccTime)time;
 
 @end

@@ -56,4 +56,7 @@
 {
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[ArrowShooting3000 scene] withColor:ccWHITE]];
 }
+
+
+
 @end
