@@ -27,8 +27,8 @@ float Arrow::getRotation() {
 	return this->rotation;
 }
 
-float Arrow::getTouchRotation(float mouseX, float mouseY) {
-	Vector* direction = new Vector(mouseX - this->position->x, mouseY - this->position->y);
+float Arrow::getTouchRotation(float mouseX, float mouseY, float bowCenterX, float bowCenterY) {
+	Vector* direction = new Vector(mouseX - bowCenterX, mouseY - bowCenterY);
 	float cosAlpha = (-direction->x / direction->getLength());
 	float rot = acos(cosAlpha);
 	if (direction->y > 0) rot = 2* 3.14 - rot;
@@ -39,15 +39,15 @@ void Arrow::startArrow() {
 	begin = clock();
 }
 
-void Arrow::shootArrow(int mouseX, int mouseY){
+void Arrow::shootArrow(int mouseX, int mouseY, float bowCenterX, float bowCenterY){
 
 	clock_t end = clock();
 	double elapsed = double(end - begin) / CLOCKS_PER_SEC;
 	float strength = (float) elapsed * STRENGTH_INCREASING_FACTOR;
 	strength = (strength > MAX_STRENGTH) ? MAX_STRENGTH : strength;
 
-	this->velocity->x = mouseX - this->position->x;
-	this->velocity->y = mouseY - this->position->y;
+	this->velocity->x = mouseX - bowCenterX;
+	this->velocity->y = mouseY - bowCenterY;
 
 	this->velocity->normalize();
 	this->velocity->multiply(strength);

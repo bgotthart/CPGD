@@ -50,10 +50,10 @@ JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_getRotation
 /*
  * Class:     com_cpgd_arrowshooting3000_ArrowProxy
  * Method:    getTouchRotation
- * Signature: (FFJ)F
+ * Signature: (FFFFJ)F
  */
 JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_getTouchRotation
-  (JNIEnv *, jobject, jfloat, jfloat, jlong);
+  (JNIEnv *, jobject, jfloat, jfloat, jfloat, jfloat, jlong);
 
 /*
  * Class:     com_cpgd_arrowshooting3000_ArrowProxy
@@ -66,10 +66,10 @@ JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_startArrow
 /*
  * Class:     com_cpgd_arrowshooting3000_ArrowProxy
  * Method:    shootArrow
- * Signature: (IIJ)J
+ * Signature: (IIFFJ)J
  */
 JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_shootArrow
-  (JNIEnv *, jobject, jint, jint, jlong);
+  (JNIEnv *, jobject, jint, jint, jfloat, jfloat, jlong);
 
 /*
  * Class:     com_cpgd_arrowshooting3000_ArrowProxy

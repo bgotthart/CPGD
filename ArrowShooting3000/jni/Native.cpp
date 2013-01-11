@@ -78,10 +78,10 @@ JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_getRotation
 }
 
 JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_getTouchRotation
-  (JNIEnv * env, jobject o, jfloat mouseX, jfloat mouseY, jlong obj)
+  (JNIEnv * env, jobject o, jfloat mouseX, jfloat mouseY, jfloat bowCenterX, jfloat bowCenterY, jlong obj)
 {
 	Arrow* arrow = (Arrow*) obj;
-	return arrow->getTouchRotation(mouseX, mouseY);
+	return arrow->getTouchRotation(mouseX, mouseY, bowCenterX, bowCenterY);
 }
 
 JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_startArrow
@@ -93,10 +93,10 @@ JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_startArrow
 }
 
 JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ArrowProxy_shootArrow
-  (JNIEnv * env, jobject o, jint mouseX, jint mouseY, jlong obj)
+  (JNIEnv * env, jobject o, jint mouseX, jint mouseY, jfloat bowCenterX, jfloat bowCenterY, jlong obj)
 {
 	Arrow* arrow = (Arrow*) obj;
-	arrow->shootArrow(mouseX, mouseY);
+	arrow->shootArrow(mouseX, mouseY, bowCenterX, bowCenterY);
 	return (long) arrow;
 }
 
