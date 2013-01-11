@@ -1,4 +1,4 @@
-; dlltool --base-file C:\Users\MAGDAL~1\AppData\Local\Temp/cca04036.base --output-exp Native.exp --dllname Native.dll --output-def libNative.def --no-export-all-symbols --add-stdcall-alias --exclude-symbol=DllMainCRTStartup@12 --def C:\Users\MAGDAL~1\AppData\Local\Temp/cca04036.def --output-lib libNative.a
+; dlltool --base-file C:\Users\MAGDAL~1\AppData\Local\Temp/cca04680.base --output-exp Native.exp --dllname Native.dll --output-def libNative.def --no-export-all-symbols --add-stdcall-alias --exclude-symbol=DllMainCRTStartup@12 --def C:\Users\MAGDAL~1\AppData\Local\Temp/cca04680.def --output-lib libNative.a
 EXPORTS
 	Java_com_cpgd_arrowshooting3000_components_ArrowHudProxy_arrowHudProxy = Java_com_cpgd_arrowshooting3000_components_ArrowHudProxy_arrowHudProxy@12 @ 1
 	Java_com_cpgd_arrowshooting3000_components_ArrowHudProxy_arrowHudProxy@12 @ 2
@@ -68,5 +68,5 @@ EXPORTS
 	Java_com_cpgd_arrowshooting3000_components_TerrainProxy_getRandomTargetPositionX@24 @ 66
 	Java_com_cpgd_arrowshooting3000_components_TerrainProxy_getRandomTargetPositionY = Java_com_cpgd_arrowshooting3000_components_TerrainProxy_getRandomTargetPositionY@24 @ 67
 	Java_com_cpgd_arrowshooting3000_components_TerrainProxy_getRandomTargetPositionY@24 @ 68
-	Java_com_cpgd_arrowshooting3000_components_TerrainProxy_terrainProxy = Java_com_cpgd_arrowshooting3000_components_TerrainProxy_terrainProxy@16 @ 69
-	Java_com_cpgd_arrowshooting3000_components_TerrainProxy_terrainProxy@16 @ 70
+	Java_com_cpgd_arrowshooting3000_components_TerrainProxy_terrainProxy = Java_com_cpgd_arrowshooting3000_components_TerrainProxy_terrainProxy@24 @ 69
+	Java_com_cpgd_arrowshooting3000_components_TerrainProxy_terrainProxy@24 @ 70

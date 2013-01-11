@@ -9,13 +9,13 @@
 #include "JNIHeaders/com_cpgd_arrowshooting3000_components_TerrainProxy.h"
 #include "JNIHeaders/com_cpgd_arrowshooting3000_components_ScoreProxy.h"
 
-#include "GameLogic/arrowHud.h"
-#include "GameLogic/arrow.h"
-#include "GameLogic/flyingTarget.h"
-#include "GameLogic/player.h"
-#include "GameLogic/target.h"
-#include "GameLogic/terrain.h"
-#include "GameLogic/score.h"
+#include "../../GameLogic/arrowHud.h"
+#include "../../GameLogic/arrow.h"
+#include "../../GameLogic/flyingTarget.h"
+#include "../../GameLogic/player.h"
+#include "../../GameLogic/target.h"
+#include "../../GameLogic/terrain.h"
+#include "../../GameLogic/score.h"
 
 // PLAYER: ***********************************************************
 
@@ -201,8 +201,8 @@ JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_components_FlyingTargetPr
 // TERRAIN: ***********************************************************
 
 JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_components_TerrainProxy_terrainProxy
-  (JNIEnv * env, jobject obj, jint w, jint h){
-          Terrain* tmp = new Terrain(w, h);
+  (JNIEnv * env, jobject obj, jint w, jint h, jint x, jint y){
+          Terrain* tmp = new Terrain(w, h, x, y);
           return (long)tmp;
   }
   

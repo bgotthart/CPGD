@@ -12,6 +12,8 @@ public:
 
 private:
 	int alphamap[0];
+	int calcRandomX(float);
+	int calcRandomY(float);
 	
 public:
 	Terrain(int, int, int, int);
