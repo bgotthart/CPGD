@@ -9,15 +9,15 @@ import com.cpgd.arrowshooting3000.states.GameFinishedState;
 import com.cpgd.arrowshooting3000.states.GameplayState;
 
 public class ArrowShooting3000 extends StateBasedGame {
-	/*
+
 	static{
 		System.loadLibrary("ArrowShooting3000/Native");
-	}*/
+	}
 	
 	//Load library for EXPORT
-	static{
-		System.loadLibrary("Native");
-	}
+//	static{
+//		System.loadLibrary("Native");
+//	}
 	
 	public static final int GAMEPLAYSTATE = 1;
 	public static final int GAMEFINISHEDSTATE = 2;
