@@ -37,7 +37,6 @@
 
 -(bool)collidesWith:(int) arrowX :(int) arrowY
 {
-	CGSize winSize = [CCDirector sharedDirector].winSize;
 	
 	return self.target->colidesWith(arrowX, arrowY);
 

@@ -16,9 +16,7 @@
 #import "FlyingTargetObjC.h"
 #import "score.h"
 #import "FinishLayer.h"
-
-
-#pragma mark - HelloWorldLayer
+#define radiansToDegrees( radians ) ( ( radians ) * ( 180.0 / M_PI ) )
 
 @implementation ArrowShooting3000
 
@@ -44,6 +42,7 @@ int arrowOffset = -55;
 int arrowSteps = 0;
 float arrowTimer = 0;
 float arrowUpdateTime = 0.1f;
+ccTime globalTimer = 3600;
 CCAnimation *bowAnim;
 CCAnimation *flyAnim;
 
@@ -60,8 +59,8 @@ CCAnimation *flyAnim;
 {
 	if( (self=[super init])) {
 		
+		globalTimer = 3600;
 		self.isTouchEnabled = YES;
-		self.isAccelerometerEnabled = YES;
 
 		score = Score::getInstance();
 
@@ -71,12 +70,11 @@ CCAnimation *flyAnim;
 		
 		[self scheduleUpdate];
 		
-		NSString *message = [NSString stringWithFormat:@"Score: %i", score->getScore()];
+		NSString *message = [NSString stringWithFormat:@"Score: %i | Time: %i", score->getScore(), (int)globalTimer/60];
 		
 		scoreLabel = [CCLabelTTF labelWithString:message fontName:@"Courier New" fontSize:16];
-		
 		scoreLabel.color = ccc3(255,255,255);
-		scoreLabel.position = ccp((scoreLabel.contentSize.width/2)+15, terrain->height - scoreLabel.contentSize.width/2);
+		scoreLabel.position = ccp((scoreLabel.contentSize.width/2+20), 20);
 		[self updateScoreMenu];
 
 		[self addChild:scoreLabel];
@@ -111,43 +109,54 @@ CCAnimation *flyAnim;
 
 	[spriteSheet addChild:_bow];
 
-	self.terrain = new Terrain(winSize.width, winSize.height, self.player->getPositionX(),self.player->getPositionY());
+	self.terrain = new Terrain(winSize.width, winSize.height, self.player->getPositionX(), _bow.position.y + _bow.contentSize.height/2);
 
 
 }
 
+-(void) addGroundTarget{
+	CCSprite *targetSprite = [CCSprite spriteWithFile:@"target.png"];
+	
+	Vector *vector = self.terrain->GetRandomTargetPositionIOS(targetSprite.contentSize.width, targetSprite.contentSize.height);
+	Target *target = new Target(vector->x, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
+	targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
+	
+	TargetObjC *targetObjC = [TargetObjC alloc];
+	[targetObjC setTargetData:target :targetSprite];
+	
+	
+	[self addChild:targetSprite];
+	[targetsArray addObject:targetObjC];
+	
+	
+}
 -(void) addFlyingAnimation{
 	
 	
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"target_with_wings_animation_default.plist"];
 	
-	// Create a sprite sheet with the Happy Bear images
 	CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"target_with_wings_animation_default.png"];
 	[self addChild:spriteSheet];
 	
-	// Load up the frames of our animation
-	NSMutableArray *walkAnimFrames = [NSMutableArray array];
+	NSMutableArray *flyingAnimFrames = [NSMutableArray array];
 	for(int i = 1; i <= 6; ++i) {
-		[walkAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"target_%d.png", i]]];
+		[flyingAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"target_%d.png", i]]];
 	}
-	CCAnimation *walkAnim = [CCAnimation animationWithFrames:walkAnimFrames delay:0.1f];
+	CCAnimation *flyingAnim = [CCAnimation animationWithFrames:flyingAnimFrames delay:0.1f];
 	
-	// Create a sprite for our bear
-	CGSize winSize = [CCDirector sharedDirector].winSize;
 	CCSprite *targetSprite = [CCSprite spriteWithSpriteFrameName:@"target_1.png"];
-	Vector *vector = self.terrain->GetRandomFlyingStartPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
+	Vector *vector = self.terrain->GetRandomFlyingStartPositionIOS(targetSprite.contentSize.width, targetSprite.contentSize.height);
 	
-	FlyingTarget *target = new FlyingTarget(0, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
+	FlyingTarget *target = new FlyingTarget(vector->x, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
 	targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
 	
 	FlyingTargetObjC *targetObjC = [FlyingTargetObjC alloc];
 	[targetObjC setTargetData:target :targetSprite];
 
-	CCAction *walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:walkAnim restoreOriginalFrame:NO]];
-	//[_bear runAction:_walkAction];
+	CCAction *flyingAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:flyingAnim restoreOriginalFrame:NO]];
 	[spriteSheet addChild:targetSprite];
 	
-	[targetSprite runAction:walkAction];
+	[targetSprite runAction:flyingAction];
 	
 	
 	[targetsArray addObject:targetObjC];
@@ -178,7 +187,6 @@ CCAnimation *flyAnim;
 			[self addGroundTarget];
 		else
 			[self addFlyingAnimation];
-
 	}
 	
 	
@@ -203,8 +211,8 @@ CCAnimation *flyAnim;
 		ArrowsObjC *currArrowObjC = [arrowsArray objectAtIndex:i];
 		CCSprite *currArrowSprite = currArrowObjC.sprite;
 
-		//todo * 1000
-		[currArrowObjC update:arrowOffset :dt];
+		
+		[currArrowObjC update:arrowOffset :dt*1000];
 		
 		
 		NSMutableArray *deleteTargets = [[NSMutableArray alloc] init];
@@ -227,12 +235,9 @@ CCAnimation *flyAnim;
 				if([targetToDelete isKindOfClass:[FlyingTargetObjC class]]){
 					[targetToDelete.sprite stopAllActions];
 					
-				//	[self removeChild:((FlyingTargetObjC*)targetToDelete).spriteSheet cleanup:YES];
-				//	[self removeChild:((FlyingTargetObjC*)targetToDelete).spriteSheet cleanup:YES];
 					[targetToDelete.sprite  removeFromParentAndCleanup: YES];
 					[self removeChild:((FlyingTargetObjC*)targetToDelete).spriteSheet cleanup:YES];
 					
-					NSLog(@"FLYING");
 				}else{
 					[self removeChild:targetToDelete.sprite cleanup:YES];
 				}
@@ -242,7 +247,6 @@ CCAnimation *flyAnim;
 				
 			}
 		}
-	
 			
 	}
 
@@ -265,94 +269,55 @@ CCAnimation *flyAnim;
 		else
 			[self addFlyingAnimation];
 		
-		//[self addFlyingTarget];
 	}
 
-if(has_touched){
-	float scale = self.arrowHud->getCurrentScale(arrowObjC.arrowC->getStrength());
-	[self.greenSprite setScaleX: scale];
+	if(has_touched){
+		float scale = self.arrowHud->getCurrentScale(arrowObjC.arrowC->getStrength());
+		[self.greenSprite setScaleX: scale];
 	
-	arrowTimer += dt;
-	if(arrowTimer >= arrowUpdateTime){
-		if(arrowSteps < 4){
-			arrowOffset += 9;
+		arrowTimer += dt;
+		if(arrowTimer >= arrowUpdateTime){
+			if(arrowSteps < 4){
+				arrowOffset += 9;
 			
-			arrowObjC.sprite.anchorPoint = ccp(((arrowObjC.sprite.contentSize.width/2) - arrowOffset)/arrowObjC.sprite.contentSize.width, 0.5);
+				arrowObjC.sprite.anchorPoint = ccp(((arrowObjC.sprite.contentSize.width/2) - arrowOffset)/arrowObjC.sprite.contentSize.width, 0.5);
 			
-			arrowSteps += 1;
+				arrowSteps += 1;
+
+			}
 
 		}
-
+	
 	}
-	
-}
-	
-	//[self showFinishLayer];
+	if(globalTimer < 0){
+		[self showFinishLayer];
+	}
+	globalTimer--;
+
 
 }
  
 -(void)updateScoreMenu{
-	NSString *message = [NSString stringWithFormat:@"Score: %i", score->getScore()];
+	NSString *message = [NSString stringWithFormat:@"Score: %i | Time: %i", score->getScore(), (int)globalTimer/60];
 	
 	[scoreLabel setString:message];
 	
 }
 -(void) showFinishLayer{
-	CCScene *finishScene = [FinishLayer sceneWithFinish];
+	CCScene *finishScene = [FinishLayer sceneWithFinish:globalTimer];
 	[[CCDirector sharedDirector] replaceScene:finishScene];
 
 }
 
--(void) addGroundTarget{
-	CCSprite *targetSprite = [CCSprite spriteWithFile:@"target.png"];
-	
-	Vector *vector = self.terrain->GetRandomTargetPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
-	Target *target = new Target(vector->x, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
-	targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
-	
-	TargetObjC *targetObjC = [TargetObjC alloc];
-	[targetObjC setTargetData:target :targetSprite];
-	
-	
-	[self addChild:targetSprite];
-	[targetsArray addObject:targetObjC];
-	
-	
-}
--(void)addFlyingTarget{
-	CCSprite *targetSprite = [CCSprite spriteWithFile:@"target_with_wings.png"];
-	
-	Vector *vector = self.terrain->GetRandomFlyingStartPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
-	
-	FlyingTarget *target = new FlyingTarget(0, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
-	targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
-	
-	FlyingTargetObjC *targetObjC = [FlyingTargetObjC alloc];
-	[targetObjC setTargetData:target :targetSprite];
-	
-	
-	// Determine speed of the monster
-	int minDuration = 7.0; //2.0;
-	int maxDuration = 10.0; //4.0;
-	int rangeDuration = maxDuration - minDuration;
-	int actualDuration = (arc4random() % rangeDuration) + minDuration;
-	
-	[self addChild:targetSprite];
-	
-	[targetsArray addObject:targetObjC];
-	
-}
-
-#define radiansToDegrees( radians ) ( ( radians ) * ( 180.0 / M_PI ) )
-// Add these new methods
 -(void) registerWithTouchDispatcher
 {
+
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0
-																						swallowsTouches:YES];
+																						swallowsTouches:NO];
+
 }
 
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-	
 	
 	CGPoint new_location = [touch locationInView: [touch view]];
 	new_location = [[CCDirector sharedDirector] convertToGL:new_location];
@@ -371,16 +336,19 @@ if(has_touched){
 
 		CGPoint new_location = [touch locationInView: [touch view]];
 		new_location = [[CCDirector sharedDirector] convertToGL:new_location];
+
+		int bowCenterX = 	_bow.position.x;
+		int bowCenterY = terrain->height - _bow.position.y;
 		
-		[arrowObjC getTouchRotation:new_location.x :new_location.y :arrowOffset ];
+		[arrowObjC getTouchRotation:new_location.x :new_location.y :arrowOffset :bowCenterX :bowCenterY ];
 		
 		arrowObjC.sprite.position = ccp([arrowObjC getPositionOfSpriteX:arrowOffset], arrowObjC.sprite.position.y);
 
 		
 		arrowObjC.arrowC->startArrow();
-		
-
-		_bow.rotation = (float)radiansToDegrees(arrowObjC.arrowC->getTouchRotation(new_location.x, self.terrain->height - new_location.y));
+	
+	
+		_bow.rotation = (float)radiansToDegrees(arrowObjC.arrowC->getTouchRotation(new_location.x, self.terrain->height - new_location.y, bowCenterX, bowCenterY));
 		[_bow stopAllActions];
 		[_bow runAction:_bowAction];
 
@@ -388,22 +356,21 @@ if(has_touched){
 	
 	has_touched = true;
 	arrowSteps = 0;
-
-	NSLog(@"%i", arrowSteps);
 	
 	return YES;
 }
-
-#define radiansToDegrees( radians ) ( ( radians ) * ( 180.0 / M_PI ) )
 
 -(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
 
 	CGPoint new_location = [touch locationInView: [touch view]];
 	new_location = [[CCDirector sharedDirector] convertToGL:new_location];
-		
-	[arrowObjC getTouchRotation:new_location.x :new_location.y :arrowOffset ];
+
+	int bowCenterX = 	_bow.position.x;
+	int bowCenterY = terrain->height - _bow.position.y;
 	
-	_bow.rotation = (float)radiansToDegrees(arrowObjC.arrowC->getTouchRotation(new_location.x, self.terrain->height - new_location.y));
+	[arrowObjC getTouchRotation:new_location.x :new_location.y :arrowOffset :bowCenterX :bowCenterY ];
+	
+	_bow.rotation = (float)radiansToDegrees(arrowObjC.arrowC->getTouchRotation(new_location.x, self.terrain->height - new_location.y, bowCenterX, bowCenterY));
 	
 }
 // User took finger off screen
@@ -411,8 +378,12 @@ if(has_touched){
 	
 	CGPoint new_location = [touch locationInView: [touch view]];
 	new_location = [[CCDirector sharedDirector] convertToGL:new_location];
+
+	int bowCenterX = 	_bow.position.x;
+	int bowCenterY = terrain->height - _bow.position.y;
+
 	
-	[arrowObjC shootArrow:(int)new_location.x :(int)new_location.y ];
+	[arrowObjC shootArrow:new_location.x :new_location.y :bowCenterX :bowCenterY ];
 	
 	[arrowsArray addObject:arrowObjC];
 	
