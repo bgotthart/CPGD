@@ -13,9 +13,9 @@ public class ArrowProxy {
 	private native int getPositionY(long l);
 	private native float getStrength(long l);
 	private native float getRotation(long l);
-	private native float getTouchRotation(float mouseX, float mouseY, long objref);
+	private native float getTouchRotation(float mouseX, float mouseY, float bowCenterX, float bowCenterY, long objref);
 	private native long startArrow(long l);
-	private native long shootArrow(int mouseX, int mouseY, long objref);
+	private native long shootArrow(int mouseX, int mouseY, float bowCenterX, float bowCenterY, long objref);
 	private native long update(float elapsedMSec, long objref);
 	private native long setPositionX(float x, long objref);
 	private native long setPositionY(float y, long objref);
@@ -28,8 +28,8 @@ public class ArrowProxy {
 		objref = startArrow(objref);
 	}
 	
-	public void shootArrow(int mouseX, int mouseY) {
-		objref = shootArrow(mouseX, mouseY, objref);
+	public void shootArrow(int mouseX, int mouseY, float bowCenterX, float bowCenterY) {
+		objref = shootArrow(mouseX, mouseY, bowCenterX, bowCenterY, objref);
 	}
 	
 	public void update(float elapsedMSec) {
@@ -55,8 +55,8 @@ public class ArrowProxy {
 		return getRotation(objref);
 	}
 	
-	public float getTouchRotation(float mouseX, float mouseY) {
-		return getTouchRotation(mouseX, mouseY, objref);
+	public float getTouchRotation(float mouseX, float mouseY, float bowCenterX, float bowCenterY) {
+		return getTouchRotation(mouseX, mouseY, bowCenterX, bowCenterY, objref);
 	}
 	
 	public void setSprite(Sprite sprite) {

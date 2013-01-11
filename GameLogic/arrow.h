@@ -20,10 +20,10 @@ class Arrow{
 		void setPositionX(float);
 		void setPositionY(float);
 		void startArrow();
-		void shootArrow(int, int);
+		void shootArrow(int, int, float, float);
 	    void update(float elapsedMSec);
 	    float getRotation();
-	    float getTouchRotation(float, float);
+	    float getTouchRotation(float, float, float, float);
 };
 
 #endif

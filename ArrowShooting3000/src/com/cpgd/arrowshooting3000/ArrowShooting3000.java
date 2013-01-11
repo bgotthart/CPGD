@@ -203,7 +203,7 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 	         	   				tmpArrowProxy.setPositionY(playerProxy.getPositionY() + regBow.getHeight()/2 - mArrow.getHeight()/2);
 	         	   				
 	         	   				tmpArrowProxy.getSprite().setRotationCenter(mArrow.getWidth()/2 - arrowOffset, mArrow.getHeight()/2);
-	         	   				float alpha = (float)Math.toDegrees(tmpArrowProxy.getTouchRotation(X, Y));
+	         	   				float alpha = (float)Math.toDegrees(tmpArrowProxy.getTouchRotation(X, Y, playerProxy.getPositionX() + playerProxy.getAnimatedSprite().getWidth()/2, playerProxy.getPositionY() + playerProxy.getAnimatedSprite().getHeight()/2));
 	         	   				tmpArrowProxy.getSprite().setRotation(alpha);
 	                 	   		playerProxy.getAnimatedSprite().setRotation(alpha);
 	         	   				
@@ -330,7 +330,7 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 	        	   
 	        	   tmpArrowProxy.getSprite().setRotationCenter(mArrow.getWidth()/2 - arrowOffset, mArrow.getHeight()/2);
 	        	   
-	        	   float angle = (float)Math.toDegrees(tmpArrowProxy.getTouchRotation(X, Y));
+	        	   float angle = (float)Math.toDegrees(tmpArrowProxy.getTouchRotation(X, Y, playerProxy.getPositionX() + playerProxy.getAnimatedSprite().getWidth()/2, playerProxy.getPositionY() + playerProxy.getAnimatedSprite().getHeight()/2));
 	        	   tmpArrowProxy.getSprite().setRotation(angle);
 	        	   playerProxy.getAnimatedSprite().setRotation(angle);
 	        	   
@@ -343,14 +343,14 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 	        	   break;
 	           case MotionEvent.ACTION_MOVE:
 	        	   
-	        	   float alpha = (float)Math.toDegrees(tmpArrowProxy.getTouchRotation(X, Y));
+	        	   float alpha = (float)Math.toDegrees(tmpArrowProxy.getTouchRotation(X, Y, playerProxy.getPositionX() + playerProxy.getAnimatedSprite().getWidth()/2, playerProxy.getPositionY() + playerProxy.getAnimatedSprite().getHeight()/2));
 	        	   tmpArrowProxy.getSprite().setRotation(alpha);
 	        	   playerProxy.getAnimatedSprite().setRotation(alpha);
 	        	   
 	        	   break;
 	           case MotionEvent.ACTION_UP:
 	        	   
-	        	   tmpArrowProxy.shootArrow((int)X, (int)Y);
+	        	   tmpArrowProxy.shootArrow((int)X, (int)Y, playerProxy.getPositionX() + playerProxy.getAnimatedSprite().getWidth()/2, playerProxy.getPositionY() + playerProxy.getAnimatedSprite().getHeight()/2);
 	        	   arrowProxies.add(tmpArrowProxy);
 	        	   
 	        	   isTouching = false;
