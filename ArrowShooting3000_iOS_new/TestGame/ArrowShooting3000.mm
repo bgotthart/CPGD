@@ -28,7 +28,7 @@
 @synthesize player = _player;
 @synthesize terrain = terrain;
 @synthesize bow = _bow;
-@synthesize walkAction = _walkAction;
+@synthesize bowAction = _bowAction;
 
 NSMutableArray *arrowsArray;
 NSMutableArray *targetsArray;
@@ -44,6 +44,8 @@ int arrowOffset = -55;
 int arrowSteps = 0;
 float arrowTimer = 0;
 float arrowUpdateTime = 0.1f;
+CCAnimation *bowAnim;
+CCAnimation *flyAnim;
 
 +(CCScene *) scene
 {
@@ -54,15 +56,12 @@ float arrowUpdateTime = 0.1f;
 }
 
 
-CCAnimation *walkAnim;
 -(id) init
 {
 	if( (self=[super init])) {
 		
 		self.isTouchEnabled = YES;
 		self.isAccelerometerEnabled = YES;
-		CGSize winSize = [CCDirector sharedDirector].winSize;
-		self.self.terrain = new Terrain(winSize.width, winSize.height);
 
 		score = Score::getInstance();
 
@@ -95,61 +94,47 @@ CCAnimation *walkAnim;
 	for(int i = 1; i <= 4; ++i) {
 		[walkAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"bow_%d.png", i]]];
 	}
-	walkAnim = [CCAnimation animationWithFrames:walkAnimFrames delay:0.05f];
+	bowAnim = [CCAnimation animationWithFrames:walkAnimFrames delay:0.05f];
 	
-	walkAnim.loops = 1;
+	bowAnim.loops = 1;
 	
 	self.bow = [CCSprite spriteWithSpriteFrameName:@"bow_1.png"];
-	self.player = new Player(self.terrain->width - _bow.contentSize.width/2 + 10, self.terrain->height/2);
+	CGSize winSize = [CCDirector sharedDirector].winSize;
+
 	
-	_bow.position = ccp(self.player->getPositionX(),self.player->getPositionY());
 	
-	self.walkAction = [CCAnimate actionWithAnimation:walkAnim restoreOriginalFrame:NO];
+	self.player = new Player(winSize.width - _bow.contentSize.width/2, _bow.contentSize.height/2);
 	
+	_bow.position = ccp(self.player->getPositionX(), self.player->getPositionY());
+	
+	self.bowAction = [CCAnimate actionWithAnimation:bowAnim restoreOriginalFrame:NO];
+
 	[spriteSheet addChild:_bow];
+
+	self.terrain = new Terrain(winSize.width, winSize.height, self.player->getPositionX(),self.player->getPositionY());
+
+
 }
 
 -(void) addFlyingAnimation{
 	
-	/*
-	 CCSprite *targetSprite = [CCSprite spriteWithFile:@"target_with_wings.png"];
-	 
-	 Vector *vector = self.terrain->GetRandomFlyingStartPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
-	 
-	 FlyingTarget *target = new FlyingTarget(0, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
-	 targetSprite.position = ccp(target->getPositionX(), target->getPositionY());
-	 
-	 FlyingTargetObjC *targetObjC = [FlyingTargetObjC alloc];
-	 [targetObjC setTargetData:target :targetSprite];
-	 
-	 
-	 // Determine speed of the monster
-	 int minDuration = 7.0; //2.0;
-	 int maxDuration = 10.0; //4.0;
-	 int rangeDuration = maxDuration - minDuration;
-	 int actualDuration = (arc4random() % rangeDuration) + minDuration;
-	 
-	 [self addChild:targetSprite];
-	 
-	 [targetsArray addObject:targetObjC];
-	 */
 	
+	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"target_with_wings_animation_default.plist"];
 	
-	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"target_with_wings_animation.plist"];
-	
-	CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"target_with_wings_animation.png"];
+	// Create a sprite sheet with the Happy Bear images
+	CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"target_with_wings_animation_default.png"];
 	[self addChild:spriteSheet];
 	
-	NSMutableArray *flyingAnimFrames = [NSMutableArray array];
+	// Load up the frames of our animation
+	NSMutableArray *walkAnimFrames = [NSMutableArray array];
 	for(int i = 1; i <= 6; ++i) {
-		[flyingAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"target_%d.png", i]]];
+		[walkAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"target_%d.png", i]]];
 	}
-	walkAnim = [CCAnimation animationWithFrames:flyingAnimFrames delay:0.05f];
+	CCAnimation *walkAnim = [CCAnimation animationWithFrames:walkAnimFrames delay:0.1f];
 	
-	walkAnim.loops = 1;
-	
-	
-	CCSprite *targetSprite = [CCSprite spriteWithFile:@"target_1.png"];
+	// Create a sprite for our bear
+	CGSize winSize = [CCDirector sharedDirector].winSize;
+	CCSprite *targetSprite = [CCSprite spriteWithSpriteFrameName:@"target_1.png"];
 	Vector *vector = self.terrain->GetRandomFlyingStartPosition(targetSprite.contentSize.width, targetSprite.contentSize.height);
 	
 	FlyingTarget *target = new FlyingTarget(0, vector->y, targetSprite.contentSize.width, targetSprite.contentSize.height);
@@ -157,12 +142,17 @@ CCAnimation *walkAnim;
 	
 	FlyingTargetObjC *targetObjC = [FlyingTargetObjC alloc];
 	[targetObjC setTargetData:target :targetSprite];
+
+	CCAction *walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:walkAnim restoreOriginalFrame:NO]];
+	//[_bear runAction:_walkAction];
+	[spriteSheet addChild:targetSprite];
+	
+	[targetSprite runAction:walkAction];
+	
+	
 	[targetsArray addObject:targetObjC];
 
-	
-	CCAnimation *flyingAction = [CCAnimate actionWithAnimation:walkAnim restoreOriginalFrame:NO];
-	
-	[spriteSheet addChild:targetSprite];
+
 }
 -(void)addElements{
 	
@@ -187,9 +177,8 @@ CCAnimation *walkAnim;
 		if(random == 0)
 			[self addGroundTarget];
 		else
-			[self addFlyingTarget];
-//			[self addFlyingAnimation];
-			//[self addFlyingTarget];
+			[self addFlyingAnimation];
+
 	}
 	
 	
@@ -215,7 +204,7 @@ CCAnimation *walkAnim;
 		CCSprite *currArrowSprite = currArrowObjC.sprite;
 
 		//todo * 1000
-		[currArrowObjC update:arrowOffset];
+		[currArrowObjC update:arrowOffset :dt];
 		
 		
 		NSMutableArray *deleteTargets = [[NSMutableArray alloc] init];
@@ -234,8 +223,22 @@ CCAnimation *walkAnim;
 			for(int j = 0; j < [deleteTargets count]; j++) {
 				TargetObjC *targetToDelete = [deleteTargets objectAtIndex:j];
 				
+				
+				if([targetToDelete isKindOfClass:[FlyingTargetObjC class]]){
+					[targetToDelete.sprite stopAllActions];
+					
+				//	[self removeChild:((FlyingTargetObjC*)targetToDelete).spriteSheet cleanup:YES];
+				//	[self removeChild:((FlyingTargetObjC*)targetToDelete).spriteSheet cleanup:YES];
+					[targetToDelete.sprite  removeFromParentAndCleanup: YES];
+					[self removeChild:((FlyingTargetObjC*)targetToDelete).spriteSheet cleanup:YES];
+					
+					NSLog(@"FLYING");
+				}else{
+					[self removeChild:targetToDelete.sprite cleanup:YES];
+				}
+				
 				[targetsArray removeObject:targetToDelete];
-				[self removeChild:targetToDelete.sprite cleanup:YES];
+
 				
 			}
 		}
@@ -260,7 +263,9 @@ CCAnimation *walkAnim;
 		if(random == 0)
 			[self addGroundTarget];
 		else
-			[self addFlyingTarget];
+			[self addFlyingAnimation];
+		
+		//[self addFlyingTarget];
 	}
 
 if(has_touched){
@@ -377,7 +382,7 @@ if(has_touched){
 
 		_bow.rotation = (float)radiansToDegrees(arrowObjC.arrowC->getTouchRotation(new_location.x, self.terrain->height - new_location.y));
 		[_bow stopAllActions];
-		[_bow runAction:_walkAction];
+		[_bow runAction:_bowAction];
 
 	}
 	
@@ -414,7 +419,7 @@ if(has_touched){
 	
 	[self.greenSprite setScaleX:0];
 	
-	[_bow stopAction:_walkAction];
+	[_bow stopAction:_bowAction];
 	
 	CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bow_1.png"];
 

@@ -15,7 +15,8 @@
 
 @property FlyingTarget* target;
 @property (assign) CCSprite *sprite;
--(void)setTargetData:(FlyingTarget*)object:(CCSprite*)sprite;
+@property (assign) CCSpriteBatchNode* spriteSheet;
+-(void)setTargetData:(FlyingTarget*)object:(CCSprite*)sprite:(CCSpriteBatchNode*)spriteSheet;
 -(bool)collidesWith:(int) arrowX :(int) arrowY;
 -(void)update;
 @end
