@@ -22,6 +22,14 @@ public class ImageObject {
 	public Vector2f getPosition() {
 		return position;
 	}
+	
+	public int getWidth(){
+		return this.image.getWidth();
+	}
+	
+	public int getHeight(){
+		return this.image.getHeight();
+	}
 
 	public void setPosition(Vector2f position) {
 		this.position = position;

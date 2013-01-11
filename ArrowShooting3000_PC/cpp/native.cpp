@@ -85,9 +85,9 @@ JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_components_ArrowProxy_st
   }
   
 JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_components_ArrowProxy_shootArrow
-  (JNIEnv * env, jobject obj, jint mouseX, jint mouseY, jlong ref){
+  (JNIEnv * env, jobject obj, jint mouseX, jint mouseY, jfloat bowCenterX, jfloat bowCenterY, jlong ref){
           Arrow* arrow = (Arrow*) ref;
-          arrow->shootArrow(mouseX, mouseY);
+          arrow->shootArrow(mouseX, mouseY, bowCenterX, bowCenterY);
           return (long) arrow;        
   }
   
@@ -105,9 +105,9 @@ JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_components_ArrowProxy_g
   }
   
 JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_components_ArrowProxy_getTouchRotation
-  (JNIEnv * env, jobject obj, jfloat mouseX, jfloat mouseY, jlong ref){
+  (JNIEnv * env, jobject obj, jfloat mouseX, jfloat mouseY, jfloat bowCenterX, jfloat bowCenterY, jlong ref){
           Arrow* arrow = (Arrow*) ref;
-          return arrow->getTouchRotation(mouseX, mouseY); 
+          return arrow->getTouchRotation(mouseX, mouseY, bowCenterX, bowCenterY); 
   }
   
 // ARROWHUD: ***********************************************************

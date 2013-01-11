@@ -14,10 +14,10 @@ private long ref;
 	private native long setPositionX(float x, long ref);
 	private native long setPositionY(float y, long ref);
 	private native long startArrow(long ref);
-	private native long shootArrow(int mouseX, int mouseY, long ref);
+	private native long shootArrow(int mouseX, int mouseY, float bowCenterX, float bowCenterY, long ref);
 	private native long update(float delta, long ref);
 	private native float getRotation(long ref);
-	private native float getTouchRotation(float mouseX, float mouseY, long ref);
+	private native float getTouchRotation(float mouseX, float mouseY, float bowCenterX, float bowCenterY, long ref);
 	
 	public ArrowProxy(Image image, Vector2f position) {
 		super(image, position);
@@ -55,16 +55,16 @@ private long ref;
 		ref = startArrow(ref);
 	}
 	
-	public void shootArrow(int mouseX, int mouseY){
-		ref = shootArrow(mouseX, mouseY, ref);
+	public void shootArrow(int mouseX, int mouseY, float bowCenterX, float bowCenterY){
+		ref = shootArrow(mouseX, mouseY, bowCenterX, bowCenterY, ref);
 	}
 	
 	public float getRotation(){
 		return getRotation(ref);
 	}
 	
-	public float getTouchRotation(int mouseX, int mouseY){
-		return getTouchRotation((float)mouseX, (float)mouseY, ref);
+	public float getTouchRotation(int mouseX, int mouseY, float bowCenterX, float bowCenterY){
+		return getTouchRotation((float)mouseX, (float)mouseY, bowCenterX, bowCenterY, ref);
 	}
 	
 	public void update(float delta){

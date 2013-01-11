@@ -9,7 +9,7 @@ import org.newdawn.slick.geom.Vector2f;
 public class FlyingTargetProxy extends TargetProxy{
 	
 	public static final int FLYING_WITH = 130;
-	public static final int FLYING_SPACING = 0;
+	private static final int FLYING_SPACING = 0;
 	
 	private Animation animation;
 	
@@ -31,6 +31,11 @@ public class FlyingTargetProxy extends TargetProxy{
 	
 	public Vector2f getPosition(){
 		return new Vector2f((float)this.getPositionX(), (float)this.getPositionY());
+	}
+	
+	@Override
+	public int getWidth(){
+		return FLYING_WITH;
 	}
 	
 	public void update(){
