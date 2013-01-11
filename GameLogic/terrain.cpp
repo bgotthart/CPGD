@@ -64,6 +64,7 @@ Vector* Terrain::GetRandomFlyingStartPositionIOS(float targetWidth, float target
 	
 	return new Vector(-targetWidth, actualY);
 }
+
 int Terrain::calcRandomX(float targetWidth){
     int minX = targetWidth / 2;
 	int maxX = this->width - (this->width -this->playerX );
@@ -76,6 +77,7 @@ int Terrain::calcRandomY(float targetHeight){
 	int maxY = this->height - targetHeight*1.5;
 	return (rand() % maxY) +  minY;
 }
+
 
 int Terrain::GetRandomValue(){
 	
