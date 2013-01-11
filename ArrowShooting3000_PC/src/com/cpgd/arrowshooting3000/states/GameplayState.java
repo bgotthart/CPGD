@@ -129,13 +129,14 @@ public class GameplayState extends BasicGameState {
 		
 		
 		graphics.drawString("Score: " + scoreProxy.getScore() , spacing, container.getHeight() - spacing*3);
-		graphics.drawString("Time: " + timer/1000 , spacing*20, container.getHeight() - spacing*3);
+		graphics.drawString("Time: " + (60 - timer/1000) , spacing*20, container.getHeight() - spacing*3);
 
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
+		
 		//update timer
 		timer += delta;
 
