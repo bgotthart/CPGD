@@ -20,6 +20,8 @@ public:
 	void GenerateTerrain();
 	Vector* GetRandomTargetPosition(float, float);
 	Vector* GetRandomFlyingStartPosition(float, float);
+	Vector* GetRandomFlyingStartPositionIOS(float, float);
+
 	int CollidesWith(int, int);
 	int GetRandomValue();
 };
