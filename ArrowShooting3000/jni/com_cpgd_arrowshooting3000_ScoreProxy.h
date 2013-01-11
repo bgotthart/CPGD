@@ -10,18 +10,26 @@ extern "C" {
 /*
  * Class:     com_cpgd_arrowshooting3000_ScoreProxy
  * Method:    score
- * Signature: ()J
+ * Signature: ()V
  */
-JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ScoreProxy_score
+JNIEXPORT void JNICALL Java_com_cpgd_arrowshooting3000_ScoreProxy_score
   (JNIEnv *, jobject);
 
 /*
  * Class:     com_cpgd_arrowshooting3000_ScoreProxy
  * Method:    getScore
- * Signature: (J)I
+ * Signature: ()I
  */
 JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_ScoreProxy_getScore
-  (JNIEnv *, jobject, jlong);
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     com_cpgd_arrowshooting3000_ScoreProxy
+ * Method:    resetScore
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_cpgd_arrowshooting3000_ScoreProxy_resetScore
+  (JNIEnv *, jobject);
 
 #ifdef __cplusplus
 }

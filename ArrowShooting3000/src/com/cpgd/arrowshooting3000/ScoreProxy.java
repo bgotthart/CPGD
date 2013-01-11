@@ -1,18 +1,21 @@
 package com.cpgd.arrowshooting3000;
 
 public class ScoreProxy {
-
-	private long objref;
 	
-	private native long score();
-	private native int getScore(long objref);
+	private native void score();
+	private native int getScore();
+	private native void resetScore();
 	
 	public ScoreProxy() {
-		objref = score();
+		score();
 	}
 	
-	public int getScore() {
-		return getScore(objref);
+	public int getCurrentScore() {
+		return getScore();
+	}
+	
+	public void resetCurrentScore() {
+		resetScore();
 	}
 	
 }

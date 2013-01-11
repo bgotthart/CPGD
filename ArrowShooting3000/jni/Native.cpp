@@ -179,13 +179,20 @@ JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_FlyingTargetProxy_update
 	return (long) target;
 }
 
+JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_FlyingTargetProxy_collidesWith
+  (JNIEnv * env, jobject o, jint arrowX, jint arrowY, jlong obj)
+{
+	FlyingTarget* target = (FlyingTarget*) obj;
+	return target->colidesWith(arrowX, arrowY);
+}
+
 
 
 // ##################### Terrain ###############################
 JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_TerrainProxy_terrain
-  (JNIEnv *, jobject, jint width, jint height)
+  (JNIEnv *, jobject, jint width, jint height, jint playerX, jint playerY)
 {
-	Terrain* tmp = new Terrain(width, height);
+	Terrain* tmp = new Terrain(width, height, playerX, playerY);
 	return (long) tmp;
 }
 
@@ -218,6 +225,13 @@ JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_TerrainProxy_GetRandomF
 	return terrain->GetRandomFlyingStartPosition(targetWidth, targetHeight)->y;
 }
 
+JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_TerrainProxy_GetRandomValue
+  (JNIEnv * env, jobject o, jlong obj)
+{
+	Terrain* terrain = (Terrain*) obj;
+	return terrain->GetRandomValue();
+}
+
 
 
 // ##################### ArrowHud ###############################
@@ -238,16 +252,20 @@ JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_ArrowHudProxy_getCurren
 
 
 // ##################### Score ###############################
-JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_ScoreProxy_score
+JNIEXPORT void JNICALL Java_com_cpgd_arrowshooting3000_ScoreProxy_score
   (JNIEnv * env, jobject o)
 {
 	Score* score = Score::getInstance();
-	return (long) score;
 }
 
 JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_ScoreProxy_getScore
-  (JNIEnv * env, jobject o, jlong obj)
+  (JNIEnv * env, jobject o)
 {
-	Score* score = (Score*) obj;
-	return score->getScore();
+	return Score::getInstance()->getScore();
+}
+
+JNIEXPORT void JNICALL Java_com_cpgd_arrowshooting3000_ScoreProxy_resetScore
+  (JNIEnv *, jobject)
+{
+	Score::getInstance()->resetScore();
 }

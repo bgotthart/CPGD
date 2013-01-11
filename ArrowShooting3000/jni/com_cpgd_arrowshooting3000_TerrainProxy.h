@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     com_cpgd_arrowshooting3000_TerrainProxy
  * Method:    terrain
- * Signature: (II)J
+ * Signature: (IIII)J
  */
 JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_TerrainProxy_terrain
-  (JNIEnv *, jobject, jint, jint);
+  (JNIEnv *, jobject, jint, jint, jint, jint);
 
 /*
  * Class:     com_cpgd_arrowshooting3000_TerrainProxy
@@ -46,6 +46,14 @@ JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_TerrainProxy_GetRandomF
  */
 JNIEXPORT jfloat JNICALL Java_com_cpgd_arrowshooting3000_TerrainProxy_GetRandomFlyingStartPositionY
   (JNIEnv *, jobject, jfloat, jfloat, jlong);
+
+/*
+ * Class:     com_cpgd_arrowshooting3000_TerrainProxy
+ * Method:    GetRandomValue
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_TerrainProxy_GetRandomValue
+  (JNIEnv *, jobject, jlong);
 
 #ifdef __cplusplus
 }

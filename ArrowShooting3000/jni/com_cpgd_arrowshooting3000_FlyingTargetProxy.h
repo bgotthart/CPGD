@@ -23,6 +23,14 @@ JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_FlyingTargetProxy_flying
 JNIEXPORT jlong JNICALL Java_com_cpgd_arrowshooting3000_FlyingTargetProxy_update
   (JNIEnv *, jobject, jlong);
 
+/*
+ * Class:     com_cpgd_arrowshooting3000_FlyingTargetProxy
+ * Method:    collidesWith
+ * Signature: (IIJ)I
+ */
+JNIEXPORT jint JNICALL Java_com_cpgd_arrowshooting3000_FlyingTargetProxy_collidesWith
+  (JNIEnv *, jobject, jint, jint, jlong);
+
 #ifdef __cplusplus
 }
 #endif

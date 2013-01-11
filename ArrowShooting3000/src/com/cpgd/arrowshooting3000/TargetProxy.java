@@ -1,11 +1,11 @@
 package com.cpgd.arrowshooting3000;
 
-import org.andengine.entity.sprite.Sprite;
+import org.andengine.entity.sprite.AnimatedSprite;
 
 public class TargetProxy {
 	
 	protected long objref;
-	protected Sprite sprite;
+	protected AnimatedSprite sprite;
 	
 	private native long targetProxy(int x, int y, int width, int height);
 	private native int getPositionX(long l);
@@ -17,7 +17,7 @@ public class TargetProxy {
 		objref = 0;
 	}
 	
-	public TargetProxy(Sprite spr) {
+	public TargetProxy(AnimatedSprite spr) {
 		this.sprite = spr;
 		objref = targetProxy((int)sprite.getX(), (int)sprite.getY(), (int)sprite.getWidth(), (int)sprite.getHeight());
 	}
@@ -39,11 +39,11 @@ public class TargetProxy {
 		return getPositionY(objref);
 	}
 	
-	public void setSprite(Sprite sprite) {
+	public void setSprite(AnimatedSprite sprite) {
 		this.sprite = sprite;
 	}
 	
-	public Sprite getSprite() {
+	public AnimatedSprite getSprite() {
 		return sprite;
 	}
 
