@@ -1,7 +1,6 @@
 package com.cpgd.arrowshooting3000;
 
 import org.andengine.entity.sprite.Sprite;
-import org.andengine.util.debug.Debug;
 
 public class ArrowProxy {
 

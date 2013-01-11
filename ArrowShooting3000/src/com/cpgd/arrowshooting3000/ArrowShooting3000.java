@@ -173,7 +173,7 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 	                			targetProxies.remove(i);
 	                			arrowProxies.remove(j);
 	                			
-	                			if (gtp instanceof FlyingTargetProxy) addRandomFlyingTarget(scene); else addRandomTarget(scene);
+	                			addSomeTargets(scene, 1);
 	                			
 	                			break;
 	                		}
@@ -270,11 +270,11 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 	            		
 	            		scene.attachChild(playerProxy.getAnimatedSprite());
 	            		
-	            		scoreText = new Text(10, 5, mFont, "Score: 100000 Time left: 1000", getVertexBufferObjectManager());
+	            		scoreText = new Text(10, CAMERA_HEIGHT - 80, mFont, "Score: 100000 Time left: 1000", getVertexBufferObjectManager());
 	            		scoreText.setText("Score: 0");
 	            		scene.attachChild(scoreText);
 	            		
-	            		addSomeTargets(scene);
+	            		addSomeTargets(scene, 5);
 	            	}
             	}
             }
@@ -301,11 +301,11 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 				
 		
 		//Add some targets
-		addSomeTargets(scene);
+		addSomeTargets(scene, 5);
 		
 		
 		//Create text
-		scoreText = new Text(10, 5, mFont, "Score: 100000 Time left: 1000", this.getVertexBufferObjectManager());
+		scoreText = new Text(10, CAMERA_HEIGHT - 80, mFont, "Score: 100000 Time left: 1000", this.getVertexBufferObjectManager());
 		scoreText.setText("Score: 0");
 		scene.attachChild(scoreText);
 		
@@ -388,8 +388,8 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 		return texture;
 	}
 	
-	private void addSomeTargets(final Scene scene) {
-		for(int i=0; i<5; i++) {
+	private void addSomeTargets(final Scene scene, int number) {
+		for(int i=0; i<number; i++) {
 			int rand = terrainProxy.GetRandomValue();
 			if(rand == 1) addRandomTarget(scene);
 			else addRandomFlyingTarget(scene);

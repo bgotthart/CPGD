@@ -2,13 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Magdalena/Documents/Magdalena/CP/git/CPGD/Slick-Engine/slick/lib/jinput.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Magdalena/Documents/Magdalena/CP/git/CPGD/Slick-Engine/slick/lib/slick.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Magdalena/Documents/Magdalena/CP/git/CPGD/Slick-Engine/lwjgl-2.8.5/jar/lwjgl.jar">
+	<classpathentry kind="lib" path="F:/FH/Master/cpgd_workspace/CPGD/Slick-Engine/slick/lib/jinput.jar"/>
+	<classpathentry kind="lib" path="F:/FH/Master/cpgd_workspace/CPGD/Slick-Engine/slick/lib/slick.jar"/>
+	<classpathentry kind="lib" path="F:/FH/Master/cpgd_workspace/CPGD/Slick-Engine/lwjgl-2.8.5/jar/lwjgl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Magdalena/Documents/Magdalena/CP/git/CPGD/Slick-Engine/lwjgl-2.8.5/native/windows"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="F:/FH/Master/cpgd_workspace/CPGD/Slick-Engine/lwjgl-2.8.5/native/windows/32bit"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Magdalena/Documents/Magdalena/CP/git/CPGD/Slick-Engine/lwjgl-2.8.5/jar/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="F:/FH/Master/cpgd_workspace/CPGD/Slick-Engine/lwjgl-2.8.5/jar/lwjgl_util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
