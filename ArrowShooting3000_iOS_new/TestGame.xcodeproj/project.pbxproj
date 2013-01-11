@@ -193,9 +193,9 @@
 		0D082BD6169B57D100AD3993 /* bow_animation_default.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D082BD4169B57D100AD3993 /* bow_animation_default.plist */; };
 		0D082BD7169B57D100AD3993 /* bow_animation_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D082BD5169B57D100AD3993 /* bow_animation_default.png */; };
 		0D082BDE169B5F0D00AD3993 /* AnimatedBowObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D082BDD169B5F0D00AD3993 /* AnimatedBowObjC.m */; };
+		0D544A65169F8736000DED6D /* target_with_wings_animation_default.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D544A63169F8736000DED6D /* target_with_wings_animation_default.plist */; };
+		0D544A66169F8736000DED6D /* target_with_wings_animation_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D544A64169F8736000DED6D /* target_with_wings_animation_default.png */; };
 		0D65BFE9169F678C00BFFF09 /* FinishLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0D65BFE8169F678C00BFFF09 /* FinishLayer.mm */; };
-		0D65BFEC169F796800BFFF09 /* target_with_wings_animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D65BFEA169F796800BFFF09 /* target_with_wings_animation.plist */; };
-		0D65BFED169F796800BFFF09 /* target_with_wings_animation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D65BFEB169F796800BFFF09 /* target_with_wings_animation.png */; };
 		0DA21B05169F7D1D00DFF423 /* arrow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DA21AF4169F7D1D00DFF423 /* arrow.cpp */; };
 		0DA21B06169F7D1D00DFF423 /* arrowHud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DA21AF6169F7D1D00DFF423 /* arrowHud.cpp */; };
 		0DA21B07169F7D1D00DFF423 /* flyingTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DA21AF9169F7D1D00DFF423 /* flyingTarget.cpp */; };
@@ -204,6 +204,12 @@
 		0DA21B0A169F7D1D00DFF423 /* target.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DA21AFF169F7D1D00DFF423 /* target.cpp */; };
 		0DA21B0B169F7D1D00DFF423 /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DA21B01169F7D1D00DFF423 /* terrain.cpp */; };
 		0DA21B0C169F7D1D00DFF423 /* vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DA21B03169F7D1D00DFF423 /* vector.cpp */; };
+		0DA21B13169F856D00DFF423 /* target_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA21B0D169F856D00DFF423 /* target_1.png */; };
+		0DA21B14169F856D00DFF423 /* target_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA21B0E169F856D00DFF423 /* target_2.png */; };
+		0DA21B15169F856D00DFF423 /* target_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA21B0F169F856D00DFF423 /* target_3.png */; };
+		0DA21B16169F856D00DFF423 /* target_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA21B10169F856D00DFF423 /* target_4.png */; };
+		0DA21B17169F856D00DFF423 /* target_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA21B11169F856D00DFF423 /* target_5.png */; };
+		0DA21B18169F856D00DFF423 /* target_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA21B12169F856D00DFF423 /* target_6.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -582,10 +588,10 @@
 		0D082BD5169B57D100AD3993 /* bow_animation_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bow_animation_default.png; sourceTree = "<group>"; };
 		0D082BDC169B5F0D00AD3993 /* AnimatedBowObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedBowObjC.h; sourceTree = "<group>"; };
 		0D082BDD169B5F0D00AD3993 /* AnimatedBowObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedBowObjC.m; sourceTree = "<group>"; };
+		0D544A63169F8736000DED6D /* target_with_wings_animation_default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = target_with_wings_animation_default.plist; sourceTree = "<group>"; };
+		0D544A64169F8736000DED6D /* target_with_wings_animation_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_with_wings_animation_default.png; sourceTree = "<group>"; };
 		0D65BFE7169F678C00BFFF09 /* FinishLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishLayer.h; sourceTree = "<group>"; };
 		0D65BFE8169F678C00BFFF09 /* FinishLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FinishLayer.mm; sourceTree = "<group>"; };
-		0D65BFEA169F796800BFFF09 /* target_with_wings_animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = target_with_wings_animation.plist; sourceTree = "<group>"; };
-		0D65BFEB169F796800BFFF09 /* target_with_wings_animation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_with_wings_animation.png; sourceTree = "<group>"; };
 		0DA21AF4169F7D1D00DFF423 /* arrow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = arrow.cpp; path = ../../GameLogic/arrow.cpp; sourceTree = "<group>"; };
 		0DA21AF5169F7D1D00DFF423 /* arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = arrow.h; path = ../../GameLogic/arrow.h; sourceTree = "<group>"; };
 		0DA21AF6169F7D1D00DFF423 /* arrowHud.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = arrowHud.cpp; path = ../../GameLogic/arrowHud.cpp; sourceTree = "<group>"; };
@@ -603,6 +609,12 @@
 		0DA21B02169F7D1D00DFF423 /* terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = terrain.h; path = ../../GameLogic/terrain.h; sourceTree = "<group>"; };
 		0DA21B03169F7D1D00DFF423 /* vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vector.cpp; path = ../../GameLogic/vector.cpp; sourceTree = "<group>"; };
 		0DA21B04169F7D1D00DFF423 /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vector.h; path = ../../GameLogic/vector.h; sourceTree = "<group>"; };
+		0DA21B0D169F856D00DFF423 /* target_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_1.png; sourceTree = "<group>"; };
+		0DA21B0E169F856D00DFF423 /* target_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_2.png; sourceTree = "<group>"; };
+		0DA21B0F169F856D00DFF423 /* target_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_3.png; sourceTree = "<group>"; };
+		0DA21B10169F856D00DFF423 /* target_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_4.png; sourceTree = "<group>"; };
+		0DA21B11169F856D00DFF423 /* target_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_5.png; sourceTree = "<group>"; };
+		0DA21B12169F856D00DFF423 /* target_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target_6.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -679,8 +691,14 @@
 		0D08297E169B55E200AD3993 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0D65BFEA169F796800BFFF09 /* target_with_wings_animation.plist */,
-				0D65BFEB169F796800BFFF09 /* target_with_wings_animation.png */,
+				0D544A63169F8736000DED6D /* target_with_wings_animation_default.plist */,
+				0D544A64169F8736000DED6D /* target_with_wings_animation_default.png */,
+				0DA21B0D169F856D00DFF423 /* target_1.png */,
+				0DA21B0E169F856D00DFF423 /* target_2.png */,
+				0DA21B0F169F856D00DFF423 /* target_3.png */,
+				0DA21B10169F856D00DFF423 /* target_4.png */,
+				0DA21B11169F856D00DFF423 /* target_5.png */,
+				0DA21B12169F856D00DFF423 /* target_6.png */,
 				0D082BD4169B57D100AD3993 /* bow_animation_default.plist */,
 				0D082BD5169B57D100AD3993 /* bow_animation_default.png */,
 				0D082BC4169B57C900AD3993 /* arrow.png */,
@@ -1309,8 +1327,14 @@
 				0D082BD3169B57C900AD3993 /* taut_bow.png in Resources */,
 				0D082BD6169B57D100AD3993 /* bow_animation_default.plist in Resources */,
 				0D082BD7169B57D100AD3993 /* bow_animation_default.png in Resources */,
-				0D65BFEC169F796800BFFF09 /* target_with_wings_animation.plist in Resources */,
-				0D65BFED169F796800BFFF09 /* target_with_wings_animation.png in Resources */,
+				0DA21B13169F856D00DFF423 /* target_1.png in Resources */,
+				0DA21B14169F856D00DFF423 /* target_2.png in Resources */,
+				0DA21B15169F856D00DFF423 /* target_3.png in Resources */,
+				0DA21B16169F856D00DFF423 /* target_4.png in Resources */,
+				0DA21B17169F856D00DFF423 /* target_5.png in Resources */,
+				0DA21B18169F856D00DFF423 /* target_6.png in Resources */,
+				0D544A65169F8736000DED6D /* target_with_wings_animation_default.plist in Resources */,
+				0D544A66169F8736000DED6D /* target_with_wings_animation_default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,9 +12,10 @@
 @synthesize target = _target;
 @synthesize sprite = _sprite;
 
--(void)setTargetData:(FlyingTarget *)object :(CCSprite *)sprite{
+-(void)setTargetData:(FlyingTarget *)object :(CCSprite *)sprite :(CCSpriteBatchNode*)spriteSheet{
 	self.target = object;
 	self.sprite = sprite;
+	self.spriteSheet = spriteSheet;
 	
 	self.sprite.anchorPoint = ccp(0,1);
 	

@@ -29,9 +29,9 @@
 	self.arrowC=nil;
 	[super dealloc];
 }
--(void)update:(float)arrowOffset{
+-(void)update:(float)arrowOffset :(ccTime)dt{
 	
-	self.arrowC->update();
+	self.arrowC->update((float)dt);
 	
 
 	CGSize winSize = [CCDirector sharedDirector].winSize;

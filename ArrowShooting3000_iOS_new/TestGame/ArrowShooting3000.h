@@ -34,7 +34,9 @@
 	
 	BOOL _moving;
 	CCSprite *_bow;
-	CCAction *_walkAction;
+	CCAction *_bowAction;
+
+
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
@@ -47,8 +49,8 @@
 @property(assign) CCSprite *redSprite;
 @property() ArrowHud *arrowHud;
 @property (nonatomic, retain) CCSprite *bow;
-@property (nonatomic, retain) CCSprite *bear;
-@property (nonatomic, retain) CCAction *walkAction;
+@property (nonatomic, retain) CCAction *bowAction;
+
 
 
 
