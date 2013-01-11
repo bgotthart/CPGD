@@ -11,6 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.ResourceLoader;
 
 import com.cpgd.arrowshooting3000.ArrowShooting3000;
 import com.cpgd.arrowshooting3000.components.ArrowHudProxy;
@@ -72,12 +73,13 @@ public class GameplayState extends BasicGameState {
 		super.enter(container, game);
 		
 		//load Resources:
-		playerImg = new Image("/data/bow_animation.png");
-		arrowImg = new Image("data/arrow.png");
-		targetImg = new Image("data/target.png");
-		flyingTargetImg = new Image("data/target_with_wings_animation.png");	
-		hudBackgroundImg = new Image("data/strength_level_red.png");
-		hudOverlayImg = new Image("data/strength_level_green.png");
+		playerImg = new Image(ResourceLoader.getResourceAsStream("data/bow_animation.png"), "bow_animation", false);
+		arrowImg = new Image(ResourceLoader.getResourceAsStream("data/arrow.png"), "arrow", false);
+		targetImg = new Image(ResourceLoader.getResourceAsStream("data/target.png"), "target", false);
+		flyingTargetImg = new Image(ResourceLoader.getResourceAsStream("data/target_with_wings_animation.png"), "target_with_wings_animation", false);
+		hudBackgroundImg = new Image(ResourceLoader.getResourceAsStream("data/strength_level_red.png"), "strength_level_red", false);
+		hudOverlayImg = new Image(ResourceLoader.getResourceAsStream("data/strength_level_green.png"), "strength_level_green", false);
+		
 		
 		//initialize Lists:
 		targetProxies = new ArrayList<TargetProxy>();
@@ -115,19 +117,19 @@ public class GameplayState extends BasicGameState {
 		playerProxy.render(graphics);
 		arrowHudProxy.render(graphics);
 		
+		for(TargetProxy target : targetProxies){
+			target.render(graphics);
+		}
+		
 		for(ArrowProxy arrow : arrowProxies){
 			arrow.render(graphics);
 		}
 		if(isClicking)
 			arrowProxy.render(graphics);
 		
-		for(TargetProxy target : targetProxies){
-			target.render(graphics);
-		}
 		
-		
-		graphics.drawString("Score: " + scoreProxy.getScore() , 200, 10);
-		graphics.drawString("Time: " + timer/1000 , 500, 10);
+		graphics.drawString("Score: " + scoreProxy.getScore() , spacing, container.getHeight() - spacing*3);
+		graphics.drawString("Time: " + timer/1000 , spacing*20, container.getHeight() - spacing*3);
 
 	}
 
@@ -157,7 +159,7 @@ public class GameplayState extends BasicGameState {
 				
 				if(isClicking){
 					//Rotation of Arrow and Bow when Mouse moves
-					float angle = (float)Math.toDegrees(arrowProxy.getTouchRotation(input.getMouseX(), input.getMouseY()));
+					float angle = (float)Math.toDegrees(arrowProxy.getTouchRotation(input.getMouseX(), input.getMouseY(), playerProxy.getPositionX() + playerProxy.getWidth()/2, playerProxy.getPositionY()+playerProxy.getHeight()/2));
 					arrowProxy.getImage().setRotation(angle);
 					for(int i = 0; i < playerProxy.getAnimation().getFrameCount(); i++){
 						playerProxy.getAnimation().getImage(i).setRotation(angle);
@@ -177,13 +179,13 @@ public class GameplayState extends BasicGameState {
 							arrowTimer -= arrowUpdateTime;
 							arrowOffset += 11;
 							//Update arrow position
-							arrowProxy.setPositionX((playerProxy.getPositionX()+PlayerProxy.PLAYER_WITH/2 - arrowImg.getWidth()/2) + arrowOffset);
-							arrowProxy.setPositionY(playerProxy.getPositionY() + playerProxy.getImage().getHeight()/2 - arrowProxy.getImage().getHeight()/2);
+							arrowProxy.setPositionX((playerProxy.getPositionX()+PlayerProxy.PLAYER_WITH/2 - arrowProxy.getWidth()/2) + arrowOffset);
+							arrowProxy.setPositionY(playerProxy.getPositionY() + playerProxy.getHeight()/2 - arrowProxy.getHeight()/2);
 							//Update arrow center of rotation
-							arrowProxy.getImage().setCenterOfRotation(arrowProxy.getImage().getWidth()/2 - arrowOffset, arrowProxy.getImage().getHeight()/2);			
+							arrowProxy.getImage().setCenterOfRotation(arrowProxy.getWidth()/2 - arrowOffset, arrowProxy.getHeight()/2);			
 							
 							//Rotation of Arrow and Bow when Mouse moves
-							float angle2 = (float)Math.toDegrees(arrowProxy.getTouchRotation(input.getMouseX(), input.getMouseY()));
+							float angle2 = (float)Math.toDegrees(arrowProxy.getTouchRotation(input.getMouseX(), input.getMouseY(), playerProxy.getPositionX() + playerProxy.getWidth()/2, playerProxy.getPositionY()+playerProxy.getHeight()/2));
 							arrowProxy.getImage().setRotation(angle2);
 							for(int i = 0; i < playerProxy.getAnimation().getFrameCount(); i++){
 								playerProxy.getAnimation().getImage(i).setRotation(angle2);
@@ -200,9 +202,9 @@ public class GameplayState extends BasicGameState {
 					a.update(delta);
 					
 					if(a.getPositionX() > container.getWidth() || 
-					   a.getPositionX() + a.getImage().getWidth() < 0 ||
+					   a.getPositionX() + a.getWidth() < 0 ||
 					   a.getPositionY() > container.getHeight()||
-					   a.getPositionY() + a.getImage().getHeight() < 0){
+					   a.getPositionY() + a.getHeight() < 0){
 						a = null;
 						arrowProxies.remove(i);
 						break;
@@ -211,7 +213,7 @@ public class GameplayState extends BasicGameState {
 					//Collisiondetection
 					for(int j = 0; j < targetProxies.size(); j++){
 						TargetProxy t = targetProxies.get(j);
-						if(t.collidesWith(a.getPositionX() + a.getImage().getWidth()/2, a.getPositionY() + a.getImage().getHeight()/2) == 1){
+						if(t.collidesWith(a.getPositionX() + a.getWidth()/2, a.getPositionY() + a.getHeight()/2) == 1){
 							
 							targetProxies.remove(j);
 							arrowProxies.remove(i);
@@ -237,9 +239,9 @@ public class GameplayState extends BasicGameState {
 		isClicking = true;		
 		arrowProxy = new ArrowProxy(arrowImg.copy(), 
 				new Vector2f((playerProxy.getPositionX()+PlayerProxy.PLAYER_WITH/2 - arrowImg.getWidth()/2) + arrowOffset, 
-						playerProxy.getPositionY() + playerProxy.getImage().getHeight()/2- arrowImg.getHeight()/2)); 
+						playerProxy.getPositionY() + playerProxy.getHeight()/2- arrowImg.getHeight()/2)); 
 		arrowProxy.startArrow();
-		arrowProxy.getImage().setCenterOfRotation(arrowProxy.getImage().getWidth()/2 - arrowOffset, arrowProxy.getImage().getHeight()/2);
+		arrowProxy.getImage().setCenterOfRotation(arrowProxy.getWidth()/2 - arrowOffset, arrowProxy.getHeight()/2);
 		playerProxy.tautBow();
 		
 		arrowStepCount = 0;
@@ -251,7 +253,7 @@ public class GameplayState extends BasicGameState {
 		if(isClicking){
 			isClicking = false;
 			playerProxy.relaxBow();
-			arrowProxy.shootArrow(x, y);
+			arrowProxy.shootArrow(x, y, playerProxy.getPositionX() + playerProxy.getWidth()/2, playerProxy.getPositionY()+playerProxy.getHeight()/2);
 			arrowProxies.add(arrowProxy);
 
 			arrowHudProxy.setOverlayWidth(0);

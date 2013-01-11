@@ -9,7 +9,7 @@ import org.newdawn.slick.geom.Vector2f;
 public class PlayerProxy extends ImageObject{
 	
 	public static final int PLAYER_WITH = 84;
-	public static final int PLAYER_SPACING = 16;
+	private static final int PLAYER_SPACING = 16;
 	
 	private long ref;
 	private Animation animation;
@@ -38,6 +38,11 @@ public class PlayerProxy extends ImageObject{
 	
 	public int getPositionY(){
 		return getPositionY(ref);
+	}
+	
+	@Override
+	public int getWidth(){
+		return PLAYER_WITH;
 	}
 	
 	public Animation getAnimation(){

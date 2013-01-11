@@ -1,4 +1,4 @@
-; dlltool --base-file C:\Users\MAGDAL~1\AppData\Local\Temp/cca04680.base --output-exp Native.exp --dllname Native.dll --output-def libNative.def --no-export-all-symbols --add-stdcall-alias --exclude-symbol=DllMainCRTStartup@12 --def C:\Users\MAGDAL~1\AppData\Local\Temp/cca04680.def --output-lib libNative.a
+; dlltool --base-file C:\Users\MAGDAL~1\AppData\Local\Temp/cca04392.base --output-exp Native.exp --dllname Native.dll --output-def libNative.def --no-export-all-symbols --add-stdcall-alias --exclude-symbol=DllMainCRTStartup@12 --def C:\Users\MAGDAL~1\AppData\Local\Temp/cca04392.def --output-lib libNative.a
 EXPORTS
 	Java_com_cpgd_arrowshooting3000_components_ArrowHudProxy_arrowHudProxy = Java_com_cpgd_arrowshooting3000_components_ArrowHudProxy_arrowHudProxy@12 @ 1
 	Java_com_cpgd_arrowshooting3000_components_ArrowHudProxy_arrowHudProxy@12 @ 2
@@ -16,14 +16,14 @@ EXPORTS
 	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_getRotation@16 @ 14
 	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_getStrength = Java_com_cpgd_arrowshooting3000_components_ArrowProxy_getStrength@16 @ 15
 	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_getStrength@16 @ 16
-	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_getTouchRotation = Java_com_cpgd_arrowshooting3000_components_ArrowProxy_getTouchRotation@24 @ 17
-	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_getTouchRotation@24 @ 18
+	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_getTouchRotation = Java_com_cpgd_arrowshooting3000_components_ArrowProxy_getTouchRotation@32 @ 17
+	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_getTouchRotation@32 @ 18
 	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_setPositionX = Java_com_cpgd_arrowshooting3000_components_ArrowProxy_setPositionX@20 @ 19
 	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_setPositionX@20 @ 20
 	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_setPositionY = Java_com_cpgd_arrowshooting3000_components_ArrowProxy_setPositionY@20 @ 21
 	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_setPositionY@20 @ 22
-	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_shootArrow = Java_com_cpgd_arrowshooting3000_components_ArrowProxy_shootArrow@24 @ 23
-	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_shootArrow@24 @ 24
+	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_shootArrow = Java_com_cpgd_arrowshooting3000_components_ArrowProxy_shootArrow@32 @ 23
+	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_shootArrow@32 @ 24
 	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_startArrow = Java_com_cpgd_arrowshooting3000_components_ArrowProxy_startArrow@16 @ 25
 	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_startArrow@16 @ 26
 	Java_com_cpgd_arrowshooting3000_components_ArrowProxy_update = Java_com_cpgd_arrowshooting3000_components_ArrowProxy_update@20 @ 27
