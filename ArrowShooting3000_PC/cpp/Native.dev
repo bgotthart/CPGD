@@ -16,7 +16,7 @@ Linker=--no-export-all-symbols --add-stdcall-alias_@@_
 IsCpp=1
 Icon=
 ExeOutput=
-ObjectOutput=
+ObjectOutput=..\..\..\CP\lwjgl-2.8.5\native\windows\ArrowShooting3000
 OverrideOutput=0
 OverrideOutputName=Native.dll
 HostApplication=
@@ -40,66 +40,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=com_arrowshooting_gameplay_level_ArrowHudWrapper.h
-CompileCpp=1
-Folder=Native
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit3]
-FileName=com_arrowshooting_gameplay_level_ArrowWrapper.h
-CompileCpp=1
-Folder=Native
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit4]
-FileName=com_arrowshooting_gameplay_level_FlyingTargetWrapper.h
-CompileCpp=1
-Folder=Native
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit5]
-FileName=com_arrowshooting_gameplay_level_PlayerWrapper.h
-CompileCpp=1
-Folder=Native
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit6]
-FileName=com_arrowshooting_gameplay_level_TargetWrapper.h
-CompileCpp=1
-Folder=Native
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit7]
-FileName=com_arrowshooting_gameplay_level_TerrainWrapper.h
-CompileCpp=1
-Folder=Native
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit8]
 FileName=GameLogic\arrow.cpp
 CompileCpp=1
 Folder=Native
@@ -109,7 +49,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit9]
+[Unit3]
 FileName=GameLogic\arrow.h
 CompileCpp=1
 Folder=Native
@@ -119,7 +59,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit10]
+[Unit4]
 FileName=GameLogic\arrowHud.cpp
 CompileCpp=1
 Folder=Native
@@ -129,7 +69,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit11]
+[Unit5]
 FileName=GameLogic\arrowHud.h
 CompileCpp=1
 Folder=Native
@@ -139,7 +79,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit12]
+[Unit6]
 FileName=GameLogic\config.h
 CompileCpp=1
 Folder=Native
@@ -149,7 +89,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit13]
+[Unit7]
 FileName=GameLogic\flyingTarget.cpp
 CompileCpp=1
 Folder=Native
@@ -159,7 +99,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit14]
+[Unit8]
 FileName=GameLogic\flyingTarget.h
 CompileCpp=1
 Folder=Native
@@ -169,7 +109,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit15]
+[Unit9]
 FileName=GameLogic\player.cpp
 CompileCpp=1
 Folder=Native
@@ -179,7 +119,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit16]
+[Unit10]
 FileName=GameLogic\player.h
 CompileCpp=1
 Folder=Native
@@ -189,7 +129,27 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit17]
+[Unit11]
+FileName=GameLogic\score.cpp
+CompileCpp=1
+Folder=Native
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit12]
+FileName=GameLogic\score.h
+CompileCpp=1
+Folder=Native
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit13]
 FileName=GameLogic\target.cpp
 CompileCpp=1
 Folder=Native
@@ -199,7 +159,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit18]
+[Unit14]
 FileName=GameLogic\target.h
 CompileCpp=1
 Folder=Native
@@ -209,7 +169,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit19]
+[Unit15]
 FileName=GameLogic\terrain.cpp
 CompileCpp=1
 Folder=Native
@@ -219,7 +179,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit20]
+[Unit16]
 FileName=GameLogic\terrain.h
 CompileCpp=1
 Folder=Native
@@ -229,7 +189,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit21]
+[Unit17]
 FileName=GameLogic\vector.cpp
 CompileCpp=1
 Folder=Native
@@ -239,8 +199,78 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit22]
+[Unit18]
 FileName=GameLogic\vector.h
+CompileCpp=1
+Folder=Native
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit19]
+FileName=JNIHeaders\com_cpgd_arrowshooting3000_components_ArrowHudProxy.h
+CompileCpp=1
+Folder=Native
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit20]
+FileName=JNIHeaders\com_cpgd_arrowshooting3000_components_ArrowProxy.h
+CompileCpp=1
+Folder=Native
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit21]
+FileName=JNIHeaders\com_cpgd_arrowshooting3000_components_FlyingTargetProxy.h
+CompileCpp=1
+Folder=Native
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit22]
+FileName=JNIHeaders\com_cpgd_arrowshooting3000_components_PlayerProxy.h
+CompileCpp=1
+Folder=Native
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit23]
+FileName=JNIHeaders\com_cpgd_arrowshooting3000_components_ScoreProxy.h
+CompileCpp=1
+Folder=Native
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit24]
+FileName=JNIHeaders\com_cpgd_arrowshooting3000_components_TargetProxy.h
+CompileCpp=1
+Folder=Native
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit25]
+FileName=JNIHeaders\com_cpgd_arrowshooting3000_components_TerrainProxy.h
 CompileCpp=1
 Folder=Native
 Compile=1
@@ -266,34 +296,4 @@ OriginalFilename=
 ProductName=
 ProductVersion=
 AutoIncBuildNr=0
-
-[Unit23]
-FileName=GameLogic\score.h
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit24]
-FileName=GameLogic\score.cpp
-CompileCpp=1
-Folder=Native
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit25]
-FileName=com_arrowshooting_gameplay_level_ScoreWrapper.h
-CompileCpp=1
-Folder=Native
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
 

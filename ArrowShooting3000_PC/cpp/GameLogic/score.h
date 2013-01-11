@@ -8,6 +8,7 @@ class Score{
              static Score* getInstance();
              int getScore();
              void addScore(int);
+             void resetScore();
              
       private:
               Score();

@@ -17,6 +17,10 @@ void Score::addScore(int score){
      this->score += score;    
 }
 
+void Score::resetScore(){
+     this->score = 0;    
+}
+
 Score::Score(){
     this->score = 0;
 }

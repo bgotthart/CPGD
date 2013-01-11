@@ -20,7 +20,7 @@ int Arrow::getPositionY() {
 float Arrow::getStrength() {
 	clock_t end = clock();
 	double elapsed = double(end - begin) / CLOCKS_PER_SEC;
-	return (float) elapsed * 30;
+	return (float) elapsed * STRENGTH_INCREASING_FACTOR;
 }
 
 float Arrow::getRotation() {
@@ -45,7 +45,7 @@ void Arrow::shootArrow(int mouseX, int mouseY){
 	double elapsed = double(end - begin) / CLOCKS_PER_SEC;
 	float strength = (float) elapsed * STRENGTH_INCREASING_FACTOR;
 	strength = (strength > MAX_STRENGTH) ? MAX_STRENGTH : strength;
-
+    
 	this->velocity->x = mouseX - this->position->x;
 	this->velocity->y = mouseY - this->position->y;
 
@@ -53,9 +53,9 @@ void Arrow::shootArrow(int mouseX, int mouseY){
 	this->velocity->multiply(strength);
 }
 
-void Arrow::update(){
+void Arrow::update(float elapsedMSec){
 	this->position->add(velocity);
-	this->velocity->y += this->gravity;
+	this->velocity->y += this->gravity *(elapsedMSec/10.0f);
 
 	float cosAlpha = (-this->velocity->x / this->velocity->getLength());
 	this->rotation = acos(cosAlpha);

@@ -5,8 +5,8 @@ CPP  = g++.exe
 CC   = gcc.exe
 WINDRES = windres.exe
 RES  = 
-OBJ  = native.o GameLogic/arrow.o GameLogic/arrowHud.o GameLogic/flyingTarget.o GameLogic/player.o GameLogic/target.o GameLogic/terrain.o GameLogic/vector.o GameLogic/score.o $(RES)
-LINKOBJ  = native.o GameLogic/arrow.o GameLogic/arrowHud.o GameLogic/flyingTarget.o GameLogic/player.o GameLogic/target.o GameLogic/terrain.o GameLogic/vector.o GameLogic/score.o $(RES)
+OBJ  = ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/native.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/arrow.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/arrowHud.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/flyingTarget.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/player.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/score.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/target.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/terrain.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/vector.o $(RES)
+LINKOBJ  = ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/native.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/arrow.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/arrowHud.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/flyingTarget.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/player.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/score.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/target.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/terrain.o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/vector.o $(RES)
 LIBS =  -L"C:/Dev-Cpp/lib" --no-export-all-symbols --add-stdcall-alias  
 INCS =  -I"C:/Dev-Cpp/include"  -I"C:/Program Files/Java/jdk1.6.0_20/include"  -I"C:/Program Files/Java/jdk1.6.0_20/include/win32" 
 CXXINCS =  -I"C:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"C:/Dev-Cpp/include/c++/3.4.2/backward"  -I"C:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"C:/Dev-Cpp/include/c++/3.4.2"  -I"C:/Dev-Cpp/include"  -I"C:/Program Files/Java/jdk1.6.0_20/include"  -I"C:/Program Files/Java/jdk1.6.0_20/include/win32" 
@@ -30,29 +30,29 @@ STATICLIB=libNative.a
 $(BIN): $(LINKOBJ)
 	$(DLLWRAP) --output-def $(DEFFILE) --driver-name c++ --implib $(STATICLIB) $(LINKOBJ) $(LIBS) -o $(BIN)
 
-native.o: native.cpp
-	$(CPP) -c native.cpp -o native.o $(CXXFLAGS)
+../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/native.o: native.cpp
+	$(CPP) -c native.cpp -o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/native.o $(CXXFLAGS)
 
-GameLogic/arrow.o: GameLogic/arrow.cpp
-	$(CPP) -c GameLogic/arrow.cpp -o GameLogic/arrow.o $(CXXFLAGS)
+../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/arrow.o: GameLogic/arrow.cpp
+	$(CPP) -c GameLogic/arrow.cpp -o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/arrow.o $(CXXFLAGS)
 
-GameLogic/arrowHud.o: GameLogic/arrowHud.cpp
-	$(CPP) -c GameLogic/arrowHud.cpp -o GameLogic/arrowHud.o $(CXXFLAGS)
+../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/arrowHud.o: GameLogic/arrowHud.cpp
+	$(CPP) -c GameLogic/arrowHud.cpp -o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/arrowHud.o $(CXXFLAGS)
 
-GameLogic/flyingTarget.o: GameLogic/flyingTarget.cpp
-	$(CPP) -c GameLogic/flyingTarget.cpp -o GameLogic/flyingTarget.o $(CXXFLAGS)
+../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/flyingTarget.o: GameLogic/flyingTarget.cpp
+	$(CPP) -c GameLogic/flyingTarget.cpp -o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/flyingTarget.o $(CXXFLAGS)
 
-GameLogic/player.o: GameLogic/player.cpp
-	$(CPP) -c GameLogic/player.cpp -o GameLogic/player.o $(CXXFLAGS)
+../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/player.o: GameLogic/player.cpp
+	$(CPP) -c GameLogic/player.cpp -o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/player.o $(CXXFLAGS)
 
-GameLogic/target.o: GameLogic/target.cpp
-	$(CPP) -c GameLogic/target.cpp -o GameLogic/target.o $(CXXFLAGS)
+../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/score.o: GameLogic/score.cpp
+	$(CPP) -c GameLogic/score.cpp -o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/score.o $(CXXFLAGS)
 
-GameLogic/terrain.o: GameLogic/terrain.cpp
-	$(CPP) -c GameLogic/terrain.cpp -o GameLogic/terrain.o $(CXXFLAGS)
+../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/target.o: GameLogic/target.cpp
+	$(CPP) -c GameLogic/target.cpp -o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/target.o $(CXXFLAGS)
 
-GameLogic/vector.o: GameLogic/vector.cpp
-	$(CPP) -c GameLogic/vector.cpp -o GameLogic/vector.o $(CXXFLAGS)
+../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/terrain.o: GameLogic/terrain.cpp
+	$(CPP) -c GameLogic/terrain.cpp -o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/terrain.o $(CXXFLAGS)
 
-GameLogic/score.o: GameLogic/score.cpp
-	$(CPP) -c GameLogic/score.cpp -o GameLogic/score.o $(CXXFLAGS)
+../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/vector.o: GameLogic/vector.cpp
+	$(CPP) -c GameLogic/vector.cpp -o ../../../CP/lwjgl-2.8.5/native/windows/ArrowShooting3000/vector.o $(CXXFLAGS)
