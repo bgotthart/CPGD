@@ -136,7 +136,7 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 		mFont.load();
 		
 		//Proxies
-		playerProxy = new PlayerProxy((int)(CAMERA_WIDTH - regBow.getWidth()), (int)(CAMERA_HEIGHT/2 - regBow.getHeight()/2));
+		playerProxy = new PlayerProxy((int)(CAMERA_WIDTH - regBow.getWidth()), (int)(CAMERA_HEIGHT - regBow.getHeight() - 35));
 		arrowProxies = new ArrayList<ArrowProxy>();
 		targetProxies = new ArrayList<TargetProxy>();
 		terrainProxy = new TerrainProxy(CAMERA_WIDTH, CAMERA_HEIGHT, playerProxy.getPositionX(), playerProxy.getPositionY());
@@ -289,7 +289,7 @@ public class ArrowShooting3000 extends SimpleBaseGameActivity implements IOnScen
 		
 		//Create Hud
 		float hudX = playerProxy.getPositionX();
-		float hudY = playerProxy.getPositionY() + playerProxy.getAnimatedSprite().getHeight() + 20;
+		float hudY = playerProxy.getPositionY() + playerProxy.getAnimatedSprite().getHeight() + 10;
 		Sprite hudBgSprite = new Sprite(hudX, hudY, this.mHudBg, getVertexBufferObjectManager());
 		Sprite hudOverlaySprite = new Sprite(hudX, hudY, this.mHudOverlay, getVertexBufferObjectManager());
 		hudOverlaySprite.setWidth(0);
