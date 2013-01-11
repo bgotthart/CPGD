@@ -14,11 +14,13 @@ private:
 	int alphamap[0];
 	int calcRandomX(float);
 	int calcRandomY(float);
+	int calcRandomYiOS(float);
 	
 public:
 	Terrain(int, int, int, int);
 	void GenerateTerrain();
 	Vector* GetRandomTargetPosition(float, float);
+	Vector* GetRandomTargetPositionIOS(float targetWidth, float targetHeight);
 	Vector* GetRandomFlyingStartPosition(float, float);
 	Vector* GetRandomFlyingStartPositionIOS(float, float);
 
